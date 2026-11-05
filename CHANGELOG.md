@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] - archictl
+
+### Added
+- **`archictl` commands** (`code/archictl`), ported from the `ArhiYamlFiles` Python spike and checked against its golden data:
+  - Conversion: `split`, `join`, `roundtrip`.
+  - Queries: `find`, `show`, `orphans`, `unused`, `validate` (all with `--json`).
+  - Edits: `add`, `connect`, `rename`, `delete`, `add-to-view` (atomic, validated, advisory lock, `--out`).
+  - Embedded Archi relationship legality tables; exact port of Python `difflib.get_close_matches` for "did you mean".
+  - `ARCHICTL_VERBOSE`, `ARCHICTL_NO_COLOR`, `ARCHICTL_JSON` environment fallbacks; `--verbose` logging via `log/slog`.
+- `make check-no-network` (scoped to `OFFLINE_TOOLS`, currently `archictl`).
+- `code/archictl/PRODUCT_REQUIREMENTS.md` §20: requirements re-evaluated for the monorepo, status and remaining gaps.
+
+### Changed
+- `code/archictl` PRD, `docs/FORMAT.md` and `SKILL.md` normalised to LF and aligned with the monorepo layout.
+
 ## [ibmdocs/v0.0.7, archictl/v0.0.1] - 2026-11-04
 
 ### Added

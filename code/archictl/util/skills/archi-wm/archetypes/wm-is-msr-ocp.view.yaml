@@ -1,0 +1,24 @@
+- o:id-wm-tech-ocp-node-01:
+    b: 24 24 560 300
+    kids:
+    - o:id-wm-tech-is-runtime-01:
+        b: 24 48 240 55
+        kids:
+        - c:id-wm-rel-is-serves-inst
+    - o:id-wm-tech-msr-runtime-01:
+        b: 296 48 240 55
+        kids:
+        - c:id-wm-rel-msr-serves-inst
+    - o:id-wm-app-is-01:
+        b: 24 132 240 55
+        kids:
+        - o:id-wm-app-is-pkg-01:
+            b: 24 12 192 25
+            kids:
+            - c:id-wm-rel-is-pkg-realizes-svc
+    - o:id-wm-app-msr-01:
+        b: 296 132 240 55
+- o:id-wm-app-is-svc-01:
+    b: 24 348 240 37
+- o:id-wm-app-api-svc-01:
+    b: 296 348 240 37

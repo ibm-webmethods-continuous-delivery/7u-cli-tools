@@ -1,0 +1,59 @@
+- Group:
+    name: Style Rule 2 - Service Perspective
+    textAlignment: "1"
+    b: 360 180 241 313
+    kids:
+      - o:id-720d3c5e20cd40f9b3cea10b4ab51eef:
+          b: 12 180 217 61
+          kids:
+            - c:id-e73d2a131d394765a6d2e6cd403aaf33
+            - c:id-b552379d504a4347bc8efa1e45ff460c
+            - c:id-0269272cda59466ab4b909847bb6a524
+            - c:id-0fd7d58535bf48fea18cbab55ef3ae66
+      - o:id-6680becda6b04ff5b7d0b405eac50d31:
+          b: 12 120 217 36
+          kids:
+            - c:id-996e272f1685493a831660b3ebc54e31
+            - c:id-1aba8a3412984d818f3ee24bbcf3d0da
+            - c:id-a7471c718d47431da4933e5d07dfd405
+            - c:id-2a5672e8825c4fe48e13a735a6f9ca52
+            - c:id-76e10675ce1b44de9fa942ee6a1f2069
+      - o:id-28a374e2e5f546abb9c2887b7a78a5a8 12 48 217 37
+      - o:id-f896997d71c2478581ddfb30d9c23ba2 12 264 217 37
+- Group:
+    name: Style Rule 2 - Networking alternative perspective
+    textAlignment: "1"
+    b: 612 300 181 169
+    kids:
+      - o:id-e5fbb2417f734450b6d5aded02dde8d3 12 108 145 49
+      - o:id-02ce829d995e4b4f8003ade233a7f4af 12 48 145 49
+- Group:
+    name: Example Style 2 - networking perspective
+    textAlignment: "1"
+    b: 804 288 193 193
+    kids:
+      - o:id-bc3c9abb5c914db2a6d1f46b97979d5a:
+          b: 24 48 120 27
+          kids:
+            - c:id-b64fc42f72aa4bbbbf379fba6cde89bb
+      - o:id-8caec5f4df1849858a68f7c576a3e0e3:
+          b: 24 121 157 24
+          kids:
+            - c:id-b65dff90bcb54e33b10722f7b90d633e
+      - o:id-7f6fa243f2a34e5b99c7d85aca1ae930:
+          b: 24 84 120 27
+          kids:
+            - c:id-beeed203bb3e4cf2b459ebd0f0064f3f
+      - o:id-9b8804b1bec3478ead72276561fcccd9:
+          b: 24 156 157 25
+          kids:
+            - c:id-f4021488990a4ba2be61407750ed4a09
+- Group:
+    name: Example Style 2 - services perspective
+    textAlignment: "1"
+    b: 156 204 193 205
+    kids:
+      - o:id-f06c6f3b40564fd397b0501a87e59d47 12 84 144 23
+      - o:id-0a0428b7019944d0a84d5008b8aed548 12 48 144 23
+      - o:id-13d1147e13f542d59a01fab8f6328bc2 12 120 144 23
+      - o:id-2857e5c3a9ae4b148ddbdceb55c234d2 12 156 144 23

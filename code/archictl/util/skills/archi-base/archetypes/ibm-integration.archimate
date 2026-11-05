@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archimate:model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:archimate="http://www.archimatetool.com/archimate" name="IBMIntegrationReference" id="id-ibm-model-root" version="5.0.0">
+  <folder name="Strategy" id="f1" type="strategy">
+    <element xsi:type="archimate:Capability" name="Enterprise Transactional Messaging" id="id-ibm-cap-mq-01"/>
+    <element xsi:type="archimate:Capability" name="Hybrid Application &amp; Protocol Integration" id="id-ibm-cap-ace-01"/>
+    <element xsi:type="archimate:Capability" name="API Governance &amp; Security Gateway" id="id-ibm-cap-apic-01"/>
+  </folder>
+  <folder name="Business" id="f2" type="business"/>
+  <folder name="Application" id="f3" type="application">
+    <element xsi:type="archimate:ApplicationComponent" name="Core Payment IBM MQ Queue Manager" id="id-ibm-app-mq-qmgr-01">
+      <documentation>Queue Manager holding secure transactional request and reply queues.</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="Payment Transformation ACE Flow" id="id-ibm-app-ace-flow-01">
+      <documentation>App Connect Enterprise message flow performing ISO20022 transformation and validation.</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="Corporate Payment Managed API" id="id-ibm-app-apic-api-01">
+      <documentation>API Connect published REST API enforcing OAuth2 and rate limits.</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationService" name="Payment Request Queue Service" id="id-ibm-app-mq-req-svc-01"/>
+    <element xsi:type="archimate:ApplicationService" name="Payment Validation &amp; Routing Service" id="id-ibm-app-ace-svc-01"/>
+    <element xsi:type="archimate:ApplicationService" name="Payment REST Endpoint Service" id="id-ibm-app-apic-svc-01"/>
+  </folder>
+  <folder name="Technology &amp; Physical" id="f4" type="technology">
+    <element xsi:type="archimate:Node" name="CP4I OpenShift Cluster" id="id-ibm-tech-ocp-node-01"/>
+    <element xsi:type="archimate:SystemSoftware" name="IBM MQ Runtime Operator" id="id-ibm-tech-mq-runtime-01"/>
+    <element xsi:type="archimate:SystemSoftware" name="IBM App Connect Integration Server Runtime" id="id-ibm-tech-ace-runtime-01"/>
+    <element xsi:type="archimate:SystemSoftware" name="IBM DataPower / APIC Gateway Engine" id="id-ibm-tech-apic-runtime-01"/>
+  </folder>
+  <folder name="Motivation" id="f5" type="motivation"/>
+  <folder name="Implementation &amp; Migration" id="f6" type="implementation_migration"/>
+  <folder name="Other" id="f7" type="other"/>
+  <folder name="Relations" id="f8" type="relations">
+    <element xsi:type="archimate:RealizationRelationship" id="id-ibm-rel-mq-realizes-cap" source="id-ibm-tech-mq-runtime-01" target="id-ibm-cap-mq-01"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-ibm-rel-ace-realizes-cap" source="id-ibm-tech-ace-runtime-01" target="id-ibm-cap-ace-01"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-ibm-rel-apic-realizes-cap" source="id-ibm-tech-apic-runtime-01" target="id-ibm-cap-apic-01"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-ibm-rel-qmgr-realizes-svc" source="id-ibm-app-mq-qmgr-01" target="id-ibm-app-mq-req-svc-01"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-ibm-rel-flow-realizes-svc" source="id-ibm-app-ace-flow-01" target="id-ibm-app-ace-svc-01"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-ibm-rel-api-realizes-svc" source="id-ibm-app-apic-api-01" target="id-ibm-app-apic-svc-01"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-ibm-rel-ocp-comp-mq" source="id-ibm-tech-ocp-node-01" target="id-ibm-tech-mq-runtime-01"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-ibm-rel-ocp-comp-ace" source="id-ibm-tech-ocp-node-01" target="id-ibm-tech-ace-runtime-01"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-ibm-rel-ocp-comp-apic" source="id-ibm-tech-ocp-node-01" target="id-ibm-tech-apic-runtime-01"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-ibm-rel-mq-serves-qmgr" source="id-ibm-tech-mq-runtime-01" target="id-ibm-app-mq-qmgr-01"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-ibm-rel-ace-serves-flow" source="id-ibm-tech-ace-runtime-01" target="id-ibm-app-ace-flow-01"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-ibm-rel-apic-serves-api" source="id-ibm-tech-apic-runtime-01" target="id-ibm-app-apic-api-01"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-ibm-rel-apic-serves-ace" source="id-ibm-app-apic-svc-01" target="id-ibm-app-ace-flow-01"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-ibm-rel-ace-serves-mq" source="id-ibm-app-ace-svc-01" target="id-ibm-app-mq-qmgr-01"/>
+  </folder>
+  <folder name="Views" id="f9" type="diagrams">
+    <element xsi:type="archimate:ArchimateDiagramModel" name="IBM-Integration-EndToEnd-Pattern" id="id-ibm-diag-e2e">
+      <child xsi:type="archimate:Group" id="d1" name="IBM Cloud Pak for Integration Pattern" textAlignment="1">
+        <bounds x="24" y="24" width="600" height="300"/>
+        <child xsi:type="archimate:DiagramObject" id="d2" archimateElement="id-ibm-app-apic-api-01">
+          <bounds x="24" y="48" width="160" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="d3" source="d2" target="d4" archimateRelationship="id-ibm-rel-api-realizes-svc"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="d4" targetConnections="d3" archimateElement="id-ibm-app-apic-svc-01">
+          <bounds x="24" y="132" width="160" height="40"/>
+          <sourceConnection xsi:type="archimate:Connection" id="d5" source="d4" target="d6" archimateRelationship="id-ibm-rel-apic-serves-ace"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="d6" targetConnections="d5" archimateElement="id-ibm-app-ace-flow-01">
+          <bounds x="220" y="48" width="160" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="d7" source="d6" target="d8" archimateRelationship="id-ibm-rel-flow-realizes-svc"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="d8" targetConnections="d7" archimateElement="id-ibm-app-ace-svc-01">
+          <bounds x="220" y="132" width="160" height="40"/>
+          <sourceConnection xsi:type="archimate:Connection" id="d9" source="d8" target="da" archimateRelationship="id-ibm-rel-ace-serves-mq"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="da" targetConnections="d9" archimateElement="id-ibm-app-mq-qmgr-01">
+          <bounds x="416" y="48" width="160" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="db" source="da" target="dc" archimateRelationship="id-ibm-rel-qmgr-realizes-svc"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="dc" targetConnections="db" archimateElement="id-ibm-app-mq-req-svc-01">
+          <bounds x="416" y="132" width="160" height="40"/>
+        </child>
+      </child>
+    </element>
+  </folder>
+</archimate:model>

@@ -3,6 +3,8 @@
 # Pass TOOL=<tool_name> (e.g. TOOL=ibmdocs) to restrict build targets to a single tool.
 
 TOOLS          := $(notdir $(patsubst %/,%,$(wildcard code/*/)))
+# Tools that must never link a network stack (enforced by check-no-network).
+OFFLINE_TOOLS  := archictl
 SELECTED_TOOLS ?= $(if $(TOOL),$(TOOL),$(TOOLS))
 MODULE_PREFIX  := github.com/ibm-webmethods-continuous-delivery/7u-cli-tools/code
 BUILD_DIR      := target/bin
@@ -16,7 +18,7 @@ GO    := CGO_ENABLED=0 go
 
 .PHONY: build build-all build-linux-amd64 build-linux-arm64 \
         build-darwin-arm64 build-darwin-amd64 build-windows \
-        test test-race lint vet tidy list clean help
+        test test-race lint vet tidy check-no-network list clean help
 
 ## build: build native binary for current host OS/arch (all tools or TOOL=<name>)
 build:
@@ -125,6 +127,15 @@ vet:
 ## lint: golangci-lint for every tool
 lint:
 	@for t in $(TOOLS); do echo "== $$t"; (cd code/$$t && golangci-lint run ./...) || exit 1; done
+
+## check-no-network: fail if an offline tool (OFFLINE_TOOLS) depends on net/http, crypto/tls or net/rpc
+check-no-network:
+	@for t in $(OFFLINE_TOOLS); do \
+	  echo "== $$t"; \
+	  if (cd code/$$t && $(GO) list -deps ./cmd/$$t | grep -E '^(net/http|crypto/tls|net/rpc)$$'); then \
+	    echo "ERROR: $$t links a network package"; exit 1; \
+	  fi; \
+	done; echo "check-no-network: OK"
 
 ## tidy: go mod tidy for every tool
 tidy:

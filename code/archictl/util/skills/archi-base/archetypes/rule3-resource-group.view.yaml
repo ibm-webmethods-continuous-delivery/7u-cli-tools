@@ -1,0 +1,69 @@
+- Group:
+    name: Style Rule 3 - Pattern
+    textAlignment: "1"
+    b: 48 60 181 349
+    kids:
+      - o:id-sg-r3-tech-rgsvc-00001:
+          id: id-sg-r3-dv-techsvc
+          b: 12 204 157 55
+          kids:
+            - c:id-sg-r3-rel-rgsvc-to-cap:
+                source: id-sg-r3-dv-techsvc
+                target: id-sg-r3-dv-cap
+            - c:id-sg-r3-rel-rgsvc-serves-rg:
+                source: id-sg-r3-dv-techsvc
+                target: id-sg-r3-dv-appcomp
+      - o:id-sg-r3-cap-rg-000001:
+          id: id-sg-r3-dv-cap
+          b: 12 288 157 49
+      - o:id-sg-r3-app-rg-generic-00001:
+          id: id-sg-r3-dv-appcomp
+          b: 12 120 157 55
+          kids:
+            - c:id-sg-r3-rel-rg-realizes-svc:
+                source: id-sg-r3-dv-appcomp
+                target: id-sg-r3-dv-appsvc
+      - o:id-sg-r3-app-rgsvc-00003:
+          id: id-sg-r3-dv-appsvc
+          b: 12 36 157 55
+- Group:
+    name: Example Style Rule 3 - Azure Resource Group
+    textAlignment: "1"
+    b: 264 60 229 445
+    kids:
+      - o:id-sg-r3-tech-rgsvc-00001:
+          id: id-sg-r3-dv-ex-techsvc
+          b: 12 276 169 55
+          kids:
+            - c:id-sg-r3-rel-rgsvc-serves-rg:
+                source: id-sg-r3-dv-ex-techsvc
+                target: id-sg-r3-dv-ex-generic
+            - c:id-sg-r3-rel-rgsvc-to-cap:
+                source: id-sg-r3-dv-ex-techsvc
+                target: id-sg-r3-dv-ex-cap
+      - o:id-sg-r3-cap-rg-000001:
+          id: id-sg-r3-dv-ex-cap
+          b: 12 384 169 49
+      - o:id-sg-r3-app-rg-generic-00001:
+          id: id-sg-r3-dv-ex-generic
+          b: 12 192 169 55
+          kids:
+            - c:id-sg-r3-rel-rg-realizes-svc:
+                source: id-sg-r3-dv-ex-generic
+                target: id-sg-r3-dv-ex-appsvc
+                kids:
+                  - bendpoint:
+                      startX: "-60"
+                      startY: "-87"
+                      endX: "-60"
+                      endY: "69"
+      - o:id-sg-r3-app-rgsvc-00003:
+          id: id-sg-r3-dv-ex-appsvc
+          b: 12 36 169 55
+      - o:id-sg-r3-app-rg-delivery-00002:
+          id: id-sg-r3-dv-ex-delivery
+          b: 48 108 169 55
+          kids:
+            - c:id-sg-r3-rel-delivery-specializes:
+                source: id-sg-r3-dv-ex-delivery
+                target: id-sg-r3-dv-ex-generic

@@ -1,9 +1,12 @@
 package cmd
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
+	"log/slog"
 	"os"
+	"strconv"
 
 	"github.com/spf13/cobra"
 
@@ -42,6 +45,27 @@ validated, deterministic edit commands. It is a local batch tool: no network,
 no sockets, no daemon.`,
 	SilenceUsage:  true,
 	SilenceErrors: true,
+	PersistentPreRun: func(cmd *cobra.Command, _ []string) {
+		applyEnv(cmd, "verbose", "ARCHICTL_VERBOSE", &cfg.Verbose)
+		applyEnv(cmd, "no-color", "ARCHICTL_NO_COLOR", &cfg.NoColor)
+		applyEnv(cmd, "json", "ARCHICTL_JSON", &cfg.JSON)
+		level := slog.LevelWarn
+		if cfg.Verbose {
+			level = slog.LevelDebug
+		}
+		slog.SetDefault(slog.New(slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{Level: level})))
+		slog.Debug("archictl", "version", version, "command", cmd.Name())
+	},
+}
+
+// applyEnv lets an ARCHICTL_* variable set a boolean global flag that was not given on the command line.
+func applyEnv(cmd *cobra.Command, flag, env string, dst *bool) {
+	if cmd.Flags().Changed(flag) {
+		return
+	}
+	if v, err := strconv.ParseBool(os.Getenv(env)); err == nil {
+		*dst = v
+	}
 }
 
 // Execute is the entry point called from main.
@@ -51,6 +75,10 @@ func Execute() {
 		os.Exit(exitOK)
 	}
 	fmt.Fprintln(os.Stderr, "[ERROR]", err)
+	if cfg.JSON {
+		b, _ := json.Marshal(map[string]string{"error": err.Error()})
+		fmt.Println(string(b))
+	}
 	var r *refusedError
 	if errors.As(err, &r) {
 		os.Exit(exitRefused)

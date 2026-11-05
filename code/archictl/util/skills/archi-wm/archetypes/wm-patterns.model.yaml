@@ -1,0 +1,84 @@
+model:
+  name: webMethodsPatterns
+  id: id-wm-model-root
+  version: 5.0.0
+  strategy/:
+    Capability:
+      Application & Protocol Integration: id-wm-cap-is-01
+      Managed File Transfer: id-wm-cap-mft-01
+      API Management: id-wm-cap-agw-01
+      Pub-Sub Messaging: id-wm-cap-um-01
+  business/: {}
+  application/:
+    ApplicationComponent:
+      Integration Server Instance:
+        id: id-wm-app-is-01
+        doc: webMethods Integration Server runtime instance hosting IS packages and flow services.
+      Microservices Runtime Instance:
+        id: id-wm-app-msr-01
+        doc: Lightweight IS variant. Container-native, single-package, stateless.
+      IS Package:
+        id: id-wm-app-is-pkg-01
+        doc: Deployment unit containing flow services, adapters, and configuration.
+      ActiveTransfer Server:
+        id: id-wm-app-mft-01
+        doc: webMethods ActiveTransfer server handling managed file transfers.
+      ActiveTransfer SaaS:
+        id: id-wm-app-mft-saas-01
+        doc: webMethods ActiveTransfer SaaS instance (cloud-hosted MFT endpoint for hybrid transfer).
+      API Gateway Instance:
+        id: id-wm-app-agw-01
+        doc: webMethods API Gateway instance enforcing policies and routing to backends.
+      Published API:
+        id: id-wm-app-api-01
+        doc: REST or SOAP API published and managed through API Gateway.
+      Universal Messaging Realm:
+        id: id-wm-app-um-realm-01
+        doc: Universal Messaging realm server providing channels and queues.
+    ApplicationService:
+      IS Flow Service: id-wm-app-is-svc-01
+      MFT Transfer Service: id-wm-app-mft-svc-01
+      API Endpoint Service: id-wm-app-api-svc-01
+      UM Channel Service: id-wm-app-um-svc-01
+  technology/:
+    Node:
+      OpenShift / Kubernetes Cluster: id-wm-tech-ocp-node-01
+      On-Prem Host: id-wm-tech-host-01
+    SystemSoftware:
+      IS Runtime Engine: id-wm-tech-is-runtime-01
+      MSR Runtime Engine: id-wm-tech-msr-runtime-01
+      ActiveTransfer Runtime: id-wm-tech-mft-runtime-01
+      API Gateway Engine: id-wm-tech-agw-runtime-01
+  motivation/: {}
+  implementation_migration/: {}
+  other/: {}
+  relations/:
+    Realization:
+      - id-wm-rel-is-realizes-cap IS Runtime Engine > Application & Protocol Integration
+      - id-wm-rel-mft-realizes-cap ActiveTransfer Runtime > Managed File Transfer
+      - id-wm-rel-agw-realizes-cap API Gateway Engine > API Management
+      - id-wm-rel-um-realizes-cap id-wm-app-um-realm-01 > Pub-Sub Messaging
+      - id-wm-rel-is-pkg-realizes-svc IS Package > IS Flow Service
+      - id-wm-rel-mft-realizes-svc ActiveTransfer Server > MFT Transfer Service
+      - id-wm-rel-api-realizes-svc Published API > API Endpoint Service
+      - id-wm-rel-um-realizes-svc Universal Messaging Realm > UM Channel Service
+    Composition:
+      - id-wm-rel-ocp-comp-is OpenShift / Kubernetes Cluster > IS Runtime Engine
+      - id-wm-rel-ocp-comp-msr OpenShift / Kubernetes Cluster > MSR Runtime Engine
+      - id-wm-rel-ocp-comp-agw OpenShift / Kubernetes Cluster > API Gateway Engine
+      - id-wm-rel-is-comp-pkg Integration Server Instance > IS Package
+    Serving:
+      - id-wm-rel-is-serves-inst IS Runtime Engine > Integration Server Instance
+      - id-wm-rel-msr-serves-inst MSR Runtime Engine > Microservices Runtime Instance
+      - id-wm-rel-agw-serves-inst API Gateway Engine > API Gateway Instance
+      - id-wm-rel-mft-serves-inst ActiveTransfer Runtime > ActiveTransfer Server
+      - id-wm-rel-agw-serves-api API Endpoint Service > Integration Server Instance
+      - id-wm-rel-is-serves-um IS Flow Service > Universal Messaging Realm
+  diagrams/:
+    ArchimateDiagramModel:
+      wM-IS-MSR-on-Kubernetes:
+        id: id-wm-diag-ocp-01
+        file: views/wm-is-msr-ocp.view.yaml
+      wM-MFT-Hybrid:
+        id: id-wm-diag-mft-01
+        file: views/wm-mft-hybrid.view.yaml

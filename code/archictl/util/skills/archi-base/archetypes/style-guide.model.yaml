@@ -1,0 +1,176 @@
+model:
+  name: StyleGuide
+  id: id-d7eab0f98a0e4ac99e52b2aa2f66e767
+  version: 5.0.0
+  strategy/:
+    Capability:
+      Capability: id-a66556a5399f4cf1994ee95514a18c09
+      Container Images Management: id-dbe0790c0fec474486c6765c0bb1cfca
+      Software Defined Virtual Infrastructure: id-f896997d71c2478581ddfb30d9c23ba2
+      Resource Lifecycle Management:
+        id: id-sg-r3-cap-rg-000001
+        doc: Capability to create, configure and manage the lifecycle of scoped resource containers, including cascade delete, RBAC boundary enforcement and policy evaluation.
+      Network Attachment and Addressing:
+        id: id-sg-r4-cap-nic-000001
+        doc: Capability to attach compute nodes to networks and expose them via addressable interfaces (NICs, public IPs).
+  business/: {}
+  application/:
+    ApplicationComponent:
+      Application Component: id-250103237b87440785fba6484330bdc0
+      Solution Container Registry Component:
+        id: id-daa78b2303f74bccb2b4c237e1f003ef
+        doc: Instance of Azure Container Registry created and managed for the solution at hand
+      Software Defined Solution Component: id-6680becda6b04ff5b7d0b405eac50d31
+      Solution Resource Group:
+        id: id-sg-r3-app-rg-generic-00001
+        doc: Generic archetype for a solution-managed Azure Resource Group instance. The team names, provisions and owns this instance. Specializations represent specific RGs (Delivery, Fulfillment, Key Vault, etc.).
+      Solution Delivery Resource Group:
+        id: id-sg-r3-app-rg-delivery-00002
+        doc: 'Example: specific Resource Group for Service Delivery resources. Team responsibility: provisioned by Security Team, contains Delivery infrastructure.'
+      Solution VMSS Based Component: id-651f64c793f647708eb980fd64f4c534
+    ApplicationService:
+      Application Service: id-77b7dc9a541a4b829f8431da128f7a25
+      Solution Container Registry  Service: id-5d25f742600541948290657181b8c789
+      Software Defined Solution Service: id-28a374e2e5f546abb9c2887b7a78a5a8
+      Solution LB: id-f06c6f3b40564fd397b0501a87e59d47
+      Solution VNET: id-13d1147e13f542d59a01fab8f6328bc2
+      Solution VM: id-0a0428b7019944d0a84d5008b8aed548
+      Solution Subnet: id-2857e5c3a9ae4b148ddbdceb55c234d2
+      Resource Container Service:
+        id: id-sg-r3-app-rgsvc-00003
+        doc: 'Application-level service exposed by the resource group: scoped access boundary, lifecycle management boundary, billing boundary.'
+      Solution VMSS Based Service: id-480a8a11c4704a6f9559de00c3623959
+  technology/:
+    TechnologyService:
+      Technology Service: id-4f20b1364b5a47f9968ed2bd5796a44c
+      Azure Container Registry:
+        id: id-2c818830e9394ebba8f67ca0cdba8be1
+        doc: |
+          Technology Managed Service Offered By Microsoft Azure
+      Software Defined Infrastructure Managed Virtual Service Component: id-720d3c5e20cd40f9b3cea10b4ab51eef
+      Azure Resource Group:
+        id: id-sg-r3-tech-rgsvc-00001
+        doc: |-
+          Microsoft Azure ARM Resource Group platform capability (provider responsibility).
+          Behaviour: cascade delete of all contained resources, RBAC scope boundary, Azure Policy evaluation scope, regional affinity enforcement.
+          This is what the organisation buys — the platform feature. Specific instances are ApplicationComponents.
+      Azure Virtual NIC Service:
+        id: id-sg-r4-tech-nicsvc-00001
+        doc: |-
+          Microsoft Azure virtual NIC platform capability (provider responsibility).
+          Provides virtual network interface cards and public IP allocation as a managed service.
+          Specific NIC and IP instances are TechnologyInterfaces composed within their parent VM Node.
+      Azure Virtual Machines Scale Set:
+        id: id-b6c6c571f8654f5cbf52c650c592833b
+        doc: Azure Virtual Machines Scale Set (Technology Service)
+    CommunicationNetwork:
+      Software Defined Network: id-e5fbb2417f734450b6d5aded02dde8d3
+      Solution VNET: id-8caec5f4df1849858a68f7c576a3e0e3
+      Solution Subnet: id-9b8804b1bec3478ead72276561fcccd9
+    Node:
+      Software Defined Node: id-02ce829d995e4b4f8003ade233a7f4af
+      Solution VM: id-bc3c9abb5c914db2a6d1f46b97979d5a
+      Solution LB: id-7f6fa243f2a34e5b99c7d85aca1ae930
+      Azure VMSS VM 1: id-15101b7f99144e87be1975a201ff7eb2
+      Azure VMSS VM 2: id-29cd698a93b1440c9eeaaf083a9b78f3
+    TechnologyInterface:
+      Technology Interface:
+        id: id-sg-r4-tech-iface-generic-00001
+        doc: Generic archetype for a technology interface — an access point through which a technology service is made available (ArchiMate §11.3).
+      Solution VM NIC:
+        id: id-sg-r4-tech-iface-nic-00002
+        doc: |-
+          Example: NIC attached to Solution VM. Access point connecting the VM Node to its subnet.
+          Azure Resource Type: Microsoft.Network/networkInterfaces
+          Composed within: Solution VM (parent Node)
+          Associated to: Solution Subnet (CommunicationNetwork)
+      Solution Public IP:
+        id: id-sg-r4-tech-iface-pip-00003
+        doc: |-
+          Example: Public IP address bound to Solution VM NIC. External-facing address through which the VM service is reachable.
+          Azure Resource Type: Microsoft.Network/publicIPAddresses
+          Associated to: Solution VM NIC (TechnologyInterface)
+    TechnologyCollaboration:
+      Azure Virtual Machine Scale Set: id-eef233fa248a4a3eb7fd1e544471b668
+    SystemSoftware:
+      Azure Control Plane - VMSS Driving Software:
+        id: id-76487204687b49cfbcbe1d2a74aa7c0c
+        doc: This component, encapsulated somewhere in Azure and transparent to the user, implements the behavior managing the number of nodes, rules evaluation and triggering and so on.
+  motivation/: {}
+  implementation_migration/: {}
+  other/: {}
+  relations/:
+    Realization:
+      - id-sg-r3-rel-rgsvc-to-cap Azure Resource Group > Resource Lifecycle Management
+      - id-sg-r3-rel-rg-realizes-svc Solution Resource Group > Resource Container Service
+      - id-sg-r4-rel-nicsvc-to-cap Azure Virtual NIC Service > Network Attachment and Addressing
+      - id-be901aa173cf484db2c05e3d6b5ef95c Technology Service > Capability
+      - id-65a40ff86652425d901d07b53673f303 Application Component > Application Service
+      - id-5d71eef18aae46d8854c9f022ce4f340 Azure Container Registry > Container Images Management
+      - id-6f1e8ced321d42a79029f6c758fb6f5c Solution Container Registry Component > Solution Container Registry  Service
+      - id-996e272f1685493a831660b3ebc54e31 Software Defined Solution Component > Software Defined Solution Service
+      - id-b552379d504a4347bc8efa1e45ff460c Software Defined Infrastructure Managed Virtual Service Component > Software Defined Virtual Infrastructure
+      - id-1aba8a3412984d818f3ee24bbcf3d0da Software Defined Solution Component > id-2857e5c3a9ae4b148ddbdceb55c234d2
+      - id-a7471c718d47431da4933e5d07dfd405 Software Defined Solution Component > id-13d1147e13f542d59a01fab8f6328bc2
+      - id-2a5672e8825c4fe48e13a735a6f9ca52 Software Defined Solution Component > id-f06c6f3b40564fd397b0501a87e59d47
+      - id-76e10675ce1b44de9fa942ee6a1f2069 Software Defined Solution Component > id-0a0428b7019944d0a84d5008b8aed548
+      - id-7429882a7f4d497c9ed80f4e227a88e8 Azure Virtual Machine Scale Set > Azure Virtual Machines Scale Set
+      - id-b96808c293564e3b956c366333da7862 Solution VMSS Based Component > Solution VMSS Based Service
+      - id-e9667e79a34b42d296051e48685b4a59 Azure Virtual Machines Scale Set > Solution VMSS Based Service
+    Serving:
+      - id-sg-r3-rel-rgsvc-serves-rg Azure Resource Group > Solution Resource Group
+      - id-sg-r4-rel-nicsvc-serves-iface Azure Virtual NIC Service > Technology Interface
+      - id-8f835d7a2aaf43f389e6b638a1bf7d19 Technology Service > Application Component
+      - id-329ba3781f1646f1bd2872b6affd01b8 Azure Container Registry > Solution Container Registry Component
+      - id-e73d2a131d394765a6d2e6cd403aaf33 Software Defined Infrastructure Managed Virtual Service Component > Software Defined Solution Component
+      - id-0269272cda59466ab4b909847bb6a524 Software Defined Infrastructure Managed Virtual Service Component > Software Defined Node
+      - id-0fd7d58535bf48fea18cbab55ef3ae66 Software Defined Infrastructure Managed Virtual Service Component > Software Defined Network
+      - id-07834037327643ba849e66c11924fd49 Azure Virtual NIC Service > Solution VM NIC
+      - id-5569231ea7734a6bb9503ae98c9d7b96 Azure Virtual Machines Scale Set > Solution VMSS Based Component
+      - id-0d6a131e442540f4bcec19e6580c1f1a Azure VMSS VM 1 > Azure Virtual Machine Scale Set
+      - id-efbe18612970464aa6b53c6e51186278 Azure VMSS VM 2 > Azure Virtual Machine Scale Set
+      - id-e92776d11b324775a43b56bc83d39abe Azure Control Plane - VMSS Driving Software > Azure Virtual Machine Scale Set
+    Specialization:
+      - id-sg-r3-rel-delivery-specializes Solution Delivery Resource Group > Solution Resource Group
+      - id-sg-r4-rel-nic-specializes-iface Solution VM NIC > Technology Interface
+      - id-sg-r4-rel-pip-specializes-iface Solution Public IP > Technology Interface
+      - id-547d9dbb605249c2bb8f7b5eb81c99f9 Container Images Management > Capability
+      - id-4834a65b0b2343a39176906f715958fa Azure Container Registry > Technology Service
+      - id-286fa1fa39344fbe970118fc8056a573 Solution Container Registry Component > Application Component
+      - id-b65dff90bcb54e33b10722f7b90d633e id-8caec5f4df1849858a68f7c576a3e0e3 > Software Defined Network
+      - id-f4021488990a4ba2be61407750ed4a09 id-9b8804b1bec3478ead72276561fcccd9 > Software Defined Network
+      - id-b64fc42f72aa4bbbbf379fba6cde89bb id-bc3c9abb5c914db2a6d1f46b97979d5a > Software Defined Node
+      - id-beeed203bb3e4cf2b459ebd0f0064f3f id-7f6fa243f2a34e5b99c7d85aca1ae930 > Software Defined Node
+    Composition:
+      - id-sg-r4-rel-vm-composes-nic id-bc3c9abb5c914db2a6d1f46b97979d5a > Solution VM NIC
+      - id-sg-r4-rel-sdi-node-composes-iface Software Defined Node > Technology Interface
+    Association:
+      - id-sg-r4-rel-nic-to-subnet Solution VM NIC > id-9b8804b1bec3478ead72276561fcccd9
+      - id-sg-r4-rel-nic-to-pip Solution VM NIC > Solution Public IP
+  diagrams/:
+    Examples/:
+      ArchimateDiagramModel:
+        AzureResources:
+          id: id-10fdb2a895f34ec481f08f2f573e7256
+          doc: |
+            This diagram contains some snippets giving examples on how to model Azure resources in Azure deployed solutions
+          file: views/AzureResources.yaml
+    ArchimateDiagramModel:
+      Rule1-Capability-ManagedService-Component:
+        id: id-ee86c2d8e38a46909afbb590714b6154
+        file: views/Rule1-Capability-ManagedService-Component.yaml
+      Rule2-Networking-Standpoints:
+        id: id-ba22defa7ccf4344b0c08cd4248eeae9
+        file: views/Rule2-Networking-Standpoints.yaml
+      Rule3-ResourceGroup-SharedResponsibility:
+        id: id-sg-r3-diagram-00001
+        file: views/Rule3-ResourceGroup-SharedResponsibility.yaml
+      Rule4-NIC-PublicIP-TechnologyInterface:
+        id: id-sg-r4-diagram-00001
+        file: views/Rule4-NIC-PublicIP-TechnologyInterface.yaml
+      Rule5-Minimize-diagram-relationship-overlap:
+        id: id-f0152350ae8c4229995ef30ab836aa1f
+        file: views/Rule5-Minimize-diagram-relationship-overlap.yaml
+      Rule6-Minimize-shapes-overlap:
+        id: id-da947b91d70c4eebb1c5292e7c307771
+        file: views/Rule6-Minimize-shapes-overlap.yaml

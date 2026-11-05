@@ -1,0 +1,37 @@
+- Group:
+    name: Style Rule 1
+    textAlignment: "1"
+    b: 48 60 145 373
+    kids:
+      - o:id-4f20b1364b5a47f9968ed2bd5796a44c:
+          b: 12 228 120 55
+          kids:
+            - c:id-be901aa173cf484db2c05e3d6b5ef95c
+            - c:id-8f835d7a2aaf43f389e6b638a1bf7d19
+      - o:id-77b7dc9a541a4b829f8431da128f7a25 12 36 120 55
+      - o:id-a66556a5399f4cf1994ee95514a18c09 12 312 120 55
+      - o:id-250103237b87440785fba6484330bdc0:
+          b: 12 132 120 55
+          kids:
+            - c:id-65a40ff86652425d901d07b53673f303
+- Group:
+    name: Example Style Rule 1
+    textAlignment: "1"
+    b: 216 60 169 373
+    kids:
+      - o:id-dbe0790c0fec474486c6765c0bb1cfca:
+          b: 12 312 146 55
+          kids:
+            - c:id-547d9dbb605249c2bb8f7b5eb81c99f9
+      - o:id-2c818830e9394ebba8f67ca0cdba8be1:
+          b: 12 228 146 55
+          kids:
+            - c:id-4834a65b0b2343a39176906f715958fa
+            - c:id-5d71eef18aae46d8854c9f022ce4f340
+            - c:id-329ba3781f1646f1bd2872b6affd01b8
+      - o:id-daa78b2303f74bccb2b4c237e1f003ef:
+          b: 12 132 146 55
+          kids:
+            - c:id-286fa1fa39344fbe970118fc8056a573
+            - c:id-6f1e8ced321d42a79029f6c758fb6f5c
+      - o:id-5d25f742600541948290657181b8c789 12 36 146 55

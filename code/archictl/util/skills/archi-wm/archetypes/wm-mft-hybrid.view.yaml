@@ -1,0 +1,16 @@
+- Group:
+    name: On-Premises
+    b: 24 24 240 200
+    kids:
+    - o:id-wm-app-mft-01:
+        b: 24 48 192 55
+        kids:
+        - c:id-wm-rel-mft-realizes-svc
+    - o:id-wm-app-mft-svc-01:
+        b: 24 132 192 37
+- Group:
+    name: SaaS / Cloud
+    b: 300 24 240 200
+    kids:
+    - o:id-wm-app-mft-saas-01:
+        b: 24 48 192 55

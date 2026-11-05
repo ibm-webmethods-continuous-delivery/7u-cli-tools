@@ -1,0 +1,55 @@
+- Group:
+    name: Style Rule 4 - Pattern
+    textAlignment: "1"
+    b: 48 60 253 325
+    kids:
+      - o:id-sg-r4-tech-nicsvc-00001:
+          id: id-sg-r4-dv-techsvc
+          b: 12 228 224 25
+          kids:
+            - c:id-sg-r4-rel-nicsvc-to-cap:
+                source: id-sg-r4-dv-techsvc
+                target: id-sg-r4-dv-cap
+            - c:id-sg-r4-rel-nicsvc-serves-iface:
+                source: id-sg-r4-dv-techsvc
+                target: id-sg-r4-dv-iface-generic
+      - o:id-sg-r4-cap-nic-000001:
+          id: id-sg-r4-dv-cap
+          b: 12 276 224 37
+      - o:id-sg-r4-tech-iface-generic-00001:
+          id: id-sg-r4-dv-iface-generic
+          b: 12 96 224 25
+      - o:id-02ce829d995e4b4f8003ade233a7f4af:
+          b: 12 36 224 25
+          kids:
+            - c:id-sg-r4-rel-sdi-node-composes-iface
+- Group:
+    name: Example Style Rule 4 - VM NIC and Public IP
+    textAlignment: "1"
+    b: 336 60 253 325
+    kids:
+      - o:id-sg-r4-tech-nicsvc-00001:
+          id: id-sg-r4-dv-ex-techsvc
+          b: 12 228 224 25
+          kids:
+            - c:id-sg-r4-rel-nicsvc-to-cap:
+                source: id-sg-r4-dv-ex-techsvc
+                target: id-sg-r4-dv-ex-cap
+            - c:id-07834037327643ba849e66c11924fd49:
+                source: id-sg-r4-dv-ex-techsvc
+                target: id-sg-r4-dv-ex-nic
+      - o:id-sg-r4-cap-nic-000001:
+          id: id-sg-r4-dv-ex-cap
+          b: 12 276 224 37
+      - o:id-bc3c9abb5c914db2a6d1f46b97979d5a:
+          b: 12 36 224 25
+          kids:
+            - c:id-sg-r4-rel-vm-composes-nic
+      - o:id-sg-r4-tech-iface-nic-00002:
+          id: id-sg-r4-dv-ex-nic
+          b: 12 96 224 25
+          kids:
+            - c:id-sg-r4-rel-nic-to-subnet
+            - c:id-sg-r4-rel-nic-to-pip
+      - o:id-9b8804b1bec3478ead72276561fcccd9 12 150 97 55
+      - o:id-sg-r4-tech-iface-pip-00003 144 150 92 55

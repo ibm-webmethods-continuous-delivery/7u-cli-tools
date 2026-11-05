@@ -1,0 +1,26 @@
+- Group:
+    name: IBM Cloud Pak for Integration Pattern
+    b: 24 24 600 300
+    kids:
+    - o:id-ibm-app-apic-api-01:
+        b: 24 48 160 55
+        kids:
+        - c:id-ibm-rel-api-realizes-svc
+    - o:id-ibm-app-apic-svc-01:
+        b: 24 132 160 40
+        kids:
+        - c:id-ibm-rel-apic-serves-ace
+    - o:id-ibm-app-ace-flow-01:
+        b: 220 48 160 55
+        kids:
+        - c:id-ibm-rel-flow-realizes-svc
+    - o:id-ibm-app-ace-svc-01:
+        b: 220 132 160 40
+        kids:
+        - c:id-ibm-rel-ace-serves-mq
+    - o:id-ibm-app-mq-qmgr-01:
+        b: 416 48 160 55
+        kids:
+        - c:id-ibm-rel-qmgr-realizes-svc
+    - o:id-ibm-app-mq-req-svc-01:
+        b: 416 132 160 40

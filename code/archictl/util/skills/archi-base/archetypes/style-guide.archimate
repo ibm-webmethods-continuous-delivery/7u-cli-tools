@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archimate:model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:archimate="http://www.archimatetool.com/archimate" name="StyleGuide" id="id-d7eab0f98a0e4ac99e52b2aa2f66e767" version="5.0.0">
+  <folder name="Strategy" id="id-29fa0519c307488791ed50033830a861" type="strategy">
+    <element xsi:type="archimate:Capability" name="Capability" id="id-a66556a5399f4cf1994ee95514a18c09"/>
+    <element xsi:type="archimate:Capability" name="Container Images Management" id="id-dbe0790c0fec474486c6765c0bb1cfca"/>
+    <element xsi:type="archimate:Capability" name="Software Defined Virtual Infrastructure" id="id-f896997d71c2478581ddfb30d9c23ba2"/>
+    <element xsi:type="archimate:Capability" name="Resource Lifecycle Management" id="id-sg-r3-cap-rg-000001">
+      <documentation>Capability to create, configure and manage the lifecycle of scoped resource containers, including cascade delete, RBAC boundary enforcement and policy evaluation.</documentation>
+    </element>
+    <element xsi:type="archimate:Capability" name="Network Attachment and Addressing" id="id-sg-r4-cap-nic-000001">
+      <documentation>Capability to attach compute nodes to networks and expose them via addressable interfaces (NICs, public IPs).</documentation>
+    </element>
+  </folder>
+  <folder name="Business" id="id-3c8140e76c3549b5857bb931b63b27c7" type="business"/>
+  <folder name="Application" id="id-78a341bf82a84948af6a9b500bddc25a" type="application">
+    <element xsi:type="archimate:ApplicationComponent" name="Application Component" id="id-250103237b87440785fba6484330bdc0"/>
+    <element xsi:type="archimate:ApplicationService" name="Application Service" id="id-77b7dc9a541a4b829f8431da128f7a25"/>
+    <element xsi:type="archimate:ApplicationComponent" name="Solution Container Registry Component" id="id-daa78b2303f74bccb2b4c237e1f003ef">
+      <documentation>Instance of Azure Container Registry created and managed for the solution at hand</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationService" name="Solution Container Registry  Service" id="id-5d25f742600541948290657181b8c789"/>
+    <element xsi:type="archimate:ApplicationComponent" name="Software Defined Solution Component" id="id-6680becda6b04ff5b7d0b405eac50d31"/>
+    <element xsi:type="archimate:ApplicationService" name="Software Defined Solution Service" id="id-28a374e2e5f546abb9c2887b7a78a5a8"/>
+    <element xsi:type="archimate:ApplicationService" name="Solution LB" id="id-f06c6f3b40564fd397b0501a87e59d47"/>
+    <element xsi:type="archimate:ApplicationService" name="Solution VNET" id="id-13d1147e13f542d59a01fab8f6328bc2"/>
+    <element xsi:type="archimate:ApplicationService" name="Solution VM" id="id-0a0428b7019944d0a84d5008b8aed548"/>
+    <element xsi:type="archimate:ApplicationService" name="Solution Subnet" id="id-2857e5c3a9ae4b148ddbdceb55c234d2"/>
+    <element xsi:type="archimate:ApplicationComponent" name="Solution Resource Group" id="id-sg-r3-app-rg-generic-00001">
+      <documentation>Generic archetype for a solution-managed Azure Resource Group instance. The team names, provisions and owns this instance. Specializations represent specific RGs (Delivery, Fulfillment, Key Vault, etc.).</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="Solution Delivery Resource Group" id="id-sg-r3-app-rg-delivery-00002">
+      <documentation>Example: specific Resource Group for Service Delivery resources. Team responsibility: provisioned by Security Team, contains Delivery infrastructure.</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationService" name="Resource Container Service" id="id-sg-r3-app-rgsvc-00003">
+      <documentation>Application-level service exposed by the resource group: scoped access boundary, lifecycle management boundary, billing boundary.</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="Solution VMSS Based Component" id="id-651f64c793f647708eb980fd64f4c534"/>
+    <element xsi:type="archimate:ApplicationService" name="Solution VMSS Based Service" id="id-480a8a11c4704a6f9559de00c3623959"/>
+  </folder>
+  <folder name="Technology &amp; Physical" id="id-a7881d23b679406da29e641e33c9b12c" type="technology">
+    <element xsi:type="archimate:TechnologyService" name="Technology Service" id="id-4f20b1364b5a47f9968ed2bd5796a44c"/>
+    <element xsi:type="archimate:TechnologyService" name="Azure Container Registry" id="id-2c818830e9394ebba8f67ca0cdba8be1">
+      <documentation>Technology Managed Service Offered By Microsoft Azure
+</documentation>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="Software Defined Infrastructure Managed Virtual Service Component" id="id-720d3c5e20cd40f9b3cea10b4ab51eef"/>
+    <element xsi:type="archimate:CommunicationNetwork" name="Software Defined Network" id="id-e5fbb2417f734450b6d5aded02dde8d3"/>
+    <element xsi:type="archimate:Node" name="Software Defined Node" id="id-02ce829d995e4b4f8003ade233a7f4af"/>
+    <element xsi:type="archimate:Node" name="Solution VM" id="id-bc3c9abb5c914db2a6d1f46b97979d5a"/>
+    <element xsi:type="archimate:Node" name="Solution LB" id="id-7f6fa243f2a34e5b99c7d85aca1ae930"/>
+    <element xsi:type="archimate:CommunicationNetwork" name="Solution VNET" id="id-8caec5f4df1849858a68f7c576a3e0e3"/>
+    <element xsi:type="archimate:CommunicationNetwork" name="Solution Subnet" id="id-9b8804b1bec3478ead72276561fcccd9"/>
+    <element xsi:type="archimate:TechnologyService" name="Azure Resource Group" id="id-sg-r3-tech-rgsvc-00001">
+      <documentation>Microsoft Azure ARM Resource Group platform capability (provider responsibility).
+Behaviour: cascade delete of all contained resources, RBAC scope boundary, Azure Policy evaluation scope, regional affinity enforcement.
+This is what the organisation buys — the platform feature. Specific instances are ApplicationComponents.</documentation>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="Azure Virtual NIC Service" id="id-sg-r4-tech-nicsvc-00001">
+      <documentation>Microsoft Azure virtual NIC platform capability (provider responsibility).
+Provides virtual network interface cards and public IP allocation as a managed service.
+Specific NIC and IP instances are TechnologyInterfaces composed within their parent VM Node.</documentation>
+    </element>
+    <element xsi:type="archimate:TechnologyInterface" name="Technology Interface" id="id-sg-r4-tech-iface-generic-00001">
+      <documentation>Generic archetype for a technology interface — an access point through which a technology service is made available (ArchiMate §11.3).</documentation>
+    </element>
+    <element xsi:type="archimate:TechnologyInterface" name="Solution VM NIC" id="id-sg-r4-tech-iface-nic-00002">
+      <documentation>Example: NIC attached to Solution VM. Access point connecting the VM Node to its subnet.
+Azure Resource Type: Microsoft.Network/networkInterfaces
+Composed within: Solution VM (parent Node)
+Associated to: Solution Subnet (CommunicationNetwork)</documentation>
+    </element>
+    <element xsi:type="archimate:TechnologyInterface" name="Solution Public IP" id="id-sg-r4-tech-iface-pip-00003">
+      <documentation>Example: Public IP address bound to Solution VM NIC. External-facing address through which the VM service is reachable.
+Azure Resource Type: Microsoft.Network/publicIPAddresses
+Associated to: Solution VM NIC (TechnologyInterface)</documentation>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="Azure Virtual Machines Scale Set" id="id-b6c6c571f8654f5cbf52c650c592833b">
+      <documentation>Azure Virtual Machines Scale Set (Technology Service)</documentation>
+    </element>
+    <element xsi:type="archimate:TechnologyCollaboration" name="Azure Virtual Machine Scale Set" id="id-eef233fa248a4a3eb7fd1e544471b668"/>
+    <element xsi:type="archimate:Node" name="Azure VMSS VM 1" id="id-15101b7f99144e87be1975a201ff7eb2"/>
+    <element xsi:type="archimate:Node" name="Azure VMSS VM 2" id="id-29cd698a93b1440c9eeaaf083a9b78f3"/>
+    <element xsi:type="archimate:SystemSoftware" name="Azure Control Plane - VMSS Driving Software" id="id-76487204687b49cfbcbe1d2a74aa7c0c">
+      <documentation>This component, encapsulated somewhere in Azure and transparent to the user, implements the behavior managing the number of nodes, rules evaluation and triggering and so on.</documentation>
+    </element>
+  </folder>
+  <folder name="Motivation" id="id-18cade52bb034550b5d8e6fc23611675" type="motivation"/>
+  <folder name="Implementation &amp; Migration" id="id-d1f72439cc444911a64ad0217ed76adc" type="implementation_migration"/>
+  <folder name="Other" id="id-9f88137c9b4b471b9c76916628c0720e" type="other"/>
+  <folder name="Relations" id="id-22a7fdfdb8da403186038734762425e6" type="relations">
+    <element xsi:type="archimate:RealizationRelationship" id="id-sg-r3-rel-rgsvc-to-cap" source="id-sg-r3-tech-rgsvc-00001" target="id-sg-r3-cap-rg-000001"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-sg-r3-rel-rgsvc-serves-rg" source="id-sg-r3-tech-rgsvc-00001" target="id-sg-r3-app-rg-generic-00001"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-sg-r3-rel-rg-realizes-svc" source="id-sg-r3-app-rg-generic-00001" target="id-sg-r3-app-rgsvc-00003"/>
+    <element xsi:type="archimate:SpecializationRelationship" id="id-sg-r3-rel-delivery-specializes" source="id-sg-r3-app-rg-delivery-00002" target="id-sg-r3-app-rg-generic-00001"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-sg-r4-rel-nicsvc-to-cap" source="id-sg-r4-tech-nicsvc-00001" target="id-sg-r4-cap-nic-000001"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-sg-r4-rel-nicsvc-serves-iface" source="id-sg-r4-tech-nicsvc-00001" target="id-sg-r4-tech-iface-generic-00001"/>
+    <element xsi:type="archimate:SpecializationRelationship" id="id-sg-r4-rel-nic-specializes-iface" source="id-sg-r4-tech-iface-nic-00002" target="id-sg-r4-tech-iface-generic-00001"/>
+    <element xsi:type="archimate:SpecializationRelationship" id="id-sg-r4-rel-pip-specializes-iface" source="id-sg-r4-tech-iface-pip-00003" target="id-sg-r4-tech-iface-generic-00001"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-sg-r4-rel-vm-composes-nic" source="id-bc3c9abb5c914db2a6d1f46b97979d5a" target="id-sg-r4-tech-iface-nic-00002"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-sg-r4-rel-sdi-node-composes-iface" source="id-02ce829d995e4b4f8003ade233a7f4af" target="id-sg-r4-tech-iface-generic-00001"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-sg-r4-rel-nic-to-subnet" source="id-sg-r4-tech-iface-nic-00002" target="id-9b8804b1bec3478ead72276561fcccd9"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-sg-r4-rel-nic-to-pip" source="id-sg-r4-tech-iface-nic-00002" target="id-sg-r4-tech-iface-pip-00003"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-be901aa173cf484db2c05e3d6b5ef95c" source="id-4f20b1364b5a47f9968ed2bd5796a44c" target="id-a66556a5399f4cf1994ee95514a18c09"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-8f835d7a2aaf43f389e6b638a1bf7d19" source="id-4f20b1364b5a47f9968ed2bd5796a44c" target="id-250103237b87440785fba6484330bdc0"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-65a40ff86652425d901d07b53673f303" source="id-250103237b87440785fba6484330bdc0" target="id-77b7dc9a541a4b829f8431da128f7a25"/>
+    <element xsi:type="archimate:SpecializationRelationship" id="id-547d9dbb605249c2bb8f7b5eb81c99f9" source="id-dbe0790c0fec474486c6765c0bb1cfca" target="id-a66556a5399f4cf1994ee95514a18c09"/>
+    <element xsi:type="archimate:SpecializationRelationship" id="id-4834a65b0b2343a39176906f715958fa" source="id-2c818830e9394ebba8f67ca0cdba8be1" target="id-4f20b1364b5a47f9968ed2bd5796a44c"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-5d71eef18aae46d8854c9f022ce4f340" source="id-2c818830e9394ebba8f67ca0cdba8be1" target="id-dbe0790c0fec474486c6765c0bb1cfca"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-329ba3781f1646f1bd2872b6affd01b8" source="id-2c818830e9394ebba8f67ca0cdba8be1" target="id-daa78b2303f74bccb2b4c237e1f003ef"/>
+    <element xsi:type="archimate:SpecializationRelationship" id="id-286fa1fa39344fbe970118fc8056a573" source="id-daa78b2303f74bccb2b4c237e1f003ef" target="id-250103237b87440785fba6484330bdc0"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-6f1e8ced321d42a79029f6c758fb6f5c" source="id-daa78b2303f74bccb2b4c237e1f003ef" target="id-5d25f742600541948290657181b8c789"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-996e272f1685493a831660b3ebc54e31" source="id-6680becda6b04ff5b7d0b405eac50d31" target="id-28a374e2e5f546abb9c2887b7a78a5a8"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-e73d2a131d394765a6d2e6cd403aaf33" source="id-720d3c5e20cd40f9b3cea10b4ab51eef" target="id-6680becda6b04ff5b7d0b405eac50d31"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-b552379d504a4347bc8efa1e45ff460c" source="id-720d3c5e20cd40f9b3cea10b4ab51eef" target="id-f896997d71c2478581ddfb30d9c23ba2"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-0269272cda59466ab4b909847bb6a524" source="id-720d3c5e20cd40f9b3cea10b4ab51eef" target="id-02ce829d995e4b4f8003ade233a7f4af"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-0fd7d58535bf48fea18cbab55ef3ae66" source="id-720d3c5e20cd40f9b3cea10b4ab51eef" target="id-e5fbb2417f734450b6d5aded02dde8d3"/>
+    <element xsi:type="archimate:SpecializationRelationship" id="id-b65dff90bcb54e33b10722f7b90d633e" source="id-8caec5f4df1849858a68f7c576a3e0e3" target="id-e5fbb2417f734450b6d5aded02dde8d3"/>
+    <element xsi:type="archimate:SpecializationRelationship" id="id-f4021488990a4ba2be61407750ed4a09" source="id-9b8804b1bec3478ead72276561fcccd9" target="id-e5fbb2417f734450b6d5aded02dde8d3"/>
+    <element xsi:type="archimate:SpecializationRelationship" id="id-b64fc42f72aa4bbbbf379fba6cde89bb" source="id-bc3c9abb5c914db2a6d1f46b97979d5a" target="id-02ce829d995e4b4f8003ade233a7f4af"/>
+    <element xsi:type="archimate:SpecializationRelationship" id="id-beeed203bb3e4cf2b459ebd0f0064f3f" source="id-7f6fa243f2a34e5b99c7d85aca1ae930" target="id-02ce829d995e4b4f8003ade233a7f4af"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-1aba8a3412984d818f3ee24bbcf3d0da" source="id-6680becda6b04ff5b7d0b405eac50d31" target="id-2857e5c3a9ae4b148ddbdceb55c234d2"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-a7471c718d47431da4933e5d07dfd405" source="id-6680becda6b04ff5b7d0b405eac50d31" target="id-13d1147e13f542d59a01fab8f6328bc2"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-2a5672e8825c4fe48e13a735a6f9ca52" source="id-6680becda6b04ff5b7d0b405eac50d31" target="id-f06c6f3b40564fd397b0501a87e59d47"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-76e10675ce1b44de9fa942ee6a1f2069" source="id-6680becda6b04ff5b7d0b405eac50d31" target="id-0a0428b7019944d0a84d5008b8aed548"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-07834037327643ba849e66c11924fd49" source="id-sg-r4-tech-nicsvc-00001" target="id-sg-r4-tech-iface-nic-00002"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-7429882a7f4d497c9ed80f4e227a88e8" source="id-eef233fa248a4a3eb7fd1e544471b668" target="id-b6c6c571f8654f5cbf52c650c592833b"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-5569231ea7734a6bb9503ae98c9d7b96" source="id-b6c6c571f8654f5cbf52c650c592833b" target="id-651f64c793f647708eb980fd64f4c534"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-b96808c293564e3b956c366333da7862" source="id-651f64c793f647708eb980fd64f4c534" target="id-480a8a11c4704a6f9559de00c3623959"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-e9667e79a34b42d296051e48685b4a59" source="id-b6c6c571f8654f5cbf52c650c592833b" target="id-480a8a11c4704a6f9559de00c3623959"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-0d6a131e442540f4bcec19e6580c1f1a" source="id-15101b7f99144e87be1975a201ff7eb2" target="id-eef233fa248a4a3eb7fd1e544471b668"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-efbe18612970464aa6b53c6e51186278" source="id-29cd698a93b1440c9eeaaf083a9b78f3" target="id-eef233fa248a4a3eb7fd1e544471b668"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-e92776d11b324775a43b56bc83d39abe" source="id-76487204687b49cfbcbe1d2a74aa7c0c" target="id-eef233fa248a4a3eb7fd1e544471b668"/>
+  </folder>
+  <folder name="Views" id="id-d6048bbc44bb451892404c94dc86032d" type="diagrams">
+    <folder name="Examples" id="id-c4d00d7275de4505995158d8dc2b3b19">
+      <element xsi:type="archimate:ArchimateDiagramModel" name="AzureResources" id="id-10fdb2a895f34ec481f08f2f573e7256">
+        <child xsi:type="archimate:DiagramObject" id="id-5b0b689b7c4c40a88d7200024fe10274" targetConnections="id-b1d37a9eddca4a95bfbcd13bf967c702" archimateElement="id-b6c6c571f8654f5cbf52c650c592833b">
+          <bounds x="24" y="180" width="169" height="49"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-c95b51c6c503493db9d51994fe33d59e" source="id-5b0b689b7c4c40a88d7200024fe10274" target="id-44e4f85ba29641018a87cdf032301287" archimateRelationship="id-5569231ea7734a6bb9503ae98c9d7b96"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-4d337bee14364a79a0ffe208586a815f" source="id-5b0b689b7c4c40a88d7200024fe10274" target="id-11e922f2b7ee48d3a3377f9e352adc8b" archimateRelationship="id-e9667e79a34b42d296051e48685b4a59">
+            <bendpoint startX="108" endX="108" endY="165"/>
+            <bendpoint startX="108" startY="-168" endX="108" endY="-3"/>
+          </sourceConnection>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-d5a7cdcca61143098458bb54804b6819" targetConnections="id-eeec596f52734372ad130d89d60d7307 id-bdb0536b8ab347f3a4ad16376be0c723 id-bad5a850524c4e7cbbd513e59b11d887" archimateElement="id-eef233fa248a4a3eb7fd1e544471b668">
+          <bounds x="24" y="288" width="413" height="25"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-b1d37a9eddca4a95bfbcd13bf967c702" source="id-d5a7cdcca61143098458bb54804b6819" target="id-5b0b689b7c4c40a88d7200024fe10274" archimateRelationship="id-7429882a7f4d497c9ed80f4e227a88e8"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-44e4f85ba29641018a87cdf032301287" targetConnections="id-c95b51c6c503493db9d51994fe33d59e" archimateElement="id-651f64c793f647708eb980fd64f4c534">
+          <bounds x="24" y="96" width="169" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-eaa5b367ca654930b39e73412a3bb752" source="id-44e4f85ba29641018a87cdf032301287" target="id-11e922f2b7ee48d3a3377f9e352adc8b" archimateRelationship="id-b96808c293564e3b956c366333da7862"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-11e922f2b7ee48d3a3377f9e352adc8b" targetConnections="id-eaa5b367ca654930b39e73412a3bb752 id-4d337bee14364a79a0ffe208586a815f" archimateElement="id-480a8a11c4704a6f9559de00c3623959">
+          <bounds x="24" y="12" width="169" height="55"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-57a071e59e15444f891895780d32d517" archimateElement="id-15101b7f99144e87be1975a201ff7eb2">
+          <bounds x="24" y="348" width="109" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-eeec596f52734372ad130d89d60d7307" source="id-57a071e59e15444f891895780d32d517" target="id-d5a7cdcca61143098458bb54804b6819" archimateRelationship="id-0d6a131e442540f4bcec19e6580c1f1a"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-e9f7293526bc4f98b9cb246413677099" archimateElement="id-29cd698a93b1440c9eeaaf083a9b78f3">
+          <bounds x="144" y="348" width="109" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-bdb0536b8ab347f3a4ad16376be0c723" source="id-e9f7293526bc4f98b9cb246413677099" target="id-d5a7cdcca61143098458bb54804b6819" archimateRelationship="id-efbe18612970464aa6b53c6e51186278"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-34082ecd56c7438d99670064d1a840b3" archimateElement="id-76487204687b49cfbcbe1d2a74aa7c0c">
+          <bounds x="276" y="348" width="161" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-bad5a850524c4e7cbbd513e59b11d887" source="id-34082ecd56c7438d99670064d1a840b3" target="id-d5a7cdcca61143098458bb54804b6819" archimateRelationship="id-e92776d11b324775a43b56bc83d39abe"/>
+        </child>
+        <documentation>This diagram contains some snippets giving examples on how to model Azure resources in Azure deployed solutions
+</documentation>
+      </element>
+    </folder>
+    <element xsi:type="archimate:ArchimateDiagramModel" name="Rule1-Capability-ManagedService-Component" id="id-ee86c2d8e38a46909afbb590714b6154">
+      <child xsi:type="archimate:Group" id="id-196836dc52e84228af1017ec919f1ed6" name="Style Rule 1" textAlignment="1">
+        <bounds x="48" y="60" width="145" height="373"/>
+        <child xsi:type="archimate:DiagramObject" id="id-1ed5fa610d7d469b893c6bed8420b6b2" targetConnections="id-57b303eba18f406b9799e173acfba47b" archimateElement="id-4f20b1364b5a47f9968ed2bd5796a44c">
+          <bounds x="12" y="228" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-1015127765904011bd7a18b960e27b32" source="id-1ed5fa610d7d469b893c6bed8420b6b2" target="id-34f47f4a3e3b4b90820fe1fa936cd1e2" archimateRelationship="id-be901aa173cf484db2c05e3d6b5ef95c"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-cae71a68769b45e58fdc3a2d57eb2372" source="id-1ed5fa610d7d469b893c6bed8420b6b2" target="id-51a238afb68b45e8b2458fd14cb21f71" archimateRelationship="id-8f835d7a2aaf43f389e6b638a1bf7d19"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-e97147e0756248ceb1b12217b6119e5b" targetConnections="id-58be5d6cb73a4140bb35359d47f83be2" archimateElement="id-77b7dc9a541a4b829f8431da128f7a25">
+          <bounds x="12" y="36" width="120" height="55"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-34f47f4a3e3b4b90820fe1fa936cd1e2" targetConnections="id-1015127765904011bd7a18b960e27b32 id-d9440666c54d4d95822691f18240b1ba" archimateElement="id-a66556a5399f4cf1994ee95514a18c09">
+          <bounds x="12" y="312" width="120" height="55"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-51a238afb68b45e8b2458fd14cb21f71" targetConnections="id-cae71a68769b45e58fdc3a2d57eb2372 id-e5fc104880764b349eeaef38cd35c094" archimateElement="id-250103237b87440785fba6484330bdc0">
+          <bounds x="12" y="132" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-58be5d6cb73a4140bb35359d47f83be2" source="id-51a238afb68b45e8b2458fd14cb21f71" target="id-e97147e0756248ceb1b12217b6119e5b" archimateRelationship="id-65a40ff86652425d901d07b53673f303"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:Group" id="id-a3a7029b7ffc4787874ff21ee8f5b596" name="Example Style Rule 1" textAlignment="1">
+        <bounds x="216" y="60" width="169" height="373"/>
+        <child xsi:type="archimate:DiagramObject" id="id-f11f2ea94e6d4bf8b5d167bdff9ef0da" targetConnections="id-2b8d95e9199d4e9aac30f1397d034e7e" archimateElement="id-dbe0790c0fec474486c6765c0bb1cfca">
+          <bounds x="12" y="312" width="146" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-d9440666c54d4d95822691f18240b1ba" source="id-f11f2ea94e6d4bf8b5d167bdff9ef0da" target="id-34f47f4a3e3b4b90820fe1fa936cd1e2" archimateRelationship="id-547d9dbb605249c2bb8f7b5eb81c99f9"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-60808fc772814f988ecc05441c3abe17" archimateElement="id-2c818830e9394ebba8f67ca0cdba8be1">
+          <bounds x="12" y="228" width="146" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-57b303eba18f406b9799e173acfba47b" source="id-60808fc772814f988ecc05441c3abe17" target="id-1ed5fa610d7d469b893c6bed8420b6b2" archimateRelationship="id-4834a65b0b2343a39176906f715958fa"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-2b8d95e9199d4e9aac30f1397d034e7e" source="id-60808fc772814f988ecc05441c3abe17" target="id-f11f2ea94e6d4bf8b5d167bdff9ef0da" archimateRelationship="id-5d71eef18aae46d8854c9f022ce4f340"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-ce6e227942df40c4b8e6211b35e7bcea" source="id-60808fc772814f988ecc05441c3abe17" target="id-f6c2a61d8d3746db9ffe9865abc4adaa" archimateRelationship="id-329ba3781f1646f1bd2872b6affd01b8"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-f6c2a61d8d3746db9ffe9865abc4adaa" targetConnections="id-ce6e227942df40c4b8e6211b35e7bcea" archimateElement="id-daa78b2303f74bccb2b4c237e1f003ef">
+          <bounds x="12" y="132" width="146" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-e5fc104880764b349eeaef38cd35c094" source="id-f6c2a61d8d3746db9ffe9865abc4adaa" target="id-51a238afb68b45e8b2458fd14cb21f71" archimateRelationship="id-286fa1fa39344fbe970118fc8056a573"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-cf6533c01c3747a79f6f613d998db8a3" source="id-f6c2a61d8d3746db9ffe9865abc4adaa" target="id-4375b03edf3448ecb8f04ef85f664d26" archimateRelationship="id-6f1e8ced321d42a79029f6c758fb6f5c"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-4375b03edf3448ecb8f04ef85f664d26" targetConnections="id-cf6533c01c3747a79f6f613d998db8a3" archimateElement="id-5d25f742600541948290657181b8c789">
+          <bounds x="12" y="36" width="146" height="55"/>
+        </child>
+      </child>
+    </element>
+    <element xsi:type="archimate:ArchimateDiagramModel" name="Rule2-Networking-Standpoints" id="id-ba22defa7ccf4344b0c08cd4248eeae9">
+      <child xsi:type="archimate:Group" id="id-3658327a97184f599635450509460e64" name="Style Rule 2 - Service Perspective" textAlignment="1">
+        <bounds x="360" y="180" width="241" height="313"/>
+        <child xsi:type="archimate:DiagramObject" id="id-81f69cdcc5e746999370887d09e9c049" archimateElement="id-720d3c5e20cd40f9b3cea10b4ab51eef">
+          <bounds x="12" y="180" width="217" height="61"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-4a61318e158e4b4ea002756ec193b475" source="id-81f69cdcc5e746999370887d09e9c049" target="id-2ed226cdd53b477999643cf4096b6ff5" archimateRelationship="id-e73d2a131d394765a6d2e6cd403aaf33"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-fcea4961d4d14a9bbab84670156c1f3b" source="id-81f69cdcc5e746999370887d09e9c049" target="id-2b3d243629704b58ae54a66ad7cb1ee1" archimateRelationship="id-b552379d504a4347bc8efa1e45ff460c"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-f547516e62a44558a8cc0615bcfa2159" source="id-81f69cdcc5e746999370887d09e9c049" target="id-bb7ef5bf27eb486183d69af8a240ea69" archimateRelationship="id-0269272cda59466ab4b909847bb6a524"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-09f9b5f07c0940479055c900bbc1adef" source="id-81f69cdcc5e746999370887d09e9c049" target="id-0fad0d97cb7e43069a5089e16c890d61" archimateRelationship="id-0fd7d58535bf48fea18cbab55ef3ae66"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-2ed226cdd53b477999643cf4096b6ff5" targetConnections="id-4a61318e158e4b4ea002756ec193b475" archimateElement="id-6680becda6b04ff5b7d0b405eac50d31">
+          <bounds x="12" y="120" width="217" height="36"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-18b335a3b4af46fcaf2644d9d7e2dc9c" source="id-2ed226cdd53b477999643cf4096b6ff5" target="id-30692f4db7fe4ffd91d5cfd55672b29d" archimateRelationship="id-996e272f1685493a831660b3ebc54e31"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-aa551d32340b4fc892bd27eaf0c656f0" source="id-2ed226cdd53b477999643cf4096b6ff5" target="id-a631afe9c7e44a3ea355d26b219abea9" archimateRelationship="id-1aba8a3412984d818f3ee24bbcf3d0da"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-c88fdc1b1647475c8f71eb56b6708544" source="id-2ed226cdd53b477999643cf4096b6ff5" target="id-352e6ee9ec644fdfb12997abad213c8e" archimateRelationship="id-a7471c718d47431da4933e5d07dfd405"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-0d6aea88270c4488b8743f624db5b110" source="id-2ed226cdd53b477999643cf4096b6ff5" target="id-a960fae5a3ee40d68d2e583599488e04" archimateRelationship="id-2a5672e8825c4fe48e13a735a6f9ca52"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-bc59f31c926f449eaca69f07ad316c63" source="id-2ed226cdd53b477999643cf4096b6ff5" target="id-d7422886e970457eb61278efc6b915b9" archimateRelationship="id-76e10675ce1b44de9fa942ee6a1f2069"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-30692f4db7fe4ffd91d5cfd55672b29d" targetConnections="id-18b335a3b4af46fcaf2644d9d7e2dc9c" archimateElement="id-28a374e2e5f546abb9c2887b7a78a5a8">
+          <bounds x="12" y="48" width="217" height="37"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-2b3d243629704b58ae54a66ad7cb1ee1" targetConnections="id-fcea4961d4d14a9bbab84670156c1f3b" archimateElement="id-f896997d71c2478581ddfb30d9c23ba2">
+          <bounds x="12" y="264" width="217" height="37"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:Group" id="id-aa095375e660427db7a85ef626a74b2d" name="Style Rule 2 - Networking alternative perspective" textAlignment="1">
+        <bounds x="612" y="300" width="181" height="169"/>
+        <child xsi:type="archimate:DiagramObject" id="id-0fad0d97cb7e43069a5089e16c890d61" targetConnections="id-09f9b5f07c0940479055c900bbc1adef id-23774505180a455a8684990d92b11a80 id-e1a266be6ca9460da69e036f22b333b0" archimateElement="id-e5fbb2417f734450b6d5aded02dde8d3">
+          <bounds x="12" y="108" width="145" height="49"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-bb7ef5bf27eb486183d69af8a240ea69" targetConnections="id-f547516e62a44558a8cc0615bcfa2159 id-6dc845ce80f040a0b0f6e6bf6f69c229 id-7c3df89397ef4150a99bf77afbf556d7" archimateElement="id-02ce829d995e4b4f8003ade233a7f4af">
+          <bounds x="12" y="48" width="145" height="49"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:Group" id="id-1f71a9a76689436d96ba922418ab748d" name="Example Style 2 - networking perspective" textAlignment="1">
+        <bounds x="804" y="288" width="193" height="193"/>
+        <child xsi:type="archimate:DiagramObject" id="id-6dc3ea0a78f64eab860d7d98e8935607" archimateElement="id-bc3c9abb5c914db2a6d1f46b97979d5a">
+          <bounds x="24" y="48" width="120" height="27"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-6dc845ce80f040a0b0f6e6bf6f69c229" source="id-6dc3ea0a78f64eab860d7d98e8935607" target="id-bb7ef5bf27eb486183d69af8a240ea69" archimateRelationship="id-b64fc42f72aa4bbbbf379fba6cde89bb"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-e6785e03a19745dd901fcc8dcb8cefa9" archimateElement="id-8caec5f4df1849858a68f7c576a3e0e3">
+          <bounds x="24" y="121" width="157" height="24"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-23774505180a455a8684990d92b11a80" source="id-e6785e03a19745dd901fcc8dcb8cefa9" target="id-0fad0d97cb7e43069a5089e16c890d61" archimateRelationship="id-b65dff90bcb54e33b10722f7b90d633e"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-9d2e77e311db4175bead259c33509761" archimateElement="id-7f6fa243f2a34e5b99c7d85aca1ae930">
+          <bounds x="24" y="84" width="120" height="27"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-7c3df89397ef4150a99bf77afbf556d7" source="id-9d2e77e311db4175bead259c33509761" target="id-bb7ef5bf27eb486183d69af8a240ea69" archimateRelationship="id-beeed203bb3e4cf2b459ebd0f0064f3f"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-03a01cc6d1144127981aa5a539cd1d15" archimateElement="id-9b8804b1bec3478ead72276561fcccd9">
+          <bounds x="24" y="156" width="157" height="25"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-e1a266be6ca9460da69e036f22b333b0" source="id-03a01cc6d1144127981aa5a539cd1d15" target="id-0fad0d97cb7e43069a5089e16c890d61" archimateRelationship="id-f4021488990a4ba2be61407750ed4a09"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:Group" id="id-550af7efde304defb6132851e399437f" name="Example Style 2 - services perspective" textAlignment="1">
+        <bounds x="156" y="204" width="193" height="205"/>
+        <child xsi:type="archimate:DiagramObject" id="id-a960fae5a3ee40d68d2e583599488e04" targetConnections="id-0d6aea88270c4488b8743f624db5b110" archimateElement="id-f06c6f3b40564fd397b0501a87e59d47">
+          <bounds x="12" y="84" width="144" height="23"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-d7422886e970457eb61278efc6b915b9" targetConnections="id-bc59f31c926f449eaca69f07ad316c63" archimateElement="id-0a0428b7019944d0a84d5008b8aed548">
+          <bounds x="12" y="48" width="144" height="23"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-352e6ee9ec644fdfb12997abad213c8e" targetConnections="id-c88fdc1b1647475c8f71eb56b6708544" archimateElement="id-13d1147e13f542d59a01fab8f6328bc2">
+          <bounds x="12" y="120" width="144" height="23"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-a631afe9c7e44a3ea355d26b219abea9" targetConnections="id-aa551d32340b4fc892bd27eaf0c656f0" archimateElement="id-2857e5c3a9ae4b148ddbdceb55c234d2">
+          <bounds x="12" y="156" width="144" height="23"/>
+        </child>
+      </child>
+    </element>
+    <element xsi:type="archimate:ArchimateDiagramModel" name="Rule3-ResourceGroup-SharedResponsibility" id="id-sg-r3-diagram-00001">
+      <child xsi:type="archimate:Group" id="id-sg-r3-dv-grp-pattern" name="Style Rule 3 - Pattern" textAlignment="1">
+        <bounds x="48" y="60" width="181" height="349"/>
+        <child xsi:type="archimate:DiagramObject" id="id-sg-r3-dv-techsvc" archimateElement="id-sg-r3-tech-rgsvc-00001">
+          <bounds x="12" y="204" width="157" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-sg-r3-conn-techsvc-to-cap" source="id-sg-r3-dv-techsvc" target="id-sg-r3-dv-cap" archimateRelationship="id-sg-r3-rel-rgsvc-to-cap"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-sg-r3-conn-techsvc-to-appcomp" source="id-sg-r3-dv-techsvc" target="id-sg-r3-dv-appcomp" archimateRelationship="id-sg-r3-rel-rgsvc-serves-rg"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-sg-r3-dv-cap" targetConnections="id-sg-r3-conn-techsvc-to-cap" archimateElement="id-sg-r3-cap-rg-000001">
+          <bounds x="12" y="288" width="157" height="49"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-sg-r3-dv-appcomp" targetConnections="id-sg-r3-conn-techsvc-to-appcomp" archimateElement="id-sg-r3-app-rg-generic-00001">
+          <bounds x="12" y="120" width="157" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-sg-r3-conn-appcomp-to-appsvc" source="id-sg-r3-dv-appcomp" target="id-sg-r3-dv-appsvc" archimateRelationship="id-sg-r3-rel-rg-realizes-svc"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-sg-r3-dv-appsvc" targetConnections="id-sg-r3-conn-appcomp-to-appsvc" archimateElement="id-sg-r3-app-rgsvc-00003">
+          <bounds x="12" y="36" width="157" height="55"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:Group" id="id-sg-r3-dv-grp-example" name="Example Style Rule 3 - Azure Resource Group" textAlignment="1">
+        <bounds x="264" y="60" width="229" height="445"/>
+        <child xsi:type="archimate:DiagramObject" id="id-sg-r3-dv-ex-techsvc" archimateElement="id-sg-r3-tech-rgsvc-00001">
+          <bounds x="12" y="276" width="169" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-sg-r3-conn-ex-techsvc-to-generic" source="id-sg-r3-dv-ex-techsvc" target="id-sg-r3-dv-ex-generic" archimateRelationship="id-sg-r3-rel-rgsvc-serves-rg"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-bcb04988db8642969121e8fe352a9598" source="id-sg-r3-dv-ex-techsvc" target="id-sg-r3-dv-ex-cap" archimateRelationship="id-sg-r3-rel-rgsvc-to-cap"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-sg-r3-dv-ex-cap" targetConnections="id-bcb04988db8642969121e8fe352a9598" archimateElement="id-sg-r3-cap-rg-000001">
+          <bounds x="12" y="384" width="169" height="49"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-sg-r3-dv-ex-generic" targetConnections="id-sg-r3-conn-ex-techsvc-to-generic id-sg-r3-conn-ex-delivery-specializes" archimateElement="id-sg-r3-app-rg-generic-00001">
+          <bounds x="12" y="192" width="169" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-sg-r3-conn-ex-generic-to-appsvc" source="id-sg-r3-dv-ex-generic" target="id-sg-r3-dv-ex-appsvc" archimateRelationship="id-sg-r3-rel-rg-realizes-svc">
+            <bendpoint startX="-60" startY="-87" endX="-60" endY="69"/>
+          </sourceConnection>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-sg-r3-dv-ex-appsvc" targetConnections="id-sg-r3-conn-ex-generic-to-appsvc" archimateElement="id-sg-r3-app-rgsvc-00003">
+          <bounds x="12" y="36" width="169" height="55"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-sg-r3-dv-ex-delivery" archimateElement="id-sg-r3-app-rg-delivery-00002">
+          <bounds x="48" y="108" width="169" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-sg-r3-conn-ex-delivery-specializes" source="id-sg-r3-dv-ex-delivery" target="id-sg-r3-dv-ex-generic" archimateRelationship="id-sg-r3-rel-delivery-specializes"/>
+        </child>
+      </child>
+    </element>
+    <element xsi:type="archimate:ArchimateDiagramModel" name="Rule4-NIC-PublicIP-TechnologyInterface" id="id-sg-r4-diagram-00001">
+      <child xsi:type="archimate:Group" id="id-sg-r4-dv-grp-pattern" name="Style Rule 4 - Pattern" textAlignment="1">
+        <bounds x="48" y="60" width="253" height="325"/>
+        <child xsi:type="archimate:DiagramObject" id="id-sg-r4-dv-techsvc" archimateElement="id-sg-r4-tech-nicsvc-00001">
+          <bounds x="12" y="228" width="224" height="25"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-sg-r4-conn-techsvc-to-cap" source="id-sg-r4-dv-techsvc" target="id-sg-r4-dv-cap" archimateRelationship="id-sg-r4-rel-nicsvc-to-cap"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-sg-r4-conn-techsvc-to-iface" source="id-sg-r4-dv-techsvc" target="id-sg-r4-dv-iface-generic" archimateRelationship="id-sg-r4-rel-nicsvc-serves-iface"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-sg-r4-dv-cap" targetConnections="id-sg-r4-conn-techsvc-to-cap" archimateElement="id-sg-r4-cap-nic-000001">
+          <bounds x="12" y="276" width="224" height="37"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-sg-r4-dv-iface-generic" targetConnections="id-sg-r4-conn-techsvc-to-iface id-5c22236f4a0d40589a20613c805d0c9b" archimateElement="id-sg-r4-tech-iface-generic-00001">
+          <bounds x="12" y="96" width="224" height="25"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-sg-r4-dv-vm" archimateElement="id-02ce829d995e4b4f8003ade233a7f4af">
+          <bounds x="12" y="36" width="224" height="25"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-5c22236f4a0d40589a20613c805d0c9b" source="id-sg-r4-dv-vm" target="id-sg-r4-dv-iface-generic" archimateRelationship="id-sg-r4-rel-sdi-node-composes-iface"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:Group" id="id-sg-r4-dv-grp-example" name="Example Style Rule 4 - VM NIC and Public IP" textAlignment="1">
+        <bounds x="336" y="60" width="253" height="325"/>
+        <child xsi:type="archimate:DiagramObject" id="id-sg-r4-dv-ex-techsvc" archimateElement="id-sg-r4-tech-nicsvc-00001">
+          <bounds x="12" y="228" width="224" height="25"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-sg-r4-conn-ex-techsvc-to-cap" source="id-sg-r4-dv-ex-techsvc" target="id-sg-r4-dv-ex-cap" archimateRelationship="id-sg-r4-rel-nicsvc-to-cap"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-013e4776628544fe9e5530107dea70a5" source="id-sg-r4-dv-ex-techsvc" target="id-sg-r4-dv-ex-nic" archimateRelationship="id-07834037327643ba849e66c11924fd49"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-sg-r4-dv-ex-cap" targetConnections="id-sg-r4-conn-ex-techsvc-to-cap" archimateElement="id-sg-r4-cap-nic-000001">
+          <bounds x="12" y="276" width="224" height="37"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-sg-r4-dv-ex-vm" archimateElement="id-bc3c9abb5c914db2a6d1f46b97979d5a">
+          <bounds x="12" y="36" width="224" height="25"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-sg-r4-conn-ex-vm-composes-nic" source="id-sg-r4-dv-ex-vm" target="id-sg-r4-dv-ex-nic" archimateRelationship="id-sg-r4-rel-vm-composes-nic"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-sg-r4-dv-ex-nic" targetConnections="id-sg-r4-conn-ex-vm-composes-nic id-013e4776628544fe9e5530107dea70a5" archimateElement="id-sg-r4-tech-iface-nic-00002">
+          <bounds x="12" y="96" width="224" height="25"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-sg-r4-conn-ex-nic-to-subnet" source="id-sg-r4-dv-ex-nic" target="id-sg-r4-dv-ex-subnet" archimateRelationship="id-sg-r4-rel-nic-to-subnet"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-sg-r4-conn-ex-nic-to-pip" source="id-sg-r4-dv-ex-nic" target="id-sg-r4-dv-ex-pip" archimateRelationship="id-sg-r4-rel-nic-to-pip"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-sg-r4-dv-ex-subnet" targetConnections="id-sg-r4-conn-ex-nic-to-subnet" archimateElement="id-9b8804b1bec3478ead72276561fcccd9">
+          <bounds x="12" y="150" width="97" height="55"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-sg-r4-dv-ex-pip" targetConnections="id-sg-r4-conn-ex-nic-to-pip" archimateElement="id-sg-r4-tech-iface-pip-00003">
+          <bounds x="144" y="150" width="92" height="55"/>
+        </child>
+      </child>
+    </element>
+    <element xsi:type="archimate:ArchimateDiagramModel" name="Rule5-Minimize-diagram-relationship-overlap" id="id-f0152350ae8c4229995ef30ab836aa1f">
+      <child xsi:type="archimate:Group" id="id-98d11e4508ca4dc9993fa81228e9b85c" name="Wrong - relationships overlap" textAlignment="1">
+        <bounds x="48" y="12" width="541" height="217"/>
+        <child xsi:type="archimate:DiagramObject" id="id-9c583b3ce7614aeda779b25eb37e073c" archimateElement="id-daa78b2303f74bccb2b4c237e1f003ef">
+          <bounds x="336" y="86" width="169" height="47"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-8b4e739f14cf49a29c59ffc91589f93f" source="id-9c583b3ce7614aeda779b25eb37e073c" target="id-6d22f656de214cb3a8ddeceec9a90110" archimateRelationship="id-6f1e8ced321d42a79029f6c758fb6f5c"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-6d22f656de214cb3a8ddeceec9a90110" targetConnections="id-8b4e739f14cf49a29c59ffc91589f93f" archimateElement="id-5d25f742600541948290657181b8c789">
+          <bounds x="12" y="88" width="157" height="43"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-66f37acc0d314e8ba4b7594bdaebcd48" archimateElement="id-6680becda6b04ff5b7d0b405eac50d31">
+          <bounds x="180" y="24" width="145" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-996b51ca57bc4b9384c61d4838518bbf" source="id-66f37acc0d314e8ba4b7594bdaebcd48" target="id-13e0604b30e342fc87f1058a94d2d7ec" archimateRelationship="id-996e272f1685493a831660b3ebc54e31"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-13e0604b30e342fc87f1058a94d2d7ec" targetConnections="id-996b51ca57bc4b9384c61d4838518bbf" archimateElement="id-28a374e2e5f546abb9c2887b7a78a5a8">
+          <bounds x="180" y="140" width="145" height="55"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:Group" id="id-024185c2efc04138897474765da19118" name="Corect - relationship routed not to intersect one another" textAlignment="1">
+        <bounds x="48" y="240" width="541" height="325"/>
+        <child xsi:type="archimate:DiagramObject" id="id-936ac31fdbad4680bff20a801e1bd7e0" archimateElement="id-daa78b2303f74bccb2b4c237e1f003ef">
+          <bounds x="339" y="132" width="178" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-09b3649b9f294330ab09484e18fb1bef" source="id-936ac31fdbad4680bff20a801e1bd7e0" target="id-a647a3d8870d48e386f5c6b7c9c7b100" archimateRelationship="id-6f1e8ced321d42a79029f6c758fb6f5c">
+            <bendpoint startX="-20" startY="129" endX="315" endY="129"/>
+            <bendpoint startX="-308" startY="129" endX="27" endY="129"/>
+          </sourceConnection>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-a647a3d8870d48e386f5c6b7c9c7b100" targetConnections="id-09b3649b9f294330ab09484e18fb1bef" archimateElement="id-5d25f742600541948290657181b8c789">
+          <bounds x="3" y="132" width="180" height="55"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-956ae38fc4d6418e9a08ce61c0e6e8f9" archimateElement="id-6680becda6b04ff5b7d0b405eac50d31">
+          <bounds x="180" y="60" width="150" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-a440e2550d60474297c1e08b0a5dc238" source="id-956ae38fc4d6418e9a08ce61c0e6e8f9" target="id-491975acbe454aeea2d43dd24dbfdfbe" archimateRelationship="id-996e272f1685493a831660b3ebc54e31"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-491975acbe454aeea2d43dd24dbfdfbe" targetConnections="id-a440e2550d60474297c1e08b0a5dc238" archimateElement="id-28a374e2e5f546abb9c2887b7a78a5a8">
+          <bounds x="180" y="216" width="150" height="55"/>
+        </child>
+      </child>
+    </element>
+    <element xsi:type="archimate:ArchimateDiagramModel" name="Rule6-Minimize-shapes-overlap" id="id-da947b91d70c4eebb1c5292e7c307771">
+      <child xsi:type="archimate:Group" id="id-190797e2e8da41a5bc0e613913fba59e" name="Wrong - relationship overlaps shape" textAlignment="1">
+        <bounds x="12" y="12" width="241" height="295"/>
+        <child xsi:type="archimate:DiagramObject" id="id-94aa9cd19dd74ab7a8a8e5c6702d18e6" archimateElement="id-250103237b87440785fba6484330bdc0">
+          <bounds x="24" y="48" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-ae1bd9196fd64dd7927d1d7cd4d6ca94" source="id-94aa9cd19dd74ab7a8a8e5c6702d18e6" target="id-02209b37965c40be8eb21019f5053c7a" archimateRelationship="id-65a40ff86652425d901d07b53673f303"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-02209b37965c40be8eb21019f5053c7a" targetConnections="id-ae1bd9196fd64dd7927d1d7cd4d6ca94" archimateElement="id-77b7dc9a541a4b829f8431da128f7a25">
+          <bounds x="24" y="214" width="120" height="55"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-87ece102b7df44688c4d8318d5dd6ca6" archimateElement="id-sg-r3-app-rgsvc-00003">
+          <bounds x="24" y="132" width="120" height="55"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:Group" id="id-2bd731f2dc664f58984841f966e4388d" name="Correct - underlying shape moved" textAlignment="1">
+        <bounds x="264" y="12" width="229" height="295"/>
+        <child xsi:type="archimate:DiagramObject" id="id-26dca60a99a84286b00ab8c6acc17d9d" archimateElement="id-250103237b87440785fba6484330bdc0">
+          <bounds x="24" y="48" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-ae0736a83a5848b793a21a62e29372fc" source="id-26dca60a99a84286b00ab8c6acc17d9d" target="id-1ca562248b13479a8bd3a812f6532ab7" archimateRelationship="id-65a40ff86652425d901d07b53673f303"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-1ca562248b13479a8bd3a812f6532ab7" targetConnections="id-ae0736a83a5848b793a21a62e29372fc" archimateElement="id-77b7dc9a541a4b829f8431da128f7a25">
+          <bounds x="36" y="216" width="120" height="55"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-a10ad1b4fe684effa7af7f1f35cdb8cb" archimateElement="id-sg-r3-app-rgsvc-00003">
+          <bounds x="96" y="132" width="120" height="55"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:Group" id="id-31ced4b153784eb7862bc8b1a38f24bf" name="Correct - bendpoints of connection around shape" textAlignment="1">
+        <bounds x="516" y="12" width="229" height="295"/>
+        <child xsi:type="archimate:DiagramObject" id="id-22a7de6c4ac44224bffdf6431e829d70" archimateElement="id-250103237b87440785fba6484330bdc0">
+          <bounds x="12" y="48" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-5add1d21559b4849be9104dbd06d36f2" source="id-22a7de6c4ac44224bffdf6431e829d70" target="id-dcb5e42fcc684b21867e2bf3aa6a8147" archimateRelationship="id-65a40ff86652425d901d07b53673f303">
+            <bendpoint startX="84" startY="9" endX="84" endY="-159"/>
+            <bendpoint startX="84" startY="165" endX="84" endY="-3"/>
+          </sourceConnection>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-dcb5e42fcc684b21867e2bf3aa6a8147" targetConnections="id-5add1d21559b4849be9104dbd06d36f2" archimateElement="id-77b7dc9a541a4b829f8431da128f7a25">
+          <bounds x="12" y="216" width="120" height="55"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-b208aea84730467e83014712201a4036" archimateElement="id-sg-r3-app-rgsvc-00003">
+          <bounds x="12" y="132" width="120" height="55"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:Group" id="id-a1a64a9df28b4dab81446bdc2dcc349f" name="Correct - underlying shape and connection moved" textAlignment="1">
+        <bounds x="768" y="12" width="229" height="295"/>
+        <child xsi:type="archimate:DiagramObject" id="id-6b0a0cfce5fa49ea9a571dfdcaca672d" archimateElement="id-250103237b87440785fba6484330bdc0">
+          <bounds x="12" y="48" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-206b5b421aed410780a0567cdc24084b" source="id-6b0a0cfce5fa49ea9a571dfdcaca672d" target="id-be43fa7d98bb4948a7158d0b72aff7ed" archimateRelationship="id-65a40ff86652425d901d07b53673f303">
+            <bendpoint startX="-48" startY="93" endX="-48" endY="-75"/>
+          </sourceConnection>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-be43fa7d98bb4948a7158d0b72aff7ed" targetConnections="id-206b5b421aed410780a0567cdc24084b" archimateElement="id-77b7dc9a541a4b829f8431da128f7a25">
+          <bounds x="12" y="216" width="120" height="55"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-631aa0ec4394432c9e6d6e53d56c455d" archimateElement="id-sg-r3-app-rgsvc-00003">
+          <bounds x="36" y="132" width="120" height="55"/>
+        </child>
+      </child>
+    </element>
+  </folder>
+</archimate:model>

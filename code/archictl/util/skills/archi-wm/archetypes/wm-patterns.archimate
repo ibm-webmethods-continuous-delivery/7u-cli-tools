@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archimate:model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:archimate="http://www.archimatetool.com/archimate" name="webMethodsPatterns" id="id-wm-model-root" version="5.0.0">
+  <folder name="Strategy" id="f1" type="strategy">
+    <element xsi:type="archimate:Capability" name="Application &amp; Protocol Integration" id="id-wm-cap-is-01"/>
+    <element xsi:type="archimate:Capability" name="Managed File Transfer" id="id-wm-cap-mft-01"/>
+    <element xsi:type="archimate:Capability" name="API Management" id="id-wm-cap-agw-01"/>
+    <element xsi:type="archimate:Capability" name="Pub-Sub Messaging" id="id-wm-cap-um-01"/>
+  </folder>
+  <folder name="Business" id="f2" type="business"/>
+  <folder name="Application" id="f3" type="application">
+    <element xsi:type="archimate:ApplicationComponent" name="Integration Server Instance" id="id-wm-app-is-01">
+      <documentation>webMethods Integration Server runtime instance hosting IS packages and flow services.</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="Microservices Runtime Instance" id="id-wm-app-msr-01">
+      <documentation>Lightweight IS variant. Container-native, single-package, stateless.</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="IS Package" id="id-wm-app-is-pkg-01">
+      <documentation>Deployment unit containing flow services, adapters, and configuration.</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="ActiveTransfer Server" id="id-wm-app-mft-01">
+      <documentation>webMethods ActiveTransfer server handling managed file transfers.</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="ActiveTransfer SaaS" id="id-wm-app-mft-saas-01">
+      <documentation>webMethods ActiveTransfer SaaS instance (cloud-hosted MFT endpoint for hybrid transfer).</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="API Gateway Instance" id="id-wm-app-agw-01">
+      <documentation>webMethods API Gateway instance enforcing policies and routing to backends.</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="Published API" id="id-wm-app-api-01">
+      <documentation>REST or SOAP API published and managed through API Gateway.</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="Universal Messaging Realm" id="id-wm-app-um-realm-01">
+      <documentation>Universal Messaging realm server providing channels and queues.</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationService" name="IS Flow Service" id="id-wm-app-is-svc-01"/>
+    <element xsi:type="archimate:ApplicationService" name="MFT Transfer Service" id="id-wm-app-mft-svc-01"/>
+    <element xsi:type="archimate:ApplicationService" name="API Endpoint Service" id="id-wm-app-api-svc-01"/>
+    <element xsi:type="archimate:ApplicationService" name="UM Channel Service" id="id-wm-app-um-svc-01"/>
+  </folder>
+  <folder name="Technology &amp; Physical" id="f4" type="technology">
+    <element xsi:type="archimate:Node" name="OpenShift / Kubernetes Cluster" id="id-wm-tech-ocp-node-01"/>
+    <element xsi:type="archimate:Node" name="On-Prem Host" id="id-wm-tech-host-01"/>
+    <element xsi:type="archimate:SystemSoftware" name="IS Runtime Engine" id="id-wm-tech-is-runtime-01"/>
+    <element xsi:type="archimate:SystemSoftware" name="MSR Runtime Engine" id="id-wm-tech-msr-runtime-01"/>
+    <element xsi:type="archimate:SystemSoftware" name="ActiveTransfer Runtime" id="id-wm-tech-mft-runtime-01"/>
+    <element xsi:type="archimate:SystemSoftware" name="API Gateway Engine" id="id-wm-tech-agw-runtime-01"/>
+  </folder>
+  <folder name="Motivation" id="f5" type="motivation"/>
+  <folder name="Implementation &amp; Migration" id="f6" type="implementation_migration"/>
+  <folder name="Other" id="f7" type="other"/>
+  <folder name="Relations" id="f8" type="relations">
+    <element xsi:type="archimate:RealizationRelationship" id="id-wm-rel-is-realizes-cap" source="id-wm-tech-is-runtime-01" target="id-wm-cap-is-01"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-wm-rel-mft-realizes-cap" source="id-wm-tech-mft-runtime-01" target="id-wm-cap-mft-01"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-wm-rel-agw-realizes-cap" source="id-wm-tech-agw-runtime-01" target="id-wm-cap-agw-01"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-wm-rel-um-realizes-cap" source="id-wm-app-um-realm-01" target="id-wm-cap-um-01"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-wm-rel-is-pkg-realizes-svc" source="id-wm-app-is-pkg-01" target="id-wm-app-is-svc-01"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-wm-rel-mft-realizes-svc" source="id-wm-app-mft-01" target="id-wm-app-mft-svc-01"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-wm-rel-api-realizes-svc" source="id-wm-app-api-01" target="id-wm-app-api-svc-01"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-wm-rel-um-realizes-svc" source="id-wm-app-um-realm-01" target="id-wm-app-um-svc-01"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-wm-rel-ocp-comp-is" source="id-wm-tech-ocp-node-01" target="id-wm-tech-is-runtime-01"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-wm-rel-ocp-comp-msr" source="id-wm-tech-ocp-node-01" target="id-wm-tech-msr-runtime-01"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-wm-rel-ocp-comp-agw" source="id-wm-tech-ocp-node-01" target="id-wm-tech-agw-runtime-01"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-wm-rel-is-comp-pkg" source="id-wm-app-is-01" target="id-wm-app-is-pkg-01"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-wm-rel-is-serves-inst" source="id-wm-tech-is-runtime-01" target="id-wm-app-is-01"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-wm-rel-msr-serves-inst" source="id-wm-tech-msr-runtime-01" target="id-wm-app-msr-01"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-wm-rel-agw-serves-inst" source="id-wm-tech-agw-runtime-01" target="id-wm-app-agw-01"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-wm-rel-mft-serves-inst" source="id-wm-tech-mft-runtime-01" target="id-wm-app-mft-01"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-wm-rel-agw-serves-api" source="id-wm-app-api-svc-01" target="id-wm-app-is-01"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-wm-rel-is-serves-um" source="id-wm-app-is-svc-01" target="id-wm-app-um-realm-01"/>
+  </folder>
+  <folder name="Views" id="f9" type="diagrams">
+    <element xsi:type="archimate:ArchimateDiagramModel" name="wM-IS-MSR-on-Kubernetes" id="id-wm-diag-ocp-01">
+      <child xsi:type="archimate:DiagramObject" id="d1" archimateElement="id-wm-tech-ocp-node-01">
+        <bounds x="24" y="24" width="560" height="300"/>
+        <child xsi:type="archimate:DiagramObject" id="d2" archimateElement="id-wm-tech-is-runtime-01">
+          <bounds x="24" y="48" width="240" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="d3" source="d2" target="d6" archimateRelationship="id-wm-rel-is-serves-inst"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="d4" archimateElement="id-wm-tech-msr-runtime-01">
+          <bounds x="296" y="48" width="240" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="d5" source="d4" target="d9" archimateRelationship="id-wm-rel-msr-serves-inst"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="d6" targetConnections="d3" archimateElement="id-wm-app-is-01">
+          <bounds x="24" y="132" width="240" height="55"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="d9" targetConnections="d5" archimateElement="id-wm-app-msr-01">
+          <bounds x="296" y="132" width="240" height="55"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="d7" archimateElement="id-wm-app-is-pkg-01">
+          <bounds x="36" y="228" width="192" height="25"/>
+          <sourceConnection xsi:type="archimate:Connection" id="d8" source="d7" target="da" archimateRelationship="id-wm-rel-is-pkg-realizes-svc"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="da" targetConnections="d8" archimateElement="id-wm-app-is-svc-01">
+        <bounds x="24" y="348" width="240" height="37"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="db" archimateElement="id-wm-app-api-svc-01">
+        <bounds x="296" y="348" width="240" height="37"/>
+      </child>
+    </element>
+    <element xsi:type="archimate:ArchimateDiagramModel" name="wM-MFT-Hybrid" id="id-wm-diag-mft-01">
+      <child xsi:type="archimate:Group" id="dc" name="On-Premises" textAlignment="1">
+        <bounds x="24" y="24" width="240" height="200"/>
+        <child xsi:type="archimate:DiagramObject" id="dd" archimateElement="id-wm-app-mft-01">
+          <bounds x="24" y="48" width="192" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="de" source="dd" target="df" archimateRelationship="id-wm-rel-mft-realizes-svc"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="df" targetConnections="de" archimateElement="id-wm-app-mft-svc-01">
+          <bounds x="24" y="132" width="192" height="37"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:Group" id="dg" name="SaaS / Cloud" textAlignment="1">
+        <bounds x="300" y="24" width="240" height="200"/>
+        <child xsi:type="archimate:DiagramObject" id="dh" archimateElement="id-wm-app-mft-saas-01">
+          <bounds x="24" y="48" width="192" height="55"/>
+        </child>
+      </child>
+    </element>
+  </folder>
+</archimate:model>

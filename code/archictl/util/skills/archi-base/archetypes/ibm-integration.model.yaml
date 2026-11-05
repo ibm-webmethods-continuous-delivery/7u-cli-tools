@@ -1,0 +1,58 @@
+model:
+  name: IBMIntegrationReference
+  id: id-ibm-model-root
+  version: 5.0.0
+  strategy/:
+    Capability:
+      Enterprise Transactional Messaging: id-ibm-cap-mq-01
+      Hybrid Application & Protocol Integration: id-ibm-cap-ace-01
+      API Governance & Security Gateway: id-ibm-cap-apic-01
+  business/: {}
+  application/:
+    ApplicationComponent:
+      Core Payment IBM MQ Queue Manager:
+        id: id-ibm-app-mq-qmgr-01
+        doc: Queue Manager holding secure transactional request and reply queues.
+      Payment Transformation ACE Flow:
+        id: id-ibm-app-ace-flow-01
+        doc: App Connect Enterprise message flow performing ISO20022 transformation and validation.
+      Corporate Payment Managed API:
+        id: id-ibm-app-apic-api-01
+        doc: API Connect published REST API enforcing OAuth2 and rate limits.
+    ApplicationService:
+      Payment Request Queue Service: id-ibm-app-mq-req-svc-01
+      Payment Validation & Routing Service: id-ibm-app-ace-svc-01
+      Payment REST Endpoint Service: id-ibm-app-apic-svc-01
+  technology/:
+    Node:
+      CP4I OpenShift Cluster: id-ibm-tech-ocp-node-01
+    SystemSoftware:
+      IBM MQ Runtime Operator: id-ibm-tech-mq-runtime-01
+      IBM App Connect Integration Server Runtime: id-ibm-tech-ace-runtime-01
+      IBM DataPower / APIC Gateway Engine: id-ibm-tech-apic-runtime-01
+  motivation/: {}
+  implementation_migration/: {}
+  other/: {}
+  relations/:
+    Realization:
+      - id-ibm-rel-mq-realizes-cap IBM MQ Runtime Operator > Enterprise Transactional Messaging
+      - id-ibm-rel-ace-realizes-cap IBM App Connect Integration Server Runtime > Hybrid Application & Protocol Integration
+      - id-ibm-rel-apic-realizes-cap IBM DataPower / APIC Gateway Engine > API Governance & Security Gateway
+      - id-ibm-rel-qmgr-realizes-svc Core Payment IBM MQ Queue Manager > Payment Request Queue Service
+      - id-ibm-rel-flow-realizes-svc Payment Transformation ACE Flow > Payment Validation & Routing Service
+      - id-ibm-rel-api-realizes-svc Corporate Payment Managed API > Payment REST Endpoint Service
+    Composition:
+      - id-ibm-rel-ocp-comp-mq CP4I OpenShift Cluster > IBM MQ Runtime Operator
+      - id-ibm-rel-ocp-comp-ace CP4I OpenShift Cluster > IBM App Connect Integration Server Runtime
+      - id-ibm-rel-ocp-comp-apic CP4I OpenShift Cluster > IBM DataPower / APIC Gateway Engine
+    Serving:
+      - id-ibm-rel-mq-serves-qmgr IBM MQ Runtime Operator > Core Payment IBM MQ Queue Manager
+      - id-ibm-rel-ace-serves-flow IBM App Connect Integration Server Runtime > Payment Transformation ACE Flow
+      - id-ibm-rel-apic-serves-api IBM DataPower / APIC Gateway Engine > Corporate Payment Managed API
+      - id-ibm-rel-apic-serves-ace Payment REST Endpoint Service > Payment Transformation ACE Flow
+      - id-ibm-rel-ace-serves-mq Payment Validation & Routing Service > Core Payment IBM MQ Queue Manager
+  diagrams/:
+    ArchimateDiagramModel:
+      IBM-Integration-EndToEnd-Pattern:
+        id: id-ibm-diag-e2e
+        file: views/ibm-integration-e2e.view.yaml
