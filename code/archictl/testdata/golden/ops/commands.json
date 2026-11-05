@@ -1,0 +1,225 @@
+{
+ "input": "models/archisurance_annotated/in.archimate",
+ "steps": [
+  {
+   "args": [
+    "validate"
+   ],
+   "exit": 0,
+   "output": "OK"
+  },
+  {
+   "args": [
+    "find",
+    "claim",
+    "--type",
+    "BusinessProcess"
+   ],
+   "exit": 0,
+   "output": "BusinessProcess Handle Claim #556"
+  },
+  {
+   "args": [
+    "find",
+    "claim",
+    "--json"
+   ],
+   "exit": 0,
+   "output": "[{\"type\": \"BusinessProcess\", \"name\": \"Handle Claim\", \"id\": \"556\"}, {\"type\": \"BusinessObject\", \"name\": \"Damage Claim\", \"id\": \"673\"}, {\"type\": \"Representation\", \"name\": \"Claim Form\", \"id\": \"676\"}, {\"type\": \"BusinessFunction\", \"name\": \"Claims Handling\", \"id\": \"489\"}, {\"type\": \"BusinessService\", \"name\": \"Claim Registration Service\", \"id\": \"1202\"}, {\"type\": \"BusinessService\", \"name\": \"Claims Payment Service\", \"id\": \"1226\"}, {\"type\": \"ApplicationComponent\", \"name\": \"Claim Data Management\", \"id\": \"867\"}, {\"type\": \"ApplicationService\", \"name\": \"Claim InfoServ\", \"id\": \"1414\"}, {\"type\": \"DataObject\", \"name\": \"Damage Claim Data\", \"id\": \"839\"}, {\"type\": \"TechnologyService\", \"name\": \"Claim Files Service\", \"id\": \"1455\"}, {\"type\": \"FlowRelationship\", \"name\": \"claim info\", \"id\": \"1784\", \"source\": \"Claims Handling\", \"target\": \"Customer\"}, {\"type\": \"FlowRelationship\", \"name\": \"claim form (paper)\", \"id\": \"1616\", \"source\": \"Customer Relations\", \"target\": \"Document Processing SSC\"}, {\"type\": \"FlowRelationship\", \"name\": \"Claim form (electronic)\", \"id\": \"1618\", \"source\": \"Document Processing SSC\", \"target\": \"Customer Relations\"}, {\"type\": \"FlowRelationship\", \"name\": \"claims\", \"id\": \"1772\", \"source\": \"Customer\", \"target\": \"Maintaining Customer Relations\"}]"
+  },
+  {
+   "args": [
+    "show",
+    "Handle Claim"
+   ],
+   "exit": 0,
+   "output": "BusinessProcess Handle Claim #556\n  Assignment < Insurer #1388\n  Realization > Claim Registration Service #1323\n  Realization > Claims Payment Service #1325\n  Triggering > Inform Customer #1333\nviews: Business Process View, Service Realisation View, Layered View, Business Cooperation View"
+  },
+  {
+   "args": [
+    "show",
+    "Handle Claim",
+    "--json"
+   ],
+   "exit": 0,
+   "output": "{\"type\": \"BusinessProcess\", \"name\": \"Handle Claim\", \"id\": \"556\", \"doc\": null, \"props\": {}, \"relations\": [{\"type\": \"Assignment\", \"direction\": \"in\", \"other\": \"Insurer\", \"name\": \"\", \"id\": \"1388\"}, {\"type\": \"Realization\", \"direction\": \"out\", \"other\": \"Claim Registration Service\", \"name\": \"\", \"id\": \"1323\"}, {\"type\": \"Realization\", \"direction\": \"out\", \"other\": \"Claims Payment Service\", \"name\": \"\", \"id\": \"1325\"}, {\"type\": \"Triggering\", \"direction\": \"out\", \"other\": \"Inform Customer\", \"name\": \"\", \"id\": \"1333\"}], \"views\": [\"Business Process View\", \"Service Realisation View\", \"Layered View\", \"Business Cooperation View\"]}"
+  },
+  {
+   "args": [
+    "orphans"
+   ],
+   "exit": 0,
+   "output": "0 element(s) and 0 relationship(s) in no view"
+  },
+  {
+   "args": [
+    "unused"
+   ],
+   "exit": 0,
+   "output": "view Archimate View #3641\n1 empty view(s)"
+  },
+  {
+   "args": [
+    "add",
+    "BusinessProcess",
+    "Fraud Check",
+    "--folder",
+    "Processes/Claims",
+    "--doc",
+    "Checks a claim for fraud indicators"
+   ],
+   "exit": 0,
+   "output": "added BusinessProcess Fraud Check #x790"
+  },
+  {
+   "args": [
+    "add",
+    "BusinessRole",
+    "Fraud Analyst"
+   ],
+   "exit": 0,
+   "output": "added BusinessRole Fraud Analyst #x791"
+  },
+  {
+   "args": [
+    "connect",
+    "Triggering",
+    "Handle Claim",
+    "Fraud Check",
+    "--name",
+    "suspicious claim"
+   ],
+   "exit": 0,
+   "output": "added TriggeringRelationship #x792"
+  },
+  {
+   "args": [
+    "connect",
+    "Assignment",
+    "Fraud Analyst",
+    "Fraud Check"
+   ],
+   "exit": 0,
+   "output": "added AssignmentRelationship #x793"
+  },
+  {
+   "args": [
+    "connect",
+    "Serving",
+    "Fraud Check",
+    "Handle Claim"
+   ],
+   "exit": 0,
+   "output": "added ServingRelationship #x794"
+  },
+  {
+   "args": [
+    "connect",
+    "Composition",
+    "Handle Claim",
+    "Insurer"
+   ],
+   "exit": 1,
+   "output": "Composition not allowed from BusinessProcess to BusinessRole; allowed: Association, Flow, Serving, Triggering"
+  },
+  {
+   "args": [
+    "connect",
+    "Serving",
+    "Fraud Check",
+    "Inform Custmer"
+   ],
+   "exit": 1,
+   "output": "unknown element: 'Inform Custmer'; did you mean: Inform Customer, Customer?"
+  },
+  {
+   "args": [
+    "connect",
+    "Serving",
+    "Customer",
+    "Fraud Check"
+   ],
+   "exit": 1,
+   "output": "ambiguous name 'Customer', use an id: 791 (BusinessObject), 521 (BusinessRole)"
+  },
+  {
+   "args": [
+    "add",
+    "Foo",
+    "x"
+   ],
+   "exit": 1,
+   "output": "unknown element type 'Foo'; valid: ApplicationCollaboration ApplicationComponent ApplicationEvent ApplicationFunction ApplicationInteraction ApplicationInterface ApplicationProcess ApplicationService Artifact Assessment BusinessActor BusinessCollaboration BusinessEvent BusinessFunction BusinessInteraction BusinessInterface BusinessObject BusinessProcess BusinessRole BusinessService Capability CommunicationNetwork Constraint Contract CourseOfAction DataObject Deliverable Device DistributionNetwork Driver Equipment Facility Gap Goal Grouping ImplementationEvent Junction Location Material Meaning Node Outcome Path Plateau Principle Product Representation Requirement Resource Stakeholder SystemSoftware TechnologyCollaboration TechnologyEvent TechnologyFunction TechnologyInteraction TechnologyInterface TechnologyProcess TechnologyService Value ValueStream WorkPackage"
+  },
+  {
+   "args": [
+    "rename",
+    "Fraud Check",
+    "Fraud Screening"
+   ],
+   "exit": 0,
+   "output": "renamed 'Fraud Check' -> 'Fraud Screening' #x790"
+  },
+  {
+   "args": [
+    "add-to-view",
+    "Business Process View",
+    "Fraud Screening"
+   ],
+   "exit": 0,
+   "output": "added 'Fraud Screening' to view 'Business Process View' with 2 connection(s) #x795"
+  },
+  {
+   "args": [
+    "add-to-view",
+    "Business Process View",
+    "Fraud Analyst",
+    "--x",
+    "12",
+    "--y",
+    "300"
+   ],
+   "exit": 0,
+   "output": "added 'Fraud Analyst' to view 'Business Process View' with 1 connection(s) #x798"
+  },
+  {
+   "args": [
+    "add-to-view",
+    "Business Process View",
+    "Fraud Screening"
+   ],
+   "exit": 1,
+   "output": "'Fraud Screening' is already in view 'Business Process View'"
+  },
+  {
+   "args": [
+    "show",
+    "Fraud Screening"
+   ],
+   "exit": 0,
+   "output": "BusinessProcess Fraud Screening #x790\ndoc: Checks a claim for fraud indicators\n  Triggering < Handle Claim | suspicious claim #x792\n  Assignment < Fraud Analyst #x793\n  Serving > Handle Claim #x794\nviews: Business Process View"
+  },
+  {
+   "args": [
+    "orphans"
+   ],
+   "exit": 0,
+   "output": "0 element(s) and 0 relationship(s) in no view"
+  },
+  {
+   "args": [
+    "delete",
+    "Damage Occured"
+   ],
+   "exit": 0,
+   "output": "deleted BusinessEvent Damage Occured #651; 1 relationship(s) and 2 view item(s) removed"
+  },
+  {
+   "args": [
+    "validate"
+   ],
+   "exit": 0,
+   "output": "OK"
+  }
+ ]
+}

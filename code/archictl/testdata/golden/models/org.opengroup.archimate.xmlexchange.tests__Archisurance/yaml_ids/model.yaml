@@ -1,0 +1,177 @@
+model:
+  _ns: {canvas: 'http://www.archimatetool.com/archimate/canvas'}
+  name: Archisurance
+  id: 11f5304f
+  version: 5.0.0
+  strategy/:
+    props:
+    - {F1: S}
+    Resource:
+      Resource:
+        id: 9784239c-1fe2-40fb-9d4f-6a5fa0ef6786
+        props:
+        - {Property 1: Value 1}
+  business/:
+    Processes/:
+      BusinessEvent: {Request for Insurance: 650, Damage Occured: 651}
+      BusinessInteraction: {Formalise Request: 721, Check and  Sign Contract: 722}
+      BusinessProcess: {Inform Customer: 1302, Collect Premium: 1311, Handle Claim: 556, Register: 564, Accept: 572, Valuate: 580, Pay: 588, Close Contract: 596, Create Contract: 612}
+    Information/:
+      BusinessObject: {Damage Claim: 673, Customer File: 674, Insurance Policy: 675, Customer: 791, Insurance Request: 792, Travel  Insurance Policy: 793, Car Insurance Policy: 794, Liability  Insurance Policy: 795, Legal aid  Insurance Policy: 796, Home Insurance Policy: 803}
+      Representation: {Claim Form: 676}
+    Functions/:
+      BusinessFunction: {Maintaining Intermediary Relations: 471, Maintaining Customer Relations: 477, Contracting: 483, Claims Handling: 489, Asset Management: 495, Financial Handling: 501}
+    Products/:
+      BusinessService: {Insurance Application Service: 1196, Claim Registration Service: 1202, Premium Payment Service: 1208, Customer Information Service: 1214, Customer data mutation Service: 1220, Claims Payment Service: 1226}
+      Contract: {Travel Insurance Policy: 1239}
+    Actors/:
+      BusinessActor:
+        Client: 1337
+        Archisurance:
+          id: 275
+          props:
+          - {Property1: Another Value of Property 1}
+          - {Property2: Another Value of Property 2}
+          - {Property3: Value of Property 3}
+        Customer Relations: 282
+        Intermediary Relations: 289
+        Front Office: 296
+        Home  &  Away: 303
+        Car: 310
+        Legal Aid: 317
+        Back Office: 324
+        Finance: 331
+        Product Development: 338
+        HRM: 345
+        Document Processing SSC: 352
+        Board: 402
+        Director of Sales: 409
+        Director of Operations: 416
+        Director of Finance: 423
+      BusinessCollaboration: {collaboration: 1546, Negotiation: 733, Contracting: 740}
+      BusinessInterface: {phone: 1536, e-mail: 1538, GIM: 1542, mail: 1544}
+      BusinessRole:
+        Insurant: 1368
+        Intermediary: 507
+        Insurer: 514
+        Customer:
+          id: 521
+          props:
+          - {Property: Hello}
+        Customer's Bank: 528
+      kids:
+      - BusinessInterface: {name: phone, id: 1540}
+  application/:
+    Applications/:
+      ApplicationComponent: {CRM System: 1393, Financial Application: 1399, Call center application: 1793, Web portal: 1800, Bank System: 1813, Home & Away Policy Administration: 843, Risk Assessment: 849, Customer Data  Access: 855, Policy Data Management: 861, Claim Data Management: 867}
+      ApplicationFunction: {Policy Creation: 885, Calculate Risk: 891, Calculate Premium: 897, Create Policy: 903, Store Policy: 909}
+      ApplicationService:
+        CIS: {id: 1407, doc: Customer Information Service}
+        Claim InfoServ: 1414
+        Policy Creation Service: 935
+    Data/:
+      DataObject: {Customer File Data: 837, Insurance Policy Data: 838, Damage Claim Data: 839, Insurance Request Data: 946}
+  technology/:
+    CommunicationNetwork: {LAN: 1089, BIBIT: 1095}
+    Device: {Unix Server: 1053, NAS File Server: 1065, Admin Server: 1071, BIBIT Server: 1882}
+    Node: {Firewall: 1004, Mainframe: 986, Unix Server Farm: 992}
+    SystemSoftware: {Message Queing: 1010, DBMS: 1016, CICS: 1022, Financial Software: 1870}
+    TechnologyService: {File Service: 1110, Network Service: 1116, Database Service: 1128, Claim Files Service: 1455, Customer File Service: 1462}
+    kids:
+    - CommunicationNetwork: {name: LAN, id: 1101}
+    - Device: {name: Unix Server, id: 1059}
+    - Node: {name: Firewall, id: 998}
+  motivation/:
+    Principle: {Occupancy Principle: 3764dcef, One Stop Principle: 3938617c, Infrastructure Principle: 3db08b5c, TCO Goal: 66a2171b, Treatment Time Principle: 67316f1f, Licence Principle: 712d4eec, Component Principle: af0e8c76, Costs Goal: b56d54a6, Client Satisfaction Goal: f5674126}
+    Value: {Be Insured: 1250}
+  implementation_migration/: {}
+  other/:
+    Grouping: {Grouping: 1edc89ca-f657-4994-91ef-b6f6174a52e0}
+  relations/:
+    Business/:
+      Functions/:
+        Flow: [1756 471>483 customer information, 1758 483>471 contract info, 1760 483>495 contract info., 1762 495>483 asset info, 1764 477>489, 1766 489>477, 1768 489>501, 1770 501>489, 1774 477>521 insurance info, 1776 501>528, 1782 471>507 product info., 1784 489>521 claim info, 1786 495>501, 1788 501>495 money]
+      Information/:
+        Aggregation: [806 791>674, 814 675>673, 816 675>792]
+        Composition: [808 674>792, 810 674>675, 812 674>673]
+        Realization: [718 676>673]
+        Specialization: [818 793>675, 820 794>675, 822 803>675, 824 795>675, 826 796>675]
+      Actors/:
+        Aggregation: [2891eb9f 1546>528, 756 733>521, 758 733>514, 760 733>507, 762 740>507, 764 740>514, 768 740>521, 81b9d07c 1546>352]
+        Assignment: [1381 1337>1368, 1386 275>514, 1388 514>556, 4a214d41 740>722, 772 733>721, 774 514>612]
+        Association: [1259 521>1250, 437 402>416, 443 402>338, 445 402>345, 447 402>409, 449 402>423, 458 409>282, 460 409>289, 462 416>303, 464 416>310, 466 416>317, 468 416>352, 470 423>331, 4a4cdf33 1542>289, 58ee7df2 1540>289, 659978dc 1538>282, a2243077 282>1536, be2dbdfd 1544>352]
+        Flow: [1616 282>352 claim form (paper), 1618 352>282 Claim form (electronic), 1620 289>352 Intermediary Contracts, 1622 352>289 Electronic Contracts, 1628 324>352 paper contracts, 1630 352>324 electronic contracts, 1632 324>331 payment order, 1634 331>528 payment, 1636 528>331 confirmation, 1638 331>324 confirm, 1644 338>324, 1648 345>324, 1650 324>345, 1652 324>338, 1750 507>521 Product Information, 1752 521>507 Customer Information, 1772 521>477 claims, 1778 528>501, 1780 507>471 cust. info]
+        Serving: [09da63b3 1540>507, 16871b47 1544>521 write, 7f9b43e9 1538>521 write, 8d85d21d 1542>507, f19393d1 1536>521 call]
+        Triggering: [95f13189 521>650]
+      Processes/:
+        Access:
+        - 693 564>674 create/ update
+        - {name: read, id: 695, source: 572, target: 674, accessType: 1}
+        - 697 564>673 create/ update
+        - {name: read, id: 704, source: 572, target: 673, accessType: 1}
+        - 706 572>675 read
+        - 708 580>673 crud
+        - 90702769 588>674 update
+        Realization: [1321 596>1196, 1323 556>1202, 1325 556>1226, 1327 1302>1214, 1329 1311>1208, 1430 564>1202, 1432 572>1214, 1434 588>1226]
+        Triggering: [1333 556>1302, 1335 1302>1311, 2d89d4e7 612>722, 655 651>564, 657 564>572, 659 572>580, 661 580>588, 728 721>612, 732 650>721]
+      Products/:
+        Association: [1274 1250>1208]
+        Serving: [1282 1196>521, 1293 1202>521, 1295 1226>521, 1297 1214>521, 1299 1208>521, 1438 1202>1368, 1440 1214>1368, 1442 1226>1368, 1444 1196>564, 1446 1220>564, 1448 1208>588, b74a5ecd 1407>612]
+    Application/:
+      Applications/:
+        Access:
+        - 880 855>837
+        - 882 867>839
+        - 884 861>838
+        - 972 903>838
+        - 974 909>837
+        - {id: 976, source: 891, target: 946, accessType: 1}
+        Composition: [1831 843>855, 1833 843>861]
+        Realization: [1422 1393>1407, 1424 861>1414, 1450 1393>1196, 1452 861>1220, 1454 1399>1208, 943 843>935]
+        Serving: [1426 1407>861, 1428 1414>1399, 1731 935>722, 1733 1414>721, 1821 1793>1800, 1823 1393>1800, 1825 849>1800, 1827 855>849, 1829 1399>843, 1835 855>1793, 853128f7 1813>1399]
+        Triggering: [930 891>897, 932 897>903, 934 903>909]
+      Data/:
+        Realization: [953 946>792, 955 837>674, 957 839>673, 959 838>796, 961 838>795, 963 838>803, 965 838>794, 967 838>793]
+    Technology/:
+      Association: [197b66d6 1089>998, 2dd4031d 1095>1004, 3fb2a575 1004>1101, 670aa5ed 986>1089, 7e50c753 1101>1071, 80c919e4 1089>1065, dd9c00de 1101>1882, e479d313 998>1095, ec3fef51 992>1089]
+      Realization: [1125 998>1116, 1127 1065>1110, 1136 986>1128, 1480 1065>1462, 1482 986>1455, 1879 1870>1399, 1892 1882>1813]
+      Serving: [40e2692a 1455>1393, 63eeca37 1455>861, 776f61b0 1462>1399, bc36ad29 1462>861]
+    Composition: [d89221f3-3122-4dd6-9b23-fab9862c9f33 1edc89ca-f657-4994-91ef-b6f6174a52e0>9784239c-1fe2-40fb-9d4f-6a5fa0ef6786]
+  diagrams/:
+    ArchimateDiagramModel:
+      Goal and Principle View: {id: 16fe3cf9, viewpoint: goal_realization, file: views/Goal_and_Principle_View.yaml}
+      Archimate View: {id: 3641, file: views/Archimate_View.yaml}
+      Organisation Structure View: {id: 3698, viewpoint: organization, file: views/Organisation_Structure_View.yaml}
+      Business Function View: {id: 3722, viewpoint: business_process_cooperation, file: views/Business_Function_View.yaml}
+      Business Process View: {id: 3761, viewpoint: business_process_cooperation, file: views/Business_Process_View.yaml}
+      Information Structure View: {id: 3821, viewpoint: information_structure, file: views/Information_Structure_View.yaml}
+      Application Behaviour View: {id: 3865, file: views/Application_Behaviour_View.yaml}
+      Technical Infrastructure View: {id: 3893, viewpoint: technology, file: views/Technical_Infrastructure_View.yaml}
+      Application Structure View: {id: 3944, viewpoint: application_structure, file: views/Application_Structure_View.yaml}
+      Organisation Tree View: {id: 3965, viewpoint: organization, file: views/Organisation_Tree_View.yaml}
+      Business Product View: {id: 3999, viewpoint: product, file: views/Business_Product_View.yaml}
+      Service Realisation View: {id: 4025, viewpoint: service_realization, file: views/Service_Realisation_View.yaml}
+      Layered View: {id: 4056, viewpoint: layered, file: views/Layered_View.yaml}
+      Actor Cooperation view: {id: 4165, file: views/Actor_Cooperation_view.yaml}
+      Business Cooperation View: {id: 4224, file: views/Business_Cooperation_View.yaml}
+      Application Cooperation View: {id: 4279, viewpoint: application_cooperation, file: views/Application_Cooperation_View.yaml}
+      Implementation and Installation View: {id: 4318, viewpoint: implementation_migration, file: views/Implementation_and_Installation_View.yaml}
+      A View: {id: 9e9cb71c-3504-4de0-beee-0a0f3c27fdaf, file: views/A_View.yaml}
+    SketchModel:
+      New Sketch:
+        id: 3870395c-377b-4fe1-ba9f-5437f4204d2b
+        kids:
+        - SketchModelActor: {_tag: child, id: 073383b9-1192-45fc-807e-2e6c3fa3648f, name: Actor, b: 225 90 75 100}
+        - DiagramModelReference: {id: e85148b3-bee3-4d87-8c18-d8f44ea18669, model: 4165, b: 36 90 120 55}
+        - SketchModelSticky: {_tag: child, id: 6677d5b7-1c9d-4996-9eb5-64a417788037, name: Sticky, lineColor: '#5c5c5c', textAlignment: 1, fillColor: '#ffffff', b: 439 210 135 70}
+    kids:
+    - canvas:CanvasModel:
+        name: New Canvas
+        id: 33c51fac-f19b-4070-8a2c-bc3383a43c35
+        kids:
+        - canvas:CanvasModelBlock: {id: 5d93f315-0fd0-4272-ba7f-dbd041b6207f, textAlignment: 1, borderColor: '#000000', b: 12 74 200 200}
+        - DiagramModelReference: {id: a5f49352-71f6-4478-89cf-ebdb0b24e2d2, model: 3870395c-377b-4fe1-ba9f-5437f4204d2b, b: 36 360 120 55}
+  kids:
+  - property: {key: Property1, value: Value of Property 1}
+  - property: {key: Property2, value: Value of Property 2}
+  - {purpose: An example of a fictional Insurance company.}

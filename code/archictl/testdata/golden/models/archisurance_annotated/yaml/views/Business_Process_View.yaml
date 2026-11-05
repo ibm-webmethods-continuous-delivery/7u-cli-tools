@@ -1,0 +1,86 @@
+- o:521:
+    b: 200 663 120 60
+    kids:
+    - c:95f13189:
+        kids:
+        - bendpoint: {startX: -180, endY: 239}
+- o:651:
+    fillColor: '#ffff80'
+    b: 20 184 120 40
+    kids: ['c:655']
+- o:674: {id: 3786, fillColor: '#0080ff', type: 1, b: 139 302 120 55}
+- o:673: {fillColor: '#0080ff', type: 1, b: 480 24 100 50}
+- o:740:
+    b: 603 663 120 60
+    kids:
+    - c:764:
+        kids:
+        - bendpoint: {startX: -83, startY: -150, endX: 160, endY: -1}
+    - c:762:
+        kids:
+        - bendpoint: {startX: -106, startY: -59, endX: 147}
+    - c:4a214d41
+    - c:768
+- o:556:
+    fillColor: '#ffff80'
+    b: 170 154 660 90
+    kids:
+    - o:572:
+        id: 3778
+        b: 180 20 120 60
+        kids:
+        - c:695: {source: 3778, target: 3786}
+        - c:704
+        - c:706
+        - c:659
+    - o:564:
+        id: 3779
+        b: 20 20 120 60
+        kids:
+        - c:693: {source: 3779, target: 3786}
+        - c:657
+        - c:697
+    - o:580:
+        b: 350 20 120 60
+        kids: ['c:708', 'c:661']
+    - o:588:
+        id: 3780
+        b: 510 20 120 60
+        kids:
+        - c:90702769: {source: 3780, target: 3786}
+        - c:90702769: {source: 3780, target: e1dfdab4}
+- o:514:
+    b: 414 514 120 60
+    kids: ['c:774']
+- o:507 350 604 120 60
+- o:650:
+    fillColor: '#ffff80'
+    b: 20 424 120 60
+    kids: ['c:732']
+- o:676:
+    fillColor: '#ffff80'
+    type: 1
+    b: 180 24 80 50
+    kids: ['c:718']
+- o:596:
+    fillColor: '#ffff80'
+    b: 170 394 587 100
+    kids:
+    - o:612:
+        b: 240 30 129 60
+        kids: ['c:2d89d4e7']
+    - o:722 432 30 120 60
+    - o:721:
+        b: 15 30 150 60
+        kids: ['c:728']
+- o:675: {fillColor: '#0080ff', type: 1, b: 440 302 120 55}
+- o:733:
+    b: 190 514 140 60
+    kids:
+    - c:772
+    - c:760:
+        kids:
+        - bendpoint: {startX: 131, startY: 26, endX: -19, endY: -64}
+    - c:758
+    - c:756
+- o:674: {id: e1dfdab4, type: 1, b: 680 302 120 55}

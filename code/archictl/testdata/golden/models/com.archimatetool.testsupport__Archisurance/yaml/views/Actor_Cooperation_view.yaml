@@ -1,0 +1,100 @@
+- o:507 850 74 120 60
+- o:1546:
+    b: 700 204 120 60
+    kids: ['c:81b9d07c', 'c:2891eb9f']
+- o:528:
+    b: 850 204 139 60
+    kids:
+    - c:1636:
+        kids:
+        - bendpoint: {startX: -79, startY: 178, endX: 227, endY: -57}
+- o:1544:
+    b: 200 224 20 21
+    kids: ['c:be2dbdfd', 'c:16871b47']
+- o:521 8 74 120 60
+- o:1540:
+    b: 710 74 20 27
+    kids: ['c:09da63b3', 'c:58ee7df2']
+- o:1542:
+    b: 710 114 20 23
+    kids: ['c:8d85d21d', 'c:4a4cdf33']
+- o:275:
+    font: 1|Arial|14.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Arial
+    fillColor: '#ffff80'
+    b: 240 24 440 490
+    kids:
+    - o:345:
+        fillColor: '#ffff00'
+        b: 20 420 80 50
+        kids:
+        - c:1648:
+            kids:
+            - bendpoint: {startX: 79, startY: -25, endX: -81, endY: 90}
+    - o:338:
+        fillColor: '#ffff00'
+        b: 170 420 91 53
+        kids:
+        - c:1644:
+            kids:
+            - bendpoint: {startX: -16, startY: -46, endX: -21, endY: 70}
+    - o:331:
+        fillColor: '#ffff00'
+        b: 330 420 86 50
+        kids:
+        - c:1638:
+            kids:
+            - bendpoint: {startX: -93, startY: -39, endX: 60, endY: 76}
+        - c:1634:
+            kids:
+            - bendpoint: {startX: 265, startY: -27, endX: -41, endY: 208}
+    - o:352:
+        fillColor: '#ffff00'
+        b: 20 180 400 60
+        kids:
+        - c:1618:
+            kids:
+            - bendpoint: {startX: -148, startY: -47, endX: -35, endY: 83}
+        - c:1630:
+            kids:
+            - bendpoint: {startX: -87, startY: 49, endX: -87, endY: -71}
+        - c:1622:
+            kids:
+            - bendpoint: {startX: 57, startY: -68, endX: -47, endY: 62}
+    - o:296:
+        fillColor: '#ffff00'
+        b: 20 30 400 100
+        kids:
+        - o:282:
+            b: 10 20 155 60
+            kids: ['c:1616', 'c:a2243077']
+        - o:289:
+            b: 220 20 169 60
+            kids:
+            - c:1620:
+                kids:
+                - bendpoint: {startX: 44, startY: 81, endX: 148, endY: -49}
+    - o:324:
+        fillColor: '#ffff00'
+        b: 20 280 400 100
+        kids:
+        - c:1652:
+            kids:
+            - bendpoint: {startX: 9, startY: 70, endX: 14, endY: -46}
+        - c:1632:
+            kids:
+            - bendpoint: {startX: 156, startY: 71, endX: 3, endY: -44}
+        - c:1650:
+            kids:
+            - bendpoint: {startX: -105, startY: 64, endX: 55, endY: -51}
+        - c:1628:
+            kids:
+            - bendpoint: {startX: 135, startY: -73, endX: 135, endY: 47}
+        - o:317: {fillColor: '#ffff80', b: 290 30 93 50}
+        - o:310: {fillColor: '#ffff80', b: 160 30 80 50}
+        - o:303: {fillColor: '#ffff80', b: 10 30 78 53}
+- o:1538:
+    b: 210 114 20 23
+    kids: ['c:659978dc', 'c:7f9b43e9']
+- o:1536:
+    b: 210 74 20 27
+    kids: ['c:f19393d1']

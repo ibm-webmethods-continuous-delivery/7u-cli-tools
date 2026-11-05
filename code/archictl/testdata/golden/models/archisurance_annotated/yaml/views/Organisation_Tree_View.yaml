@@ -1,0 +1,29 @@
+- o:402:
+    font: 1|Arial|8.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Arial
+    fillColor: '#8080ff'
+    b: 480 20 100 40
+    kids: ['c:445', 'c:449', 'c:443', 'c:437', 'c:447']
+- o:317: {font: 1|Arial|8.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Arial, fillColor: '#0080c0', b: 540 250 100 40}
+- o:352: {font: 1|Arial|8.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Arial, fillColor: '#0080c0', b: 650 250 100 40}
+- o:331: {font: 1|Arial|8.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Arial, fillColor: '#804040', b: 780 250 100 40}
+- o:345: {font: 1|Arial|8.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Arial, fillColor: '#ff8040', b: 730 50 100 40}
+- o:409:
+    font: 1|Arial|8.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Arial
+    fillColor: '#ffff80'
+    b: 120 170 100 40
+    kids: ['c:460', 'c:458']
+- o:338: {font: 1|Arial|8.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Arial, fillColor: '#ff8040', b: 204 47 116 44}
+- o:423:
+    font: 1|Arial|8.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Arial
+    fillColor: '#804040'
+    b: 768 170 124 40
+    kids: ['c:470']
+- o:303: {font: 1|Arial|8.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Arial, fillColor: '#0080c0', b: 320 250 100 40}
+- o:310: {font: 1|Arial|8.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Arial, fillColor: '#0080c0', b: 430 250 100 40}
+- o:282: {font: 1|Arial|8.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Arial, fillColor: '#ffff80', b: 10 250 126 40}
+- o:289: {font: 1|Arial|8.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Arial, fillColor: '#ffff80', b: 150 250 139 40}
+- o:416:
+    font: 1|Arial|8.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Arial
+    fillColor: '#0080c0'
+    b: 461 160 137 50
+    kids: ['c:462', 'c:468', 'c:466', 'c:464']

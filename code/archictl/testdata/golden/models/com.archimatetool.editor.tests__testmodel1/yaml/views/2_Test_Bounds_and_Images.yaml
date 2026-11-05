@@ -1,0 +1,19 @@
+- Note:
+    textAlignment: 1
+    b: _ _ 193 85
+    kids:
+    - {content: 'This note marks the x, y min of this view'}
+- Group:
+    name: Group
+    textAlignment: 1
+    b: 156 204 529 157
+    kids:
+    - o:59fa6c90:
+        b: 36 42 120 55
+        kids: ['c:ffdc8ea9']
+    - o:1efcd76f 240 42 120 55
+- Note:
+    textAlignment: 1
+    b: 720 468 193 85
+    kids:
+    - {content: This note marks the max width and height of this view}

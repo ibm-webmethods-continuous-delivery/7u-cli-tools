@@ -1,0 +1,17 @@
+model:
+  name: Test
+  id: id-a051474da9bb401fb7dad85804d54711
+  version: 5.0.0
+  strategy/: {}
+  business/: {}
+  application/: {}
+  technology/:
+    Bogus1: {E1: id-3fded24054d44e3f90889975746e5238}
+    Bogus2: {E2: id-f08fc3eed940450b9c066f5a2e066858}
+  motivation/: {}
+  implementation_migration/: {}
+  other/: {}
+  relations/:
+    kids:
+    - Bogus3: {id: id-e983ee9f5cbe4d51812734c3e0eae3e9, source: id-3fded24054d44e3f90889975746e5238, target: id-f08fc3eed940450b9c066f5a2e066858}
+  diagrams/: {}

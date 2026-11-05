@@ -1,0 +1,177 @@
+model:
+  _ns: {canvas: 'http://www.archimatetool.com/archimate/canvas'}
+  name: Archisurance
+  id: 11f5304f
+  version: 5.0.0
+  strategy/:
+    props:
+    - {F1: S}
+    Resource:
+      Resource:
+        id: 9784239c-1fe2-40fb-9d4f-6a5fa0ef6786
+        props:
+        - {Property 1: Value 1}
+  business/:
+    Processes/:
+      BusinessEvent: {Request for Insurance: 650, Damage Occured: 651}
+      BusinessInteraction: {Formalise Request: 721, Check and  Sign Contract: 722}
+      BusinessProcess: {Inform Customer: 1302, Collect Premium: 1311, Handle Claim: 556, Register: 564, Accept: 572, Valuate: 580, Pay: 588, Close Contract: 596, Create Contract: 612}
+    Information/:
+      BusinessObject: {Damage Claim: 673, Customer File: 674, Insurance Policy: 675, Customer: 791, Insurance Request: 792, Travel  Insurance Policy: 793, Car Insurance Policy: 794, Liability  Insurance Policy: 795, Legal aid  Insurance Policy: 796, Home Insurance Policy: 803}
+      Representation: {Claim Form: 676}
+    Functions/:
+      BusinessFunction: {Maintaining Intermediary Relations: 471, Maintaining Customer Relations: 477, Contracting: 483, Claims Handling: 489, Asset Management: 495, Financial Handling: 501}
+    Products/:
+      BusinessService: {Insurance Application Service: 1196, Claim Registration Service: 1202, Premium Payment Service: 1208, Customer Information Service: 1214, Customer data mutation Service: 1220, Claims Payment Service: 1226}
+      Contract: {Travel Insurance Policy: 1239}
+    Actors/:
+      BusinessActor:
+        Client: 1337
+        Archisurance:
+          id: 275
+          props:
+          - {Property1: Another Value of Property 1}
+          - {Property2: Another Value of Property 2}
+          - {Property3: Value of Property 3}
+        Customer Relations: 282
+        Intermediary Relations: 289
+        Front Office: 296
+        Home  &  Away: 303
+        Car: 310
+        Legal Aid: 317
+        Back Office: 324
+        Finance: 331
+        Product Development: 338
+        HRM: 345
+        Document Processing SSC: 352
+        Board: 402
+        Director of Sales: 409
+        Director of Operations: 416
+        Director of Finance: 423
+      BusinessCollaboration: {collaboration: 1546, Negotiation: 733, Contracting: 740}
+      BusinessInterface: {phone: 1536, e-mail: 1538, GIM: 1542, mail: 1544}
+      BusinessRole:
+        Insurant: 1368
+        Intermediary: 507
+        Insurer: 514
+        Customer:
+          id: 521
+          props:
+          - {Property: Hello}
+        Customer's Bank: 528
+      kids:
+      - BusinessInterface: {name: phone, id: 1540}
+  application/:
+    Applications/:
+      ApplicationComponent: {CRM System: 1393, Financial Application: 1399, Call center application: 1793, Web portal: 1800, Bank System: 1813, Home & Away Policy Administration: 843, Risk Assessment: 849, Customer Data  Access: 855, Policy Data Management: 861, Claim Data Management: 867}
+      ApplicationFunction: {Policy Creation: 885, Calculate Risk: 891, Calculate Premium: 897, Create Policy: 903, Store Policy: 909}
+      ApplicationService:
+        CIS: {id: 1407, doc: Customer Information Service}
+        Claim InfoServ: 1414
+        Policy Creation Service: 935
+    Data/:
+      DataObject: {Customer File Data: 837, Insurance Policy Data: 838, Damage Claim Data: 839, Insurance Request Data: 946}
+  technology/:
+    CommunicationNetwork: {LAN: 1089, BIBIT: 1095}
+    Device: {Unix Server: 1053, NAS File Server: 1065, Admin Server: 1071, BIBIT Server: 1882}
+    Node: {Firewall: 1004, Mainframe: 986, Unix Server Farm: 992}
+    SystemSoftware: {Message Queing: 1010, DBMS: 1016, CICS: 1022, Financial Software: 1870}
+    TechnologyService: {File Service: 1110, Network Service: 1116, Database Service: 1128, Claim Files Service: 1455, Customer File Service: 1462}
+    kids:
+    - CommunicationNetwork: {name: LAN, id: 1101}
+    - Device: {name: Unix Server, id: 1059}
+    - Node: {name: Firewall, id: 998}
+  motivation/:
+    Principle: {Occupancy Principle: 3764dcef, One Stop Principle: 3938617c, Infrastructure Principle: 3db08b5c, TCO Goal: 66a2171b, Treatment Time Principle: 67316f1f, Licence Principle: 712d4eec, Component Principle: af0e8c76, Costs Goal: b56d54a6, Client Satisfaction Goal: f5674126}
+    Value: {Be Insured: 1250}
+  implementation_migration/: {}
+  other/:
+    Grouping: {Grouping: 1edc89ca-f657-4994-91ef-b6f6174a52e0}
+  relations/:
+    Business/:
+      Functions/:
+        Flow: [1756 Maintaining Intermediary Relations > 483 | customer information, 1758 483 > Maintaining Intermediary Relations | contract info, 1760 483 > Asset Management | contract info., 1762 Asset Management > 483 | asset info, 1764 Maintaining Customer Relations > Claims Handling, 1766 Claims Handling > Maintaining Customer Relations, 1768 Claims Handling > Financial Handling, 1770 Financial Handling > Claims Handling, 1774 Maintaining Customer Relations > 521 | insurance info, 1776 Financial Handling > Customer's Bank, 1782 Maintaining Intermediary Relations > Intermediary | product info., 1784 Claims Handling > 521 | claim info, 1786 Asset Management > Financial Handling, 1788 Financial Handling > Asset Management | money]
+      Information/:
+        Aggregation: [806 791 > Customer File, 814 Insurance Policy > Damage Claim, 816 Insurance Policy > Insurance Request]
+        Composition: [808 Customer File > Insurance Request, 810 Customer File > Insurance Policy, 812 Customer File > Damage Claim]
+        Realization: [718 Claim Form > Damage Claim]
+        Specialization: [818 Travel  Insurance Policy > Insurance Policy, 820 Car Insurance Policy > Insurance Policy, 822 Home Insurance Policy > Insurance Policy, 824 Liability  Insurance Policy > Insurance Policy, 826 Legal aid  Insurance Policy > Insurance Policy]
+      Actors/:
+        Aggregation: [2891eb9f collaboration > Customer's Bank, 756 Negotiation > 521, 758 Negotiation > Insurer, 760 Negotiation > Intermediary, 762 740 > Intermediary, 764 740 > Insurer, 768 740>521, 81b9d07c collaboration > Document Processing SSC]
+        Assignment: [1381 Client > Insurant, 1386 Archisurance > Insurer, 1388 Insurer > Handle Claim, 4a214d41 740 > Check and  Sign Contract, 772 Negotiation > Formalise Request, 774 Insurer > Create Contract]
+        Association: [1259 521 > Be Insured, 437 Board > Director of Operations, 443 Board > Product Development, 445 Board > HRM, 447 Board > Director of Sales, 449 Board > Director of Finance, 458 Director of Sales > Customer Relations, 460 Director of Sales > Intermediary Relations, 462 Director of Operations > Home  &  Away, 464 Director of Operations > Car, 466 Director of Operations > Legal Aid, 468 Director of Operations > Document Processing SSC, 470 Director of Finance > Finance, 4a4cdf33 GIM > Intermediary Relations, 58ee7df2 1540 > Intermediary Relations, 659978dc e-mail > Customer Relations, a2243077 Customer Relations > 1536, be2dbdfd mail > Document Processing SSC]
+        Flow: [1616 Customer Relations > Document Processing SSC | claim form (paper), 1618 Document Processing SSC > Customer Relations | Claim form (electronic), 1620 Intermediary Relations > Document Processing SSC | Intermediary Contracts, 1622 Document Processing SSC > Intermediary Relations | Electronic Contracts, 1628 Back Office > Document Processing SSC | paper contracts, 1630 Document Processing SSC > Back Office | electronic contracts, 1632 Back Office > Finance | payment order, 1634 Finance > Customer's Bank | payment, 1636 Customer's Bank > Finance | confirmation, 1638 Finance > Back Office | confirm, 1644 Product Development > Back Office, 1648 HRM > Back Office, 1650 Back Office > HRM, 1652 Back Office > Product Development, 1750 Intermediary > 521 | Product Information, 1752 521 > Intermediary | Customer Information, 1772 521 > Maintaining Customer Relations | claims, 1778 Customer's Bank > Financial Handling, 1780 Intermediary > Maintaining Intermediary Relations | cust. info]
+        Serving: [09da63b3 1540 > Intermediary, 16871b47 mail > 521 | write, 7f9b43e9 e-mail > 521 | write, 8d85d21d GIM > Intermediary, f19393d1 1536>521 call]
+        Triggering: [95f13189 521 > Request for Insurance]
+      Processes/:
+        Access:
+        - 693 Register > Customer File | create/ update
+        - {name: read, id: 695, source: 572, target: 674, accessType: 1}
+        - 697 Register > Damage Claim | create/ update
+        - {name: read, id: 704, source: 572, target: 673, accessType: 1}
+        - 706 Accept > Insurance Policy | read
+        - 708 Valuate > Damage Claim | crud
+        - 90702769 Pay > Customer File | update
+        Realization: [1321 Close Contract > Insurance Application Service, 1323 Handle Claim > Claim Registration Service, 1325 Handle Claim > Claims Payment Service, 1327 Inform Customer > Customer Information Service, 1329 Collect Premium > Premium Payment Service, 1430 Register > Claim Registration Service, 1432 Accept > Customer Information Service, 1434 Pay > Claims Payment Service]
+        Triggering: [1333 Handle Claim > Inform Customer, 1335 Inform Customer > Collect Premium, 2d89d4e7 Create Contract > Check and  Sign Contract, 655 Damage Occured > Register, 657 Register > Accept, 659 Accept > Valuate, 661 Valuate > Pay, 728 Formalise Request > Create Contract, 732 Request for Insurance > Formalise Request]
+      Products/:
+        Association: [1274 Be Insured > Premium Payment Service]
+        Serving: [1282 Insurance Application Service > 521, 1293 Claim Registration Service > 521, 1295 Claims Payment Service > 521, 1297 Customer Information Service > 521, 1299 Premium Payment Service > 521, 1438 Claim Registration Service > Insurant, 1440 Customer Information Service > Insurant, 1442 Claims Payment Service > Insurant, 1444 Insurance Application Service > Register, 1446 Customer data mutation Service > Register, 1448 Premium Payment Service > Pay, b74a5ecd CIS > Create Contract]
+    Application/:
+      Applications/:
+        Access:
+        - 880 Customer Data  Access > Customer File Data
+        - 882 Claim Data Management > Damage Claim Data
+        - 884 Policy Data Management > Insurance Policy Data
+        - 972 Create Policy > Insurance Policy Data
+        - 974 Store Policy > Customer File Data
+        - {id: 976, source: 891, target: 946, accessType: 1}
+        Composition: [1831 Home & Away Policy Administration > Customer Data  Access, 1833 Home & Away Policy Administration > Policy Data Management]
+        Realization: [1422 CRM System > CIS, 1424 Policy Data Management > Claim InfoServ, 1450 CRM System > Insurance Application Service, 1452 Policy Data Management > Customer data mutation Service, 1454 Financial Application > Premium Payment Service, 943 Home & Away Policy Administration > Policy Creation Service]
+        Serving: [1426 CIS > Policy Data Management, 1428 Claim InfoServ > Financial Application, 1731 Policy Creation Service > Check and  Sign Contract, 1733 Claim InfoServ > Formalise Request, 1821 Call center application > Web portal, 1823 CRM System > Web portal, 1825 Risk Assessment > Web portal, 1827 Customer Data  Access > Risk Assessment, 1829 Financial Application > Home & Away Policy Administration, 1835 Customer Data  Access > Call center application, 853128f7 Bank System > Financial Application]
+        Triggering: [930 Calculate Risk > Calculate Premium, 932 Calculate Premium > Create Policy, 934 Create Policy > Store Policy]
+      Data/:
+        Realization: [953 Insurance Request Data > Insurance Request, 955 Customer File Data > Customer File, 957 Damage Claim Data > Damage Claim, 959 Insurance Policy Data > Legal aid  Insurance Policy, 961 Insurance Policy Data > Liability  Insurance Policy, 963 Insurance Policy Data > Home Insurance Policy, 965 Insurance Policy Data > Car Insurance Policy, 967 Insurance Policy Data > Travel  Insurance Policy]
+    Technology/:
+      Association: [197b66d6 1089>998, 2dd4031d BIBIT > 1004, 3fb2a575 1004>1101, 670aa5ed Mainframe > 1089, 7e50c753 1101 > Admin Server, 80c919e4 1089 > NAS File Server, dd9c00de 1101 > BIBIT Server, e479d313 998 > BIBIT, ec3fef51 Unix Server Farm > 1089]
+      Realization: [1125 998 > Network Service, 1127 NAS File Server > File Service, 1136 Mainframe > Database Service, 1480 NAS File Server > Customer File Service, 1482 Mainframe > Claim Files Service, 1879 Financial Software > Financial Application, 1892 BIBIT Server > Bank System]
+      Serving: [40e2692a Claim Files Service > CRM System, 63eeca37 Claim Files Service > Policy Data Management, 776f61b0 Customer File Service > Financial Application, bc36ad29 Customer File Service > Policy Data Management]
+    Composition: [d89221f3-3122-4dd6-9b23-fab9862c9f33 Grouping > Resource]
+  diagrams/:
+    ArchimateDiagramModel:
+      Goal and Principle View: {id: 16fe3cf9, viewpoint: goal_realization, file: views/Goal_and_Principle_View.yaml}
+      Archimate View: {id: 3641, file: views/Archimate_View.yaml}
+      Organisation Structure View: {id: 3698, viewpoint: organization, file: views/Organisation_Structure_View.yaml}
+      Business Function View: {id: 3722, viewpoint: business_process_cooperation, file: views/Business_Function_View.yaml}
+      Business Process View: {id: 3761, viewpoint: business_process_cooperation, file: views/Business_Process_View.yaml}
+      Information Structure View: {id: 3821, viewpoint: information_structure, file: views/Information_Structure_View.yaml}
+      Application Behaviour View: {id: 3865, file: views/Application_Behaviour_View.yaml}
+      Technical Infrastructure View: {id: 3893, viewpoint: technology, file: views/Technical_Infrastructure_View.yaml}
+      Application Structure View: {id: 3944, viewpoint: application_structure, file: views/Application_Structure_View.yaml}
+      Organisation Tree View: {id: 3965, viewpoint: organization, file: views/Organisation_Tree_View.yaml}
+      Business Product View: {id: 3999, viewpoint: product, file: views/Business_Product_View.yaml}
+      Service Realisation View: {id: 4025, viewpoint: service_realization, file: views/Service_Realisation_View.yaml}
+      Layered View: {id: 4056, viewpoint: layered, file: views/Layered_View.yaml}
+      Actor Cooperation view: {id: 4165, file: views/Actor_Cooperation_view.yaml}
+      Business Cooperation View: {id: 4224, file: views/Business_Cooperation_View.yaml}
+      Application Cooperation View: {id: 4279, viewpoint: application_cooperation, file: views/Application_Cooperation_View.yaml}
+      Implementation and Installation View: {id: 4318, viewpoint: implementation_migration, file: views/Implementation_and_Installation_View.yaml}
+      A View: {id: 9e9cb71c-3504-4de0-beee-0a0f3c27fdaf, file: views/A_View.yaml}
+    SketchModel:
+      New Sketch:
+        id: 3870395c-377b-4fe1-ba9f-5437f4204d2b
+        kids:
+        - SketchModelActor: {_tag: child, id: 073383b9-1192-45fc-807e-2e6c3fa3648f, name: Actor, b: 225 90 75 100}
+        - DiagramModelReference: {id: e85148b3-bee3-4d87-8c18-d8f44ea18669, model: 4165, b: 36 90 120 55}
+        - SketchModelSticky: {_tag: child, id: 6677d5b7-1c9d-4996-9eb5-64a417788037, name: Sticky, lineColor: '#5c5c5c', textAlignment: 1, fillColor: '#ffffff', b: 439 210 135 70}
+    kids:
+    - canvas:CanvasModel:
+        name: New Canvas
+        id: 33c51fac-f19b-4070-8a2c-bc3383a43c35
+        kids:
+        - canvas:CanvasModelBlock: {id: 5d93f315-0fd0-4272-ba7f-dbd041b6207f, textAlignment: 1, borderColor: '#000000', b: 12 74 200 200}
+        - DiagramModelReference: {id: a5f49352-71f6-4478-89cf-ebdb0b24e2d2, model: 3870395c-377b-4fe1-ba9f-5437f4204d2b, b: 36 360 120 55}
+  kids:
+  - property: {key: Property1, value: Value of Property 1}
+  - property: {key: Property2, value: Value of Property 2}
+  - {purpose: An example of a fictional Insurance company.}

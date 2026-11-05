@@ -1,0 +1,5 @@
+model:
+  _ns: {archimate: 'http://www.archimatetool.com/Bogus'}
+  name: Test
+  id: 70efed0e
+  version: 1.6.1

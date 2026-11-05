@@ -1,0 +1,136 @@
+- Group:
+    name: External Application Services
+    textAlignment: 1
+    fillColor: '#e1e1e1'
+    b: 20 510 710 120
+    kids:
+    - o:1220:
+        fillColor: '#0080c0'
+        b: 264 43 133 60
+        kids: ['c:1446']
+    - o:1196:
+        fillColor: '#0080c0'
+        b: 20 43 101 60
+        kids: ['c:1444']
+    - o:1208:
+        fillColor: '#0080c0'
+        b: 540 43 90 60
+        kids: ['c:1448']
+- Group:
+    name: External infrastructure services
+    textAlignment: 1
+    fillColor: '#cdcdcd'
+    b: 20 820 710 120
+    kids:
+    - o:1455:
+        b: 40 43 100 40
+        kids: ['c:40e2692a', 'c:63eeca37']
+    - o:1462:
+        b: 431 43 109 40
+        kids: ['c:bc36ad29', 'c:776f61b0']
+- Group:
+    name: External Business Services
+    textAlignment: 1
+    fillColor: '#f5f5f5'
+    b: 20 170 710 130
+    kids:
+    - o:1226:
+        fillColor: '#ffff80'
+        b: 352 43 100 60
+        kids: ['c:1442']
+    - o:1202:
+        fillColor: '#ffff80'
+        b: 20 43 103 60
+        kids: ['c:1438']
+    - o:1214:
+        fillColor: '#ffff80'
+        b: 132 43 110 60
+        kids: ['c:1440']
+- Group:
+    name: Infrastructure
+    textAlignment: 1
+    fillColor: '#c3c3c3'
+    b: 20 970 710 270
+    kids:
+    - o:986:
+        fillColor: '#008040'
+        type: 1
+        b: 30 43 120 190
+        kids: ['c:1482', 'o:1022 10 40 90 40', 'o:1016 10 90 90 40', 'o:1010 8 140 93 38']
+    - o:1065:
+        type: 1
+        b: 440 113 90 50
+        kids: ['c:1480']
+    - o:992:
+        fillColor: '#008040'
+        type: 1
+        b: 190 93 220 90
+        kids:
+        - o:1053: {type: 1, b: 10 30 80 50}
+        - o:1059: {type: 1, b: 110 30 80 50}
+- Group:
+    name: Application Components and Services
+    textAlignment: 1
+    fillColor: '#d7d7d7'
+    b: 20 660 710 130
+    kids:
+    - o:1414:
+        fillColor: '#0080c0'
+        b: 420 53 87 40
+        kids: ['c:1428']
+    - o:1399:
+        type: 1
+        b: 530 43 110 60
+        kids: ['c:1454']
+    - o:1393:
+        type: 1
+        b: 10 43 120 60
+        kids: ['c:1422', 'c:1450']
+    - o:861:
+        type: 1
+        b: 270 43 120 60
+        kids: ['c:1424', 'c:1452']
+    - o:1407:
+        fillColor: '#0080c0'
+        b: 160 53 80 40
+        kids: ['c:1426']
+- Group:
+    name: Business processes and internal actors / roles
+    textAlignment: 1
+    fillColor: '#ebebeb'
+    b: 20 330 710 150
+    kids:
+    - o:514:
+        fillColor: '#ff8080'
+        b: 489 63 80 40
+        kids: ['c:1388']
+    - o:556:
+        fillColor: '#80ff80'
+        b: 11 43 450 80
+        kids:
+        - o:580:
+            b: 238 30 82 40
+            kids: ['c:661']
+        - o:588:
+            b: 340 30 100 40
+            kids: ['c:1434']
+        - o:564:
+            b: 10 30 100 40
+            kids: ['c:657', 'c:1430']
+        - o:572:
+            b: 130 30 90 40
+            kids: ['c:1432', 'c:659']
+    - o:275:
+        fillColor: '#ff8080'
+        b: 582 63 115 40
+        kids: ['c:1386']
+- Group:
+    name: External Roles and Actors
+    textAlignment: 1
+    b: 20 20 710 120
+    kids:
+    - o:1368: {fillColor: '#ff8080', b: 220 43 90 40}
+    - o:1337:
+        fillColor: '#ff8080'
+        b: 370 43 90 40
+        kids: ['c:1381']

@@ -1,0 +1,20 @@
+model:
+  name: Test Data
+  id: b2327635
+  version: 5.0.0
+  strategy/: {}
+  business/:
+    BusinessActor: {BA1: 440788c3, BA2: b21c42e2}
+    BusinessRole: {Business Role: fd6f50fa}
+  application/:
+    ApplicationComponent: {Application Component: 4249d0d9}
+  technology/: {name: Technology}
+  motivation/: {}
+  implementation_migration/: {}
+  other/: {}
+  relations/:
+    Assignment: [cf6fb437 440788c3>fd6f50fa]
+    Association: [e7e61f82 b21c42e2>cf6fb437, fae6df8d b21c42e2>fd6f50fa, 16de4a0c e7e61f82>4249d0d9, b0d2a000 cf6fb437>4249d0d9]
+  diagrams/:
+    ArchimateDiagramModel:
+      Default View: {id: fc8a98df, file: views/Default_View.yaml}

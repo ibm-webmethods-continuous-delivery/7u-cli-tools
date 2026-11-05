@@ -1,0 +1,28 @@
+{
+ "models": [
+  "com.archimatetool.editor.tests__compatibility_test1",
+  "com.archimatetool.editor.tests__compatibility_test2",
+  "com.archimatetool.editor.tests__compatibility_test3",
+  "com.archimatetool.editor.tests__testCopySnapshot",
+  "com.archimatetool.editor.tests__testDeleteHandler",
+  "com.archimatetool.editor.tests__testFindReplace",
+  "com.archimatetool.editor.tests__testmodel1",
+  "com.archimatetool.modelimporter.tests__test",
+  "com.archimatetool.reports.tests__test",
+  "com.archimatetool.testsupport__Archisurance",
+  "org.opengroup.archimate.xmlexchange.tests__Archisurance",
+  "archisurance_annotated",
+  "stress"
+ ],
+ "notes": "see spec/FORMAT.md section 'Conformance'",
+ "skipped": [
+  "model_zipped.archimate (zip container)"
+ ],
+ "ops_steps": 24,
+ "join_errors": [
+  "illegal_relation",
+  "unknown_name",
+  "ambiguous_name",
+  "dangling_view_ref"
+ ]
+}

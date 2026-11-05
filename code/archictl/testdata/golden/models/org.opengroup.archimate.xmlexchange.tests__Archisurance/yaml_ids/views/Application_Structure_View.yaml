@@ -1,0 +1,24 @@
+- o:838: {fillColor: '#80ffff', type: 1, b: 430 240 120 60}
+- o:837: {fillColor: '#80ffff', type: 1, b: 430 100 120 60}
+- o:839: {fillColor: '#80ffff', type: 1, b: 430 170 120 60}
+- o:843:
+    fillColor: '#0db0ff'
+    type: 1
+    b: 30 40 340 290
+    kids:
+    - o:855:
+        fillColor: '#8080ff'
+        type: 1
+        b: 190 60 140 60
+        kids: ['c:880']
+    - o:861:
+        fillColor: '#8080ff'
+        type: 1
+        b: 190 200 140 60
+        kids: ['c:884']
+    - o:849: {fillColor: '#8080ff', type: 1, b: 20 130 140 60}
+    - o:867:
+        fillColor: '#8080ff'
+        type: 1
+        b: 190 130 140 60
+        kids: ['c:882']

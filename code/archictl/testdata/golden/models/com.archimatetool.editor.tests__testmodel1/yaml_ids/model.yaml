@@ -1,0 +1,23 @@
+model:
+  name: Test Model
+  id: be0eecc1
+  version: 5.0.0
+  strategy/: {}
+  business/:
+    BusinessActor: {Business Actor: 59fa6c90}
+    BusinessRole: {Business Role: 1efcd76f}
+  application/: {}
+  technology/: {}
+  motivation/: {}
+  implementation_migration/: {}
+  other/: {}
+  relations/:
+    Assignment: [ffdc8ea9 59fa6c90>1efcd76f]
+  diagrams/:
+    ArchimateDiagramModel:
+      0 Blank View: 17cdf396
+      2 Test Bounds and Images: {id: 23c519cc, file: views/2_Test_Bounds_and_Images.yaml}
+      3 Test Bounds and Images with Connections: {id: 09cc5e51, file: views/3_Test_Bounds_and_Images_with_Connections.yaml}
+    SketchModel: {1 Sketch View: 94e775e5}
+  kids:
+  - {purpose: A variety of testing scenarios}

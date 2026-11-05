@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<archimate:model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:archimate="http://www.archimatetool.com/archimate" name="Test" id="id-a051474da9bb401fb7dad85804d54711" version="5.0.0">
+  <folder name="Strategy" id="f1" type="strategy"/>
+  <folder name="Business" id="f2" type="business"/>
+  <folder name="Application" id="f3" type="application"/>
+  <folder name="Technology &amp; Physical" id="f4" type="technology">
+    <element xsi:type="archimate:Bogus1" name="E1" id="id-3fded24054d44e3f90889975746e5238"/>
+    <element xsi:type="archimate:Bogus2" name="E2" id="id-f08fc3eed940450b9c066f5a2e066858"/>
+  </folder>
+  <folder name="Motivation" id="f5" type="motivation"/>
+  <folder name="Implementation &amp; Migration" id="f6" type="implementation_migration"/>
+  <folder name="Other" id="f7" type="other"/>
+  <folder name="Relations" id="f8" type="relations">
+    <element xsi:type="archimate:Bogus3" id="id-e983ee9f5cbe4d51812734c3e0eae3e9" source="id-3fded24054d44e3f90889975746e5238" target="id-f08fc3eed940450b9c066f5a2e066858"/>
+  </folder>
+  <folder name="Views" id="f9" type="diagrams"/>
+</archimate:model>

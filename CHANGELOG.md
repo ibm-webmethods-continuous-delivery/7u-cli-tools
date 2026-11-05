@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [ibmdocs/v0.0.7, archictl/v0.0.1] - 2026-11-04
+
+### Added
+- **Monorepo Architecture (`7u-cli-tools`)**:
+  - Restructured repository to host multiple independent Go CLI tools under `code/<tool>/`.
+  - Added universal `build/Dockerfile.tool` building scratch images containing static binaries, CA certificates, and `/SKILL.md`.
+  - Added root `docker-compose.yml`, `Makefile`, and `go.work` managing multi-tool builds, tests, linting, and dev environments.
+  - Added `.devcontainer` configuration.
+- **`archictl` Tool (`code/archictl`)**:
+  - Added Archi model CLI tool scaffold for deterministic, token-cheap editing of `.archimate` models by AI agents.
+  - Implemented `version` command and test suite with golden dataset validation.
+  - Added `SKILL.md` for AI agent consumption.
+
+### Changed
+- **`ibmdocs` Tool (`code/ibmdocs`)**:
+  - Migrated `ibmdocs` into `code/ibmdocs/`.
+  - Updated Go module path to `github.com/ibm-webmethods-continuous-delivery/7u-cli-tools/code/ibmdocs`.
+  - Maintained full test suite and rate limiting / proxy capabilities.
+
+---
+
 ## [v0.0.5] - 2026-10-14
 
 ### Security

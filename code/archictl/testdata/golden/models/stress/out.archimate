@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<archimate:model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:archimate="http://www.archimatetool.com/archimate" name="S" id="m1" version="5.0.0">
+  <folder name="Business" id="f1" type="business">
+    <folder name="BusinessProcess" id="f2">
+      <element xsi:type="archimate:BusinessProcess" name="BusinessProcess" id="a1">
+        <documentation>line 1
+line 2</documentation>
+      </element>
+      <element xsi:type="archimate:BusinessProcess" name="Dup" id="a2"/>
+      <element xsi:type="archimate:BusinessActor" name="Dup" id="a4"/>
+      <element xsi:type="archimate:BusinessActor" name="" id="a6"/>
+      <element xsi:type="archimate:BusinessActor" name="x: y, {z} [w] # &quot;q&quot; 'p' &amp; &lt;t&gt;" id="a7"/>
+      <element xsi:type="archimate:BusinessActor" name="line1&#10;line2" id="a8"/>
+      <element xsi:type="archimate:BusinessActor" name="123" id="007"/>
+      <element xsi:type="archimate:BusinessActor" name="null" id="true"/>
+      <element xsi:type="archimate:BusinessActor" name="Ünï ✓" id="a9" color="red">
+        <documentation>doc</documentation>
+      </element>
+      <element xsi:type="archimate:BusinessActor" name="p | q" id="a10"/>
+      <element xsi:type="archimate:BusinessActor" name="a1" id="a11"/>
+      <element xsi:type="archimate:FlowRelationship" id="r1" source="a1" target="a2"/>
+      <element xsi:type="archimate:FlowRelationship" name="rel one" id="r4" source="a9" target="a1"/>
+      <element xsi:type="archimate:FlowRelationship" id="r7" source="a7" target="a9"/>
+      <element xsi:type="archimate:FlowRelationship" id="r8" source="a2" target="a3"/>
+      <element xsi:type="archimate:FlowRelationship" name="docrel" id="r9" source="a1" target="a10">
+        <documentation>d: one
+two</documentation>
+        <property key="k" value="v"/>
+      </element>
+      <element xsi:type="archimate:FlowRelationship" id="r10" source="a10" target="a1">
+        <documentation>only doc</documentation>
+      </element>
+      <element xsi:type="archimate:AccessRelationship" id="r2" source="a1" target="a2" accessType="1"/>
+      <element xsi:type="archimate:ServingRelationship" name="n | m &gt; k" id="r5" source="a1" target="a10"/>
+      <element xsi:type="archimate:TriggeringRelationship" id="r6" source="a11" target="a9"/>
+      <element xsi:type="archimate:BusinessProcess" name="Dup" id="a3"/>
+      <element xsi:type="archimate:BusinessActor" id="a5"/>
+      <element xsi:type="archimate:SomeUnknownRelationship" id="r3" source="a1" target="a2"/>
+    </folder>
+    <folder name="Empty/Slash/" id="f4"/>
+    <folder name="BusinessProcess" id="f3"/>
+  </folder>
+  <folder name="Views" id="f6" type="diagrams"/>
+  <folder name="Other" id="f7" type="other">
+    <folder name="Sub" id="f8"/>
+  </folder>
+  <folder name="business" id="f5"/>
+</archimate:model>

@@ -1,0 +1,67 @@
+# Single entry point for the whole repo. The host needs only docker compose.
+#
+#   docker compose build                     # build ALL tool images (scratch, static binary each)
+#   docker compose build ibmdocs             # build one tool image
+#   docker compose run --rm dev make test    # test every tool
+#   docker compose run --rm dev make lint    # lint every tool
+#   docker compose run --rm dev sh           # interactive dev shell
+#   docker compose run --rm ibmdocs --version # run a built tool
+#
+# Version metadata (optional, set by CI or the caller):
+#   VERSION=v0.0.7 GIT_COMMIT=$(git rev-parse --short HEAD) docker compose build
+#
+# To add a tool: create code/<name>/ (go.mod + cmd/<name>/main.go), add a
+# `<name>` service below (copy an existing tool block) and `use ./code/<name>` in go.work.
+
+x-tool-build: &tool-build
+  dockerfile: ../../build/Dockerfile.tool
+  args: &tool-args
+    VERSION: "${VERSION:-dev}"
+    BUILD_DATE: "${BUILD_DATE:-unknown}"
+    GIT_COMMIT: "${GIT_COMMIT:-unknown}"
+
+services:
+  # ---- Tool images ---------------------------------------------------------
+  ibmdocs:
+    build:
+      <<: *tool-build
+      context: code/ibmdocs
+      args:
+        <<: *tool-args
+        TOOL: ibmdocs
+        VERSION_PKG: github.com/ibm-webmethods-continuous-delivery/7u-cli-tools/code/ibmdocs/cmd
+    image: iwcd-ibmdocs-s:scratch
+    entrypoint: ["/ibmdocs"]
+
+  archictl:
+    build:
+      <<: *tool-build
+      context: code/archictl
+      args:
+        <<: *tool-args
+        TOOL: archictl
+        VERSION_PKG: github.com/ibm-webmethods-continuous-delivery/7u-cli-tools/code/archictl/cmd
+    image: iwcd-archictl-s:scratch
+    entrypoint: ["/archictl"]
+
+  # ---- Development container (not built by a plain `docker compose build`) --
+  dev:
+    profiles: ["dev"]
+    build:
+      context: .devcontainer
+      dockerfile: Dockerfile
+      args:
+        __uid: "${UID:-501}"
+        __gid: "${GID:-20}"
+    image: 7u-cli-tools-dev:local
+    user: "${UID:-501}:${GID:-20}"
+    working_dir: /workspaces/7u-cli-tools
+    volumes:
+      - .:/workspaces/7u-cli-tools
+    environment:
+      CGO_ENABLED: "0"
+      GOPATH: /workspaces/7u-cli-tools/.cache/gopath
+      GOCACHE: /workspaces/7u-cli-tools/.cache/go-build
+      GOMODCACHE: /workspaces/7u-cli-tools/.cache/pkg/mod
+    stdin_open: true
+    tty: true

@@ -1,0 +1,15 @@
+- Group:
+    name: Products & Services Goals
+    textAlignment: 1
+    b: 36 12 400 196
+    kids: ['o:f5674126 24 72 140 55', 'o:3938617c 204 36 140 55', 'o:67316f1f 204 108 140 55']
+- Group:
+    name: Financial Goals
+    textAlignment: 1
+    b: 36 228 400 196
+    kids: ['o:b56d54a6 24 72 140 55', 'o:3764dcef 204 36 140 55', 'o:712d4eec 204 108 140 55']
+- Group:
+    name: ICT-Goals
+    textAlignment: 1
+    b: 36 468 400 196
+    kids: ['o:66a2171b 24 72 140 55', 'o:af0e8c76 204 36 140 55', 'o:3db08b5c 204 108 140 55']

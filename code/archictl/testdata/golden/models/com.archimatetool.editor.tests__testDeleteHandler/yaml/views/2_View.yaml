@@ -1,0 +1,35 @@
+- o:8ab84e91:
+    id: 3d225d7c
+    b: 132 168 613 121
+    kids:
+    - o:46d0abd5:
+        b: 36 36 120 55
+        kids: ['c:bfb084f7']
+    - o:8ecabfc2 252 36 120 55
+- Group:
+    name: Group
+    textAlignment: 1
+    b: 132 24 265 121
+    kids:
+    - o:31a27739:
+        id: f350ad47
+        b: 12 18 120 55
+        kids:
+        - c:3bede7f0: {source: f350ad47, target: 3d225d7c}
+- o:b5742e18:
+    type: 1
+    b: 168 324 120 55
+    kids: ['c:ff805459']
+- o:e836c6be 360 324 120 55
+- o:d1247cf1: {type: 1, b: 168 408 120 55}
+- o:31a27739:
+    id: afd386c1
+    b: 720 24 221 107
+    kids:
+    - c:3bede7f0: {source: afd386c1, target: c9fc8676}
+    - o:8ab84e91: {id: c9fc8676, b: 48 36 120 55}
+- Note:
+    textAlignment: 1
+    b: 780 144 185 80
+    kids:
+    - {content: Nested relationship of the same type}

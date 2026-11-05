@@ -1,0 +1,51 @@
+- o:1110: {fillColor: '#008040', b: 180 20 120 40}
+- o:1116: {fillColor: '#008040', b: 330 20 120 40}
+- o:1128: {fillColor: '#008040', b: 30 20 120 40}
+- o:1095:
+    b: 468 264 80 40
+    kids: ['c:2dd4031d']
+- Group:
+    name: Intermediary
+    textAlignment: 1
+    fillColor: '#dafecb'
+    b: 570 210 370 130
+    kids:
+    - o:1071: {type: 1, b: 276 48 80 50}
+    - o:1004:
+        fillColor: '#ff8080'
+        type: 1
+        b: 20 43 90 60
+        kids: ['c:3fb2a575']
+    - o:1101:
+        b: 140 53 80 40
+        kids: ['c:7e50c753']
+- Group:
+    name: Archisurance
+    textAlignment: 1
+    fillColor: '#dafecb'
+    b: 10 90 450 420
+    kids:
+    - o:1089:
+        b: 190 173 80 40
+        kids: ['c:197b66d6']
+    - o:986:
+        fillColor: '#008040'
+        type: 1
+        b: 20 93 120 200
+        kids: ['c:1136', 'c:670aa5ed', 'o:1010 8 140 93 38', 'o:1022 10 40 90 40', 'o:1016 10 90 90 40']
+    - o:1065:
+        type: 1
+        b: 180 43 100 60
+        kids: ['c:1127']
+    - o:992:
+        fillColor: '#008040'
+        type: 1
+        b: 120 303 220 90
+        kids:
+        - o:1059: {type: 1, b: 110 30 80 50}
+        - o:1053: {type: 1, b: 10 30 80 50}
+    - o:998:
+        fillColor: '#ff8080'
+        type: 1
+        b: 330 163 100 60
+        kids: ['c:1125', 'c:e479d313']

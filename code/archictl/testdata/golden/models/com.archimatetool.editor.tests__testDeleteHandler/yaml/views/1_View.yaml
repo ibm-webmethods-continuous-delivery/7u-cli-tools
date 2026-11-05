@@ -1,0 +1,11 @@
+- o:31a27739:
+    b: 72 36 120 55
+    kids: ['c:3bede7f0']
+- o:8ab84e91 264 36 120 55
+- o:b5742e18:
+    type: 1
+    b: 72 192 120 55
+    kids: ['c:ff805459']
+- o:e836c6be 264 192 120 55
+- o:d1247cf1: {type: 1, b: 77 297 120 55}
+- DiagramModelReference: {model: 12917bec, b: 368 363 120 55}

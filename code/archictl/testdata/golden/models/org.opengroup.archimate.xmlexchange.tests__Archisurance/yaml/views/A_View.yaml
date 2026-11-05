@@ -1,0 +1,49 @@
+- Note:
+    id: 8ca8f8f4-1d9e-481b-bfe3-847f66e51510
+    textAlignment: 1
+    b: 42 58 185 80
+    props:
+    - {P1: V1}
+- DiagramModelReference:
+    id: b819b049-76b7-49b9-b4e8-0d574cc7aab6
+    model: 4165
+    b: 23 183 120 55
+    kids:
+    - sourceConnection: {source: b819b049-76b7-49b9-b4e8-0d574cc7aab6, target: 2b82e9b6-40fb-4b63-a3d0-ad18807e4ca5}
+    - sourceConnection: {source: b819b049-76b7-49b9-b4e8-0d574cc7aab6, target: 8ca8f8f4-1d9e-481b-bfe3-847f66e51510}
+- DiagramModelReference:
+    id: 4f93d7ab-95ee-44f1-a793-bcbed8f30380
+    model: 3870395c-377b-4fe1-ba9f-5437f4204d2b
+    b: 23 324 120 55
+    kids:
+    - sourceConnection: {source: 4f93d7ab-95ee-44f1-a793-bcbed8f30380, target: 1f1e1d12-f53a-4be5-bf16-07103923aa77}
+    - sourceConnection: {source: 4f93d7ab-95ee-44f1-a793-bcbed8f30380, target: b819b049-76b7-49b9-b4e8-0d574cc7aab6}
+- Group:
+    id: 2b82e9b6-40fb-4b63-a3d0-ad18807e4ca5
+    name: Group
+    textAlignment: 1
+    b: 312 72 445 133
+    kids:
+    - sourceConnection: {source: 2b82e9b6-40fb-4b63-a3d0-ad18807e4ca5, target: 4f93d7ab-95ee-44f1-a793-bcbed8f30380}
+    - property: {key: P1, value: V1}
+- o:1edc89ca-f657-4994-91ef-b6f6174a52e0:
+    id: 1f1e1d12-f53a-4be5-bf16-07103923aa77
+    lineWidth: 2
+    fillColor: '#edff93'
+    b: 420 276 265 115
+    kids:
+    - feature: {name: lineStyle, value: 2}
+    - c:d89221f3-3122-4dd6-9b23-fab9862c9f33
+    - o:9784239c-1fe2-40fb-9d4f-6a5fa0ef6786:
+        fontColor: '#d76057'
+        lineColor: '#c5c14e'
+        fillColor: '#baf19d'
+        b: 63 43 120 55
+        kids:
+        - feature: {name: deriveElementLineColor, value: false}
+- DiagramModelReference:
+    id: 69ad556e-2e8f-4fef-8135-2cc54e924749
+    model: 33c51fac-f19b-4070-8a2c-bc3383a43c35
+    b: 23 432 120 55
+    kids:
+    - sourceConnection: {source: 69ad556e-2e8f-4fef-8135-2cc54e924749, target: 4f93d7ab-95ee-44f1-a793-bcbed8f30380}

@@ -1,0 +1,67 @@
+- o:838:
+    fillColor: '#80ffff'
+    type: 1
+    b: 330 460 120 55
+    kids: ['c:965', 'c:959', 'c:963', 'c:967', 'c:961']
+- o:946:
+    fillColor: '#80ffff'
+    type: 1
+    b: 20 230 120 55
+    kids: ['c:953']
+- o:796:
+    fillColor: '#ffff80'
+    type: 1
+    b: 640 330 130 55
+    kids: ['c:826']
+- o:792: {fillColor: '#ffff80', type: 1, b: 170 230 120 55}
+- o:795:
+    fillColor: '#ffff80'
+    type: 1
+    b: 480 330 133 55
+    kids: ['c:824']
+- o:675:
+    fillColor: '#ffff80'
+    type: 1
+    b: 330 230 120 55
+    kids: ['c:814', 'c:816']
+- o:676:
+    fillColor: '#ffff80'
+    type: 1
+    b: 650 230 120 55
+    kids: ['c:718']
+- o:791:
+    fillColor: '#ffff80'
+    type: 1
+    b: 330 30 120 55
+    kids: ['c:806']
+- o:793:
+    fillColor: '#ffff80'
+    type: 1
+    b: 12 330 128 55
+    kids: ['c:818']
+- o:837:
+    fillColor: '#80ffff'
+    type: 1
+    b: 20 130 120 55
+    kids: ['c:955']
+- o:674:
+    fillColor: '#ffff80'
+    type: 1
+    b: 330 130 120 55
+    kids: ['c:808', 'c:810', 'c:812']
+- o:673: {fillColor: '#ffff80', type: 1, b: 490 230 120 55}
+- o:794:
+    fillColor: '#ffff80'
+    type: 1
+    b: 160 330 120 55
+    kids: ['c:820']
+- o:803:
+    fillColor: '#ffff80'
+    type: 1
+    b: 327 330 126 55
+    kids: ['c:822']
+- o:839:
+    fillColor: '#80ffff'
+    type: 1
+    b: 490 130 120 55
+    kids: ['c:957']

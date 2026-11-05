@@ -1,0 +1,14 @@
+- Group:
+    name: Group
+    textAlignment: 1
+    b: 120 144 400 140
+    kids: ['o:b5450e61-cc1c-4d12-8a31-5cc9e6a72185 48 48 120 55']
+- o:51da80a4-b701-4bee-ab54-62ca3a96daf6:
+    b: 625 72 120 55
+    kids: ['c:38436f23-2e95-4e2c-b8a9-c4dfac76e767']
+- o:128d4866-2796-4752-b7dc-63755b21f3a4 625 180 120 55
+- Note:
+    textAlignment: 1
+    b: 600 300 185 80
+    kids:
+    - {content: Note}

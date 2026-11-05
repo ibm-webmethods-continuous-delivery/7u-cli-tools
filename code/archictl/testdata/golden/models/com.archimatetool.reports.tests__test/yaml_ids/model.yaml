@@ -1,0 +1,65 @@
+model:
+  _ns: {canvas: 'http://www.archimatetool.com/archimate/canvas'}
+  name: Test Model
+  id: 96c117fa-871c-4021-bc67-dddd8c542a8a
+  version: 5.0.0
+  strategy/: {}
+  business/:
+    BusinessActor: {Business Actor: 51da80a4-b701-4bee-ab54-62ca3a96daf6}
+    BusinessInterface: {Business Interface: 128d4866-2796-4752-b7dc-63755b21f3a4}
+  application/: {}
+  technology/: {}
+  motivation/: {}
+  implementation_migration/: {}
+  other/:
+    Location: {Location: b5450e61-cc1c-4d12-8a31-5cc9e6a72185}
+  relations/:
+    Composition: [38436f23-2e95-4e2c-b8a9-c4dfac76e767 51da80a4-b701-4bee-ab54-62ca3a96daf6>128d4866-2796-4752-b7dc-63755b21f3a4]
+  diagrams/:
+    ArchimateDiagramModel:
+      Default View: {id: e5193720-d635-4899-9ea3-d367991ccdc4, file: views/Default_View.yaml}
+    SketchModel:
+      New Sketch:
+        id: ef92f44c-4a53-42d8-86f1-02b43da4f95b
+        kids:
+        - Group:
+            id: 6d701755-f468-4412-bff1-0d0d00b6491a
+            name: Group
+            textAlignment: 1
+            b: 36 60 400 140
+            kids:
+            - sourceConnection: {id: 3c7acc1f-1a46-40e5-82c1-d95da52297e1, source: 6d701755-f468-4412-bff1-0d0d00b6491a, target: 7413792b-7680-434f-ba8f-3a1971582100, type: 3}
+            - SketchModelSticky:
+                _tag: child
+                id: 36de0db6-cbb6-4715-8f1c-3fc82e4a52b2
+                name: Sticky
+                lineColor: '#5c5c5c'
+                textAlignment: 1
+                fillColor: '#ffffb5'
+                b: 49 48 135 70
+                kids:
+                - {content: Sticky}
+        - SketchModelActor: {_tag: child, id: 7413792b-7680-434f-ba8f-3a1971582100, name: Actor, targetConnections: 3c7acc1f-1a46-40e5-82c1-d95da52297e1, b: 624 109 75 100}
+        - SketchModelSticky: {_tag: child, id: fe61ef26-0335-45b1-be13-650becc422bc, name: Sticky, lineColor: '#5c5c5c', textAlignment: 1, fillColor: '#60ff60', b: 305 313 135 70}
+    kids:
+    - canvas:CanvasModel:
+        name: New Canvas
+        id: 25d4e8d4-f410-4a1a-bc28-f184d66ea408
+        kids:
+        - canvas:CanvasModelBlock:
+            id: 04d03b0c-e827-4f59-bff7-55dd3ac5eee6
+            textAlignment: 1
+            borderColor: '#000000'
+            b: 88 43 200 200
+            kids:
+            - {content: Block}
+        - canvas:CanvasModelImage: {id: 2817fc9e-5ab2-4653-9462-4681c79f85ea, borderColor: '#000000', b: 395 51 200 150}
+        - canvas:CanvasModelSticky:
+            id: 5315c06e-282e-4d0d-89ac-a37b34e9679c
+            fillColor: '#ffff95'
+            borderColor: '#C0C0C0'
+            textPosition: 1
+            b: 681 75 75 63
+            kids:
+            - {content: Sticky}
+        - canvas:CanvasModelSticky: {id: 6f726d59-7b37-46a3-b933-457b59f392ea, fillColor: '#ffa093', borderColor: '#C0C0C0', textPosition: 1, b: 756 217 75 63}

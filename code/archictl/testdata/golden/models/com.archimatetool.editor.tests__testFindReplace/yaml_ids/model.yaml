@@ -1,0 +1,29 @@
+model:
+  name: FindMe 0
+  id: cd65c1fd
+  version: 5.0.0
+  strategy/: {}
+  business/:
+    f1/:
+      2/:
+        Product: {FindMe 4: 30005633}
+        BusinessActor: {FindMe 3: 2f8182cb}
+      1/:
+        BusinessActor: {FindMe 2: 44cb6838, FindMe 1: b3b3a0b2}
+        BusinessRole: {Business Role: 27b50268}
+  application/:
+    ApplicationComponent: {FindMe 6: b1b02884, Application Component: 7f1e32de}
+    ApplicationService: {FindMe 5: 796b2c1d}
+  technology/: {}
+  motivation/:
+    Stakeholder: {FindMe 7: db95a2b5}
+  implementation_migration/: {}
+  other/:
+    Junction: {FindMe 8: 503c4cf4}
+  relations/:
+    New Folder/:
+      Specialization: [9d271a81 b3b3a0b2>2f8182cb FindMe 9]
+  diagrams/:
+    ArchimateDiagramModel:
+      FindMe 10: {id: 6a346079, file: views/FindMe_10.yaml}
+      Z View: 2b0cb580

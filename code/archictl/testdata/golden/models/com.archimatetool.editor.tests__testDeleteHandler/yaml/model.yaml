@@ -1,0 +1,33 @@
+model:
+  name: Test DeleteHandler
+  id: be0eecc1
+  version: 5.0.0
+  strategy/: {}
+  business/:
+    BusinessActor: {Business Actor: 31a27739}
+    BusinessRole: {Business Role: 8ab84e91}
+    Contract: {Not included in a diagram: d856464a}
+  application/:
+    Folder with elements/:
+      Subfolder/:
+        ApplicationCollaboration: {Application Collaboration: e836c6be}
+        DataObject: {Data Object: d1247cf1}
+      ApplicationComponent: {Application Component: b5742e18}
+  technology/:
+    Artifact: {Not included in a diagram: d56e6b87}
+  motivation/:
+    Assessment: {Assessment: 46d0abd5}
+    Driver: {Driver: 8ecabfc2}
+  implementation_migration/: {}
+  other/: {}
+  relations/:
+    Assignment: [3bede7f0 Business Actor > Business Role]
+    Influence: [bfb084f7 Assessment > Driver]
+    Access: [d934bb5f d56e6b87>d856464a Not included in a diagram]
+    Specialization: [ff805459 Application Component > Application Collaboration]
+  diagrams/:
+    ArchimateDiagramModel:
+      1 View: {id: 17cdf396, file: views/1_View.yaml}
+      2 View: {id: 12917bec, file: views/2_View.yaml}
+  kids:
+  - {purpose: A variety of testing scenarios}

@@ -1,0 +1,40 @@
+- o:1813:
+    fillColor: '#ff8080'
+    type: 1
+    b: 100 570 120 60
+    kids: ['c:853128f7']
+- Group:
+    textAlignment: 1
+    b: 80 300 520 230
+    kids:
+    - o:843:
+        type: 1
+        b: 200 93 120 60
+        kids: ['c:1831', 'c:1833']
+    - o:861: {type: 1, b: 380 133 120 60}
+    - o:1399:
+        type: 1
+        b: 20 93 120 60
+        kids: ['c:1829']
+    - o:855:
+        type: 1
+        b: 380 53 120 60
+        kids: ['c:1835', 'c:1827']
+- Group:
+    name: Front office Applications
+    textAlignment: 1
+    b: 80 40 520 220
+    kids:
+    - o:1793:
+        type: 1
+        b: 30 133 120 60
+        kids: ['c:1821']
+    - o:1800: {type: 1, b: 30 33 120 60}
+    - o:1393:
+        type: 1
+        b: 220 133 120 60
+        kids: ['c:1823']
+    - o:849:
+        type: 1
+        b: 220 33 120 60
+        kids: ['c:1825']

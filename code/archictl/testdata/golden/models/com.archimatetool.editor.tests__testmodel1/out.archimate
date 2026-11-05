@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<archimate:model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:archimate="http://www.archimatetool.com/archimate" name="Test Model" id="be0eecc1" version="5.0.0">
+  <folder name="Strategy" id="f1" type="strategy"/>
+  <folder name="Business" id="f2" type="business">
+    <element xsi:type="archimate:BusinessActor" name="Business Actor" id="59fa6c90"/>
+    <element xsi:type="archimate:BusinessRole" name="Business Role" id="1efcd76f"/>
+  </folder>
+  <folder name="Application" id="f3" type="application"/>
+  <folder name="Technology &amp; Physical" id="f4" type="technology"/>
+  <folder name="Motivation" id="f5" type="motivation"/>
+  <folder name="Implementation &amp; Migration" id="f6" type="implementation_migration"/>
+  <folder name="Other" id="f7" type="other"/>
+  <folder name="Relations" id="f8" type="relations">
+    <element xsi:type="archimate:AssignmentRelationship" id="ffdc8ea9" source="59fa6c90" target="1efcd76f"/>
+  </folder>
+  <folder name="Views" id="f9" type="diagrams">
+    <element xsi:type="archimate:ArchimateDiagramModel" name="0 Blank View" id="17cdf396"/>
+    <element xsi:type="archimate:ArchimateDiagramModel" name="2 Test Bounds and Images" id="23c519cc">
+      <child xsi:type="archimate:Note" id="d1" textAlignment="1">
+        <bounds width="193" height="85"/>
+        <content>This note marks the x, y min of this view</content>
+      </child>
+      <child xsi:type="archimate:Group" id="d2" name="Group" textAlignment="1">
+        <bounds x="156" y="204" width="529" height="157"/>
+        <child xsi:type="archimate:DiagramObject" id="d3" archimateElement="59fa6c90">
+          <bounds x="36" y="42" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="d4" source="d3" target="d5" archimateRelationship="ffdc8ea9"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="d5" targetConnections="d4" archimateElement="1efcd76f">
+          <bounds x="240" y="42" width="120" height="55"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:Note" id="d6" textAlignment="1">
+        <bounds x="720" y="468" width="193" height="85"/>
+        <content>This note marks the max width and height of this view</content>
+      </child>
+    </element>
+    <element xsi:type="archimate:ArchimateDiagramModel" name="3 Test Bounds and Images with Connections" id="09cc5e51">
+      <child xsi:type="archimate:DiagramObject" id="d7" archimateElement="59fa6c90">
+        <bounds x="12" y="24" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="d8" source="d7" target="d9" archimateRelationship="ffdc8ea9">
+          <bendpoint startX="516" startY="285" endX="516" endY="177"/>
+        </sourceConnection>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="d9" targetConnections="d8" archimateElement="1efcd76f">
+        <bounds x="12" y="132" width="120" height="55"/>
+      </child>
+    </element>
+    <element xsi:type="archimate:SketchModel" name="1 Sketch View" id="94e775e5"/>
+  </folder>
+  <purpose>A variety of testing scenarios</purpose>
+</archimate:model>

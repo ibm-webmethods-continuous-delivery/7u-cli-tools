@@ -1,127 +1,141 @@
-BINARY     = ibmdocs
-BUILD_DIR  = target/bin
-CMD_DIR    = cmd/ibmdocs
-MODULE     = github.com/ibm-webmethods-aftermarket-tools/7u-ibm-doc-fetcher-cli
+# Runs INSIDE the dev container (docker compose run --rm dev make <target>).
+# Every target iterates over code/*/ so adding a tool needs no change here.
+# Pass TOOL=<tool_name> (e.g. TOOL=ibmdocs) to restrict build targets to a single tool.
 
-VERSION    ?= dev
-BUILD_DATE  = $(shell date -u '+%Y-%m-%dT%H:%M:%SZ')
-GIT_COMMIT  = $(shell git rev-parse --short HEAD 2>/dev/null || echo unknown)
+TOOLS          := $(notdir $(patsubst %/,%,$(wildcard code/*/)))
+SELECTED_TOOLS ?= $(if $(TOOL),$(TOOL),$(TOOLS))
+MODULE_PREFIX  := github.com/ibm-webmethods-continuous-delivery/7u-cli-tools/code
+BUILD_DIR      := target/bin
 
-LDFLAGS = -ldflags "-s -w \
-  -X $(MODULE)/cmd.version=$(VERSION) \
-  -X $(MODULE)/cmd.buildDate=$(BUILD_DATE) \
-  -X $(MODULE)/cmd.gitCommit=$(GIT_COMMIT)"
+VERSION        ?= dev
+BUILD_DATE     := $(shell date -u '+%Y-%m-%dT%H:%M:%SZ')
+GIT_COMMIT     := $(shell git rev-parse --short HEAD 2>/dev/null || echo unknown)
 
-GO      = go
-GOBUILD = CGO_ENABLED=0 $(GO) build $(LDFLAGS)
-GOTEST  = $(GO) test
-GOLINT  = golangci-lint
+export GOWORK := off
+GO    := CGO_ENABLED=0 go
 
-.PHONY: all build build-all build-linux-amd64 build-linux-arm64 \
+.PHONY: build build-all build-linux-amd64 build-linux-arm64 \
         build-darwin-arm64 build-darwin-amd64 build-windows \
-        clean test test-verbose coverage lint deps docker help
+        test test-race lint vet tidy list clean help
 
-all: clean test build
-
-## build: build native binary (host OS/arch)
+## build: build native binary for current host OS/arch (all tools or TOOL=<name>)
 build:
 	@mkdir -p $(BUILD_DIR)
-	$(GOBUILD) -o $(BUILD_DIR)/$(BINARY) ./$(CMD_DIR)
-	@echo "Built: $(BUILD_DIR)/$(BINARY)"
+	@for t in $(SELECTED_TOOLS); do \
+	  echo "== Building $$t (native)"; \
+	  (cd code/$$t && $(GO) build -trimpath \
+	    -ldflags "-s -w \
+	      -X $(MODULE_PREFIX)/$$t/cmd.version=$(VERSION) \
+	      -X $(MODULE_PREFIX)/$$t/cmd.buildDate=$(BUILD_DATE) \
+	      -X $(MODULE_PREFIX)/$$t/cmd.gitCommit=$(GIT_COMMIT)" \
+	    -o ../../$(BUILD_DIR)/$$t ./cmd/$$t) || exit 1; \
+	  echo "Built: $(BUILD_DIR)/$$t"; \
+	done
 
-## build-linux-amd64: static Linux amd64 binary
+## build-linux-amd64: static Linux amd64 binaries
 build-linux-amd64:
 	@mkdir -p $(BUILD_DIR)
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GO) build $(LDFLAGS) \
-	  -o $(BUILD_DIR)/$(BINARY)-linux-amd64 ./$(CMD_DIR)
-	@echo "Built: $(BUILD_DIR)/$(BINARY)-linux-amd64"
+	@for t in $(SELECTED_TOOLS); do \
+	  echo "== Building $$t (linux-amd64)"; \
+	  (cd code/$$t && GOOS=linux GOARCH=amd64 $(GO) build -trimpath \
+	    -ldflags "-s -w \
+	      -X $(MODULE_PREFIX)/$$t/cmd.version=$(VERSION) \
+	      -X $(MODULE_PREFIX)/$$t/cmd.buildDate=$(BUILD_DATE) \
+	      -X $(MODULE_PREFIX)/$$t/cmd.gitCommit=$(GIT_COMMIT)" \
+	    -o ../../$(BUILD_DIR)/$$t-linux-amd64 ./cmd/$$t) || exit 1; \
+	  echo "Built: $(BUILD_DIR)/$$t-linux-amd64"; \
+	done
 
-## build-linux-arm64: static Linux arm64 binary
+## build-linux-arm64: static Linux arm64 binaries
 build-linux-arm64:
 	@mkdir -p $(BUILD_DIR)
-	CGO_ENABLED=0 GOOS=linux GOARCH=arm64 $(GO) build $(LDFLAGS) \
-	  -o $(BUILD_DIR)/$(BINARY)-linux-arm64 ./$(CMD_DIR)
-	@echo "Built: $(BUILD_DIR)/$(BINARY)-linux-arm64"
+	@for t in $(SELECTED_TOOLS); do \
+	  echo "== Building $$t (linux-arm64)"; \
+	  (cd code/$$t && GOOS=linux GOARCH=arm64 $(GO) build -trimpath \
+	    -ldflags "-s -w \
+	      -X $(MODULE_PREFIX)/$$t/cmd.version=$(VERSION) \
+	      -X $(MODULE_PREFIX)/$$t/cmd.buildDate=$(BUILD_DATE) \
+	      -X $(MODULE_PREFIX)/$$t/cmd.gitCommit=$(GIT_COMMIT)" \
+	    -o ../../$(BUILD_DIR)/$$t-linux-arm64 ./cmd/$$t) || exit 1; \
+	  echo "Built: $(BUILD_DIR)/$$t-linux-arm64"; \
+	done
 
-## build-darwin-arm64: macOS Apple Silicon binary
+## build-darwin-arm64: macOS Apple Silicon binaries
 build-darwin-arm64:
 	@mkdir -p $(BUILD_DIR)
-	CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 $(GO) build $(LDFLAGS) \
-	  -o $(BUILD_DIR)/$(BINARY)-darwin-arm64 ./$(CMD_DIR)
-	@echo "Built: $(BUILD_DIR)/$(BINARY)-darwin-arm64"
+	@for t in $(SELECTED_TOOLS); do \
+	  echo "== Building $$t (darwin-arm64)"; \
+	  (cd code/$$t && GOOS=darwin GOARCH=arm64 $(GO) build -trimpath \
+	    -ldflags "-s -w \
+	      -X $(MODULE_PREFIX)/$$t/cmd.version=$(VERSION) \
+	      -X $(MODULE_PREFIX)/$$t/cmd.buildDate=$(BUILD_DATE) \
+	      -X $(MODULE_PREFIX)/$$t/cmd.gitCommit=$(GIT_COMMIT)" \
+	    -o ../../$(BUILD_DIR)/$$t-darwin-arm64 ./cmd/$$t) || exit 1; \
+	  echo "Built: $(BUILD_DIR)/$$t-darwin-arm64"; \
+	done
 
-## build-darwin-amd64: macOS Intel binary
+## build-darwin-amd64: macOS Intel binaries
 build-darwin-amd64:
 	@mkdir -p $(BUILD_DIR)
-	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 $(GO) build $(LDFLAGS) \
-	  -o $(BUILD_DIR)/$(BINARY)-darwin-amd64 ./$(CMD_DIR)
-	@echo "Built: $(BUILD_DIR)/$(BINARY)-darwin-amd64"
+	@for t in $(SELECTED_TOOLS); do \
+	  echo "== Building $$t (darwin-amd64)"; \
+	  (cd code/$$t && GOOS=darwin GOARCH=amd64 $(GO) build -trimpath \
+	    -ldflags "-s -w \
+	      -X $(MODULE_PREFIX)/$$t/cmd.version=$(VERSION) \
+	      -X $(MODULE_PREFIX)/$$t/cmd.buildDate=$(BUILD_DATE) \
+	      -X $(MODULE_PREFIX)/$$t/cmd.gitCommit=$(GIT_COMMIT)" \
+	    -o ../../$(BUILD_DIR)/$$t-darwin-amd64 ./cmd/$$t) || exit 1; \
+	  echo "Built: $(BUILD_DIR)/$$t-darwin-amd64"; \
+	done
 
-## build-windows: static Windows amd64 binary
+## build-windows: static Windows amd64 binaries
 build-windows:
 	@mkdir -p $(BUILD_DIR)
-	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 $(GO) build $(LDFLAGS) \
-	  -o $(BUILD_DIR)/$(BINARY)-windows-amd64.exe ./$(CMD_DIR)
-	@echo "Built: $(BUILD_DIR)/$(BINARY)-windows-amd64.exe"
+	@for t in $(SELECTED_TOOLS); do \
+	  echo "== Building $$t (windows-amd64)"; \
+	  (cd code/$$t && GOOS=windows GOARCH=amd64 $(GO) build -trimpath \
+	    -ldflags "-s -w \
+	      -X $(MODULE_PREFIX)/$$t/cmd.version=$(VERSION) \
+	      -X $(MODULE_PREFIX)/$$t/cmd.buildDate=$(BUILD_DATE) \
+	      -X $(MODULE_PREFIX)/$$t/cmd.gitCommit=$(GIT_COMMIT)" \
+	    -o ../../$(BUILD_DIR)/$$t-windows-amd64.exe ./cmd/$$t) || exit 1; \
+	  echo "Built: $(BUILD_DIR)/$$t-windows-amd64.exe"; \
+	done
 
-## build-all: build all five release targets + checksums
-build-all: deps build-linux-amd64 build-linux-arm64 build-darwin-arm64 build-darwin-amd64 build-windows
-	@echo "\nAll targets:"
-	@ls -lh $(BUILD_DIR)/$(BINARY)-*
-	@cd $(BUILD_DIR) && sha256sum $(BINARY)-* > checksums.txt
-	@echo "Checksums: $(BUILD_DIR)/checksums.txt"
+## build-all: build all five cross-platform targets + checksums (all tools or TOOL=<name>)
+build-all: build-linux-amd64 build-linux-arm64 build-darwin-arm64 build-darwin-amd64 build-windows
+	@echo ""
+	@echo "All built binaries in $(BUILD_DIR):"
+	@ls -lh $(BUILD_DIR)
+	@cd $(BUILD_DIR) && sha256sum *-linux-* *-darwin-* *.exe > checksums.txt 2>/dev/null || true
+	@if [ -f $(BUILD_DIR)/checksums.txt ]; then echo "Checksums written to $(BUILD_DIR)/checksums.txt"; fi
 
-## docker: build multi-arch container image (requires buildx)
-docker:
-	docker buildx build \
-	  --platform linux/amd64,linux/arm64 \
-	  --build-arg VERSION=$(VERSION) \
-	  --build-arg BUILD_DATE=$(BUILD_DATE) \
-	  --build-arg GIT_COMMIT=$(GIT_COMMIT) \
-	  -t ibmdocs:$(VERSION) \
-	  .
-
-## docker-local: build single-arch image for local use
-docker-local:
-	docker build \
-	  --build-arg VERSION=$(VERSION) \
-	  --build-arg BUILD_DATE=$(BUILD_DATE) \
-	  --build-arg GIT_COMMIT=$(GIT_COMMIT) \
-	  -t ibmdocs:$(VERSION) \
-	  .
-
-## test: run unit tests
+## test: go test for every tool
 test:
-	$(GOTEST) -v ./...
+	@for t in $(TOOLS); do echo "== $$t"; (cd code/$$t && $(GO) test ./...) || exit 1; done
 
-## test-verbose: run tests with race detector
-test-verbose:
-	$(GOTEST) -v -race ./...
+## test-race: go test -race for every tool (needs cgo, so it overrides CGO_ENABLED)
+test-race:
+	@for t in $(TOOLS); do echo "== $$t"; (cd code/$$t && CGO_ENABLED=1 go test -race ./...) || exit 1; done
 
-## coverage: generate HTML coverage report
-coverage:
-	$(GOTEST) -coverprofile=coverage.out ./...
-	$(GO) tool cover -html=coverage.out -o coverage.html
-	@echo "Coverage report: coverage.html"
+## vet: go vet for every tool
+vet:
+	@for t in $(TOOLS); do echo "== $$t"; (cd code/$$t && $(GO) vet ./...) || exit 1; done
 
-## lint: run golangci-lint
+## lint: golangci-lint for every tool
 lint:
-	$(GOLINT) run ./...
+	@for t in $(TOOLS); do echo "== $$t"; (cd code/$$t && golangci-lint run ./...) || exit 1; done
 
-## deps: tidy and download modules
-deps:
-	$(GO) mod tidy
-	$(GO) mod download
+## tidy: go mod tidy for every tool
+tidy:
+	@for t in $(TOOLS); do echo "== $$t"; (cd code/$$t && go mod tidy) || exit 1; done
 
-## release-dry-run: build-all + print what would be released
-release-dry-run: build-all
-	@echo "\nRelease artefacts for VERSION=$(VERSION):"
-	@ls -lh $(BUILD_DIR)/$(BINARY)-*
-	@cat $(BUILD_DIR)/checksums.txt
+## list: print discovered tools
+list:
+	@echo $(TOOLS)
 
 ## clean: remove build artefacts
 clean:
-	$(GO) clean
 	rm -rf target/
 
 ## help: list available targets

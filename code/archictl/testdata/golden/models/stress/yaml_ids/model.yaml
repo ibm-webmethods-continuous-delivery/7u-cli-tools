@@ -1,0 +1,55 @@
+model:
+  name: S
+  id: m1
+  version: 5.0.0
+  business/:
+    BusinessProcess/:
+      BusinessProcess:
+        BusinessProcess:
+          id: a1
+          doc: |-
+            line 1
+            line 2
+        Dup: a2
+      BusinessActor:
+        Dup: a4
+        ?
+        : a6
+        'x: y, {z} [w] # "q" ''p'' & <t>': a7
+        ? |-
+          line1
+          line2
+        : a8
+        123: 007
+        null: true
+        Ünï ✓: {id: a9, color: red, doc: doc}
+        p | q: a10
+        a1: a11
+      Flow:
+      - r1 a1>a2
+      - r4 a9>a1 rel one
+      - r7 a7>a9
+      - r8 a2>a3
+      - r9 a1>a10 docrel:
+          doc: |-
+            d: one
+            two
+          props:
+          - {k: v}
+      - r10 a10>a1: {doc: only doc}
+      Access:
+      - {id: r2, source: a1, target: a2, accessType: 1}
+      Serving: [r5 a1>a10 n | m > k]
+      Triggering: [r6 a11>a9]
+      kids:
+      - BusinessProcess: {name: Dup, id: a3}
+      - BusinessActor: {id: a5}
+      - SomeUnknown#r3 a1>a2
+    Empty/Slash//: {}
+    kids:
+    - folder: {name: BusinessProcess, id: f3}
+  diagrams/: {}
+  other/:
+    Sub/: {}
+  kids:
+  - folder: {name: business, id: f5}

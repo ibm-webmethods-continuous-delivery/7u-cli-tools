@@ -1,0 +1,15 @@
+module github.com/ibm-webmethods-continuous-delivery/7u-cli-tools/code/ibmdocs
+
+go 1.26.9
+
+require (
+	github.com/JohannesKaufmann/html-to-markdown/v2 v2.5.2
+	github.com/spf13/cobra v1.8.1
+)
+
+require (
+	github.com/JohannesKaufmann/dom v0.3.1 // indirect
+	github.com/inconshreveable/mousetrap v1.1.0 // indirect
+	github.com/spf13/pflag v1.0.5 // indirect
+	golang.org/x/net v0.60.0 // indirect
+)

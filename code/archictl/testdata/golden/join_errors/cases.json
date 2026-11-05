@@ -1,0 +1,37 @@
+{
+ "base": "models/archisurance_annotated",
+ "cases": [
+  {
+   "name": "illegal_relation",
+   "file": "model.yaml",
+   "find": "        Triggering: [",
+   "replace": "        Composition: [x9 Handle Claim > Insurer]\n        Triggering: [",
+   "expect_error": "Composition Handle Claim (BusinessProcess) > Insurer (BusinessRole) [x9] not allowed",
+   "actual_error": "invalid model:"
+  },
+  {
+   "name": "unknown_name",
+   "file": "model.yaml",
+   "find": "        Triggering: [",
+   "replace": "        Flow: [x9 Handle Claim > Inform Custmer]\n        Triggering: [",
+   "expect_error": "unknown element reference: 'Inform Custmer'",
+   "actual_error": "unknown element reference: 'Inform Custmer'"
+  },
+  {
+   "name": "ambiguous_name",
+   "file": "model.yaml",
+   "find": "        Triggering: [",
+   "replace": "        Flow: [x9 Handle Claim > Customer]\n        Triggering: [",
+   "expect_error": "ambiguous element reference: 'Customer'",
+   "actual_error": "ambiguous element reference: 'Customer'"
+  },
+  {
+   "name": "dangling_view_ref",
+   "file": "views/Business_Process_View.yaml",
+   "find": "- o:521:",
+   "replace": "- o:nosuch 1 2 3 4\n- o:521:",
+   "expect_error": "not found",
+   "actual_error": "invalid model:"
+  }
+ ]
+}

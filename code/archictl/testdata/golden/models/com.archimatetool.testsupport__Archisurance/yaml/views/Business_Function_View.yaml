@@ -1,0 +1,90 @@
+- o:528:
+    b: 610 360 150 120
+    kids:
+    - c:1778:
+        kids:
+        - bendpoint: {startX: -107, startY: 13, endX: 109, endY: 23}
+- o:514:
+    fillColor: '#ffff80'
+    b: 200 120 360 360
+    kids:
+    - o:495:
+        b: 15 260 150 60
+        kids:
+        - c:1762: {font: 1|Arial|8.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Arial}
+        - c:1786
+    - o:483:
+        b: 20 140 140 60
+        kids:
+        - c:1758: {font: 1|Arial|8.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Arial}
+        - c:1760:
+            font: 1|Arial|8.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Arial
+            kids:
+            - bendpoint: {startX: 63, startY: 60, endX: 63, endY: -60}
+    - o:471:
+        b: 20 20 140 60
+        kids:
+        - c:1756:
+            font: 1|Arial|8.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Arial
+            kids:
+            - bendpoint: {startX: 59, startY: 47, endX: 59, endY: -73}
+        - c:1782: {font: 1|Arial|8.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Arial}
+    - o:477:
+        b: 200 20 140 60
+        kids:
+        - c:1764:
+            kids:
+            - bendpoint: {startX: -22, startY: 60, endX: -22, endY: -60}
+        - c:1774:
+            font: 1|Arial|8.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Arial
+            kids:
+            - bendpoint: {startX: 111, startY: 38, endX: -104, endY: 28}
+    - o:489:
+        b: 200 140 140 60
+        kids:
+        - c:1768:
+            kids:
+            - bendpoint: {startX: -25, startY: 58, endX: -24, endY: -62}
+        - c:1766:
+            kids:
+            - bendpoint: {startX: 24, startY: -59, endX: 24, endY: 61}
+        - c:1784: {font: 1|Arial|8.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Arial}
+    - o:501:
+        b: 196 260 147 60
+        kids:
+        - c:1788:
+            font: 1|Arial|8.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Arial
+            kids:
+            - bendpoint: {startX: -92, startY: 48, endX: 87, endY: 48}
+        - c:1770:
+            kids:
+            - bendpoint: {startX: 28, startY: -61, endX: 27, endY: 59}
+        - c:1776:
+            kids:
+            - bendpoint: {startX: 106, startY: -12, endX: -110, endY: -22}
+- o:507:
+    b: 20 30 120 450
+    kids:
+    - c:1780:
+        font: 1|Arial|8.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Arial
+        kids:
+        - bendpoint: {startX: 87, startY: -85, endX: -123}
+    - c:1750:
+        font: 1|Arial|8.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Arial
+        kids:
+        - bendpoint: {startX: 93, startY: -194, endX: -512, endY: -119}
+        - bendpoint: {startX: 272, startY: -193, endX: -333, endY: -118}
+        - bendpoint: {startX: 466, startY: -193, endX: -139, endY: -118}
+- o:521:
+    b: 610 30 150 300
+    kids:
+    - c:1772:
+        font: 1|Arial|8.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Arial
+        kids:
+        - bendpoint: {startX: -100, startY: -45, endX: 115, endY: -35}
+    - c:1752:
+        font: 1|Arial|8.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Arial
+        kids:
+        - bendpoint: {startX: -136, startY: -92, endX: 469, endY: -167}
+        - bendpoint: {startX: -335, startY: -92, endX: 270, endY: -167}
+        - bendpoint: {startX: -502, startY: -95, endX: 103, endY: -170}

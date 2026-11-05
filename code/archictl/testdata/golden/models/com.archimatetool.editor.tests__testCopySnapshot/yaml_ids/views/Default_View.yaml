@@ -1,0 +1,50 @@
+- o:fd6f50fa:
+    id: 1245569a
+    b: 456 48 120 55
+    kids:
+    - sourceConnection: {source: 1245569a, target: e249378c}
+- o:440788c3:
+    b: 120 48 120 55
+    kids:
+    - c:cf6fb437:
+        id: 9f83beb6
+        kids:
+        - c:b0d2a000: {source: 9f83beb6, target: e059ecf9}
+- Note:
+    id: e249378c
+    textAlignment: 1
+    b: 732 48 185 80
+    kids:
+    - sourceConnection: {source: e249378c, target: 70635c80}
+- Group:
+    id: fc474050
+    name: Group
+    textAlignment: 1
+    b: 696 372 400 140
+    kids:
+    - sourceConnection: {source: fc474050, target: e249378c}
+    - o:4249d0d9: {id: e059ecf9, type: 1, b: 29 42 120 55}
+- Note:
+    id: 079ed756
+    textAlignment: 1
+    b: 528 216 185 80
+    kids:
+    - sourceConnection: {source: 079ed756, target: fc474050}
+    - sourceConnection: {source: 079ed756, target: 1245569a}
+    - sourceConnection: {source: 079ed756, target: f2a84554}
+- Group:
+    name: Group
+    textAlignment: 1
+    b: 36 312 457 140
+    kids:
+    - o:b21c42e2:
+        id: f74dc890
+        b: 252 60 120 55
+        kids:
+        - c:e7e61f82:
+            id: 70635c80
+            source: f74dc890
+            target: 9f83beb6
+            kids:
+            - c:16de4a0c: {source: 70635c80, target: e059ecf9}
+        - c:fae6df8d: {id: f2a84554}

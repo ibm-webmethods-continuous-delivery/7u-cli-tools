@@ -1,0 +1,7 @@
+- o:59fa6c90:
+    b: 12 24 120 55
+    kids:
+    - c:ffdc8ea9:
+        kids:
+        - bendpoint: {startX: 516, startY: 285, endX: 516, endY: 177}
+- o:1efcd76f 12 132 120 55
