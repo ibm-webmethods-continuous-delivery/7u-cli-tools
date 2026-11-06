@@ -13,7 +13,6 @@ VERSION        ?= dev
 BUILD_DATE     := $(shell date -u '+%Y-%m-%dT%H:%M:%SZ')
 GIT_COMMIT     := $(shell git rev-parse --short HEAD 2>/dev/null || echo unknown)
 
-export GOWORK := off
 GO    := CGO_ENABLED=0 go
 
 .PHONY: build build-all build-linux-amd64 build-linux-arm64 \

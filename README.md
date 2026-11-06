@@ -48,7 +48,7 @@ build/Dockerfile.tool      shared Dockerfile: static build -> scratch image with
 .devcontainer/             dev image (go, golangci-lint, make, shellcheck) + devcontainer.json
 docker-compose.yml         one service per tool image, plus the `dev` service
 Makefile                   runs inside `dev`; iterates over code/*/ automatically
-go.work                    for editor tooling (gopls); Make sets GOWORK=off
+go.work                    workspace file; keeps gopls and make build consistent
 ```
 
 ---
