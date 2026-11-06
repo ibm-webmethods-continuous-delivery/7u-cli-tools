@@ -22,7 +22,7 @@ ibmdocs version
 
 If the command is not found, check whether the binary is available under a path-local alias
 (`./ibmdocs`, `target/bin/ibmdocs`, etc.) or whether the container alias has been configured.
-Refer the user to the [README installation section](../../../README.md#installation) if the
+Refer the user to the [README installation section](../../../../../README.md#installation--binaries) if the
 binary is missing before continuing.
 
 Run CLI calls with the terminal or shell capability available to the agent. For long-running fetches, use that capability's supported timeout mechanism. If command execution is unavailable, explain that the documentation could not be fetched; do not imply that the fetch succeeded.
