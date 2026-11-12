@@ -5,7 +5,7 @@
 Spending too much time with IBM docs?
 Try out the `ibmdocs` CLI tool and the associated AI Agent skill today. Have sophisticated answers in minutes using your agent of choice with no intermediaries whatsoever!
 
-https://ibm.biz/~X2AERyA53
+https://ibm.biz/~XmaRTKC29
 
 
 1. Download the [binary](https://github.com/ibm-webmethods-continuous-delivery/7u-ibm-doc-fetcher-cli/releases/latest)
