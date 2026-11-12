@@ -22,6 +22,10 @@ const (
 	// this for fast-moving products or a specific invocation.
 	DefaultCacheTTL = 30 * 24 * time.Hour
 
+	// DataDirName is the folder name used under $XDG_CACHE_HOME and ~/.cache.
+	DataDirName = "ibmdocs-data"
+
+	EnvDataFolder  = "IWCD_IBMDOCS_DATA_FOLDER"
 	EnvCDNBaseURL  = "IBMDOCS_CDN_BASE_URL"
 	EnvCacheTTL    = "IBMDOCS_CACHE_TTL"
 	EnvProxy       = "IBMDOCS_PROXY"

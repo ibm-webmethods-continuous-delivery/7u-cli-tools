@@ -85,9 +85,18 @@ The CLI MUST accept a `--data` flag (or `-d` shorthand) pointing to a local dire
   requests.log    # Append-only JSON Lines log of every outbound HTTP request URL
 ```
 
-- If `--data` is not supplied, the tool MUST default to `./ibmdocs-data` in the current working directory and create it if it does not exist.
+- **Data folder resolution.** If `--data` is supplied it always wins. Otherwise the tool MUST resolve the data folder with the first matching rule below:
+  1. `$IWCD_IBMDOCS_DATA_FOLDER` is set and non-empty → use its value as is.
+  2. `$XDG_CACHE_HOME` is set and non-empty → `$XDG_CACHE_HOME/ibmdocs-data`.
+  3. `~/.cache/ibmdocs-data` exists as a directory, or can be created (`mkdir -p`) → use it.
+  4. Otherwise (no resolvable home directory, or creation failed) → `./ibmdocs-data` in the current working directory.
+- The resolved folder is created if it does not exist. Resolution happens only when a command that uses the data folder executes (not at process start), so `version`, `help` and shell completion have no filesystem side effects. Rule 3 is the only rule that touches the filesystem during resolution.
+- **Debug logging.** Whenever there is a risk of operational confusion, the tool MUST log it at debug level (`--verbose`) on stderr: the resolved folder and the rule that selected it, an ignored non-absolute `$XDG_CACHE_HOME`, an unavailable home directory, a failed creation of `~/.cache/ibmdocs-data`, and the final fallback to `./ibmdocs-data`.
+- **Discoverability.** `ibmdocs data-dir` (§5.10) prints the resolved folder, so callers (notably agents) that do not pass `--data` can locate `<data>/kb/`.
+- **Version control.** The default locations are per-user caches and are NOT meant to be committed. A project that wants its knowledge base in version control MUST set `IWCD_IBMDOCS_DATA_FOLDER` (or pass `--data`) to a folder inside the repository.
+- **Containers:** the `FROM scratch` image (§3.2) has no shell, no `$HOME` and no writable `~/.cache`, so rules 2–4 are not usable there. The image therefore MUST set `ENV IWCD_IBMDOCS_DATA_FOLDER=/data`, and running the container SHOULD mount a volume on it (e.g. `-v "$PWD/ibmdocs-data:/data"`); without a mount the data is lost with the container. Override with `-e IWCD_IBMDOCS_DATA_FOLDER=<path>` or `--data`, which still takes precedence.
 - The `cache/`, `kb/`, and `debug/` subdirectories are created automatically on first use.
-- The data folder is designed to be committed to version control if desired (JSON + Markdown, no binary blobs).
+- The data folder content is designed to be committable to version control if desired (JSON + Markdown, no binary blobs), subject to the note above.
 - The `requests.log` file is **NOT** committed to git by default (add `<data>/requests.log` to `.gitignore` in project scaffolding).
 
 ---
@@ -104,7 +113,7 @@ ibmdocs [global flags] <command> [flags] [args]
 
 | Flag | Default | Description |
 |---|---|---|
-| `--data`, `-d` | `./ibmdocs-data` | Path to the data folder (§4) |
+| `--data`, `-d` | resolved per §4 (env `IWCD_IBMDOCS_DATA_FOLDER` → `$XDG_CACHE_HOME/ibmdocs-data` → `~/.cache/ibmdocs-data` → `./ibmdocs-data`) | Path to the data folder (§4) |
 | `--lang` | `en` | Language code for IBM Docs API requests (see §17 for supported values) |
 | `--verbose`, `-v` | false | Enable debug-level logging to stderr |
 | `--no-color` | false | Disable ANSI colour in terminal output |
@@ -348,6 +357,18 @@ Prints tool name, version, commit SHA, and build date. No flags.
 
 ---
 
+### 5.10 `data-dir` — Print the resolved data folder
+
+```
+ibmdocs [--data <path>] data-dir
+```
+
+Prints, on stdout and on a single line, the data folder that every other command would use given the same flags and environment (§4). No other output on stdout; with `--verbose` the selecting rule is logged on stderr. No flags of its own.
+
+Like all commands that use the data folder, it may create `~/.cache/ibmdocs-data` (§4 rule 3), so the printed folder is guaranteed to exist unless the resolution fell through to `./ibmdocs-data` or came from `--data` / `$IWCD_IBMDOCS_DATA_FOLDER` (those are printed as given and not created by this command).
+
+---
+
 ## 6. Fetch Index (`index.json`)
 
 The `index.json` file in the data root is the canonical record of all fetch operations. It serves as the input for `refresh` and `list`.
@@ -496,6 +517,7 @@ The `User-Agent` header should identify the tool by name and version (not impers
 | `MAX_RETRY_WAIT` | `30s` | — | Maximum duration cap for any individual HTTP 429 retry backoff |
 | `DEFAULT_LANG` | `en` | `--lang` | Default language for IBM Docs API |
 | `CDN_BASE_URL` | `https://1.www.s81c.com` | `--cdn-base-url` / `IBMDOCS_CDN_BASE_URL` | Base URL for all IBM Docs CDN API requests |
+| `DATA_FOLDER` | resolved per §4 (final fallback `./ibmdocs-data`) | `--data` / `IWCD_IBMDOCS_DATA_FOLDER` | Root of all persistent state; flag overrides env, env overrides XDG/home/CWD fallbacks |
 
 > **`MAX_TOPICS_PER_LEVEL` rationale:** The webMethods API Gateway Administration APIs TOC node has 16 children — all substantive REST API family references. A value of 5 caused topics 6-16 to be silently dropped, including Policy Management, Service Management, User Management, and Subscription Management (each 1,800–3,800 chars of API reference content). Raising to 10 captures the vast majority of real-world product trees while remaining bounded. Pass `--max-topics 0` to disable the cap entirely.
 

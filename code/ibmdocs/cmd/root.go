@@ -3,6 +3,7 @@ package cmd
 import (
 	"errors"
 	"fmt"
+	"log/slog"
 	"os"
 	"time"
 
@@ -32,7 +33,9 @@ var rootCmd = &cobra.Command{
 	Long: `ibmdocs fetches IBM product documentation from the IBM Docs public API,
 caches it locally, and exports it as agent-ready Markdown.
 
-Data folder defaults to ./ibmdocs-data in the current directory.`,
+Data folder, when --data is not given: $IWCD_IBMDOCS_DATA_FOLDER, else
+$XDG_CACHE_HOME/ibmdocs-data, else ~/.cache/ibmdocs-data, else ./ibmdocs-data.
+Run 'ibmdocs data-dir' to print the resolved folder.`,
 	SilenceUsage:  true,
 	SilenceErrors: true,
 }
@@ -51,8 +54,9 @@ func Execute() {
 func init() {
 	f := rootCmd.PersistentFlags()
 
-	f.StringVarP(&cfg.DataDir, "data", "d", config.DefaultDataDir,
-		"Path to the data folder (cache/, kb/, index.json)")
+	f.StringVarP(&cfg.DataDir, "data", "d", "",
+		"Path to the data folder (cache/, kb/, index.json). Default: env "+config.EnvDataFolder+
+			", else $XDG_CACHE_HOME/ibmdocs-data, else ~/.cache/ibmdocs-data, else ./ibmdocs-data")
 
 	f.StringVar(&cfg.Lang, "lang", config.DefaultLang,
 		"Language code for IBM Docs API requests (e.g. en, fr, de, ja)")
@@ -91,10 +95,42 @@ func init() {
 			"env: IBMDOCS_TLS_CA_BUNDLE")
 
 	// Validate proxy/TLS flags at startup so the user gets a clear error
-	// before any network call is attempted.
+	// before any network call is attempted, and resolve the data folder.
 	rootCmd.PersistentPreRunE = func(cmd *cobra.Command, args []string) error {
-		return ibmdocs.ValidateTransportConfig(cfg.ProxyURL, cfg.TLSCABundle)
+		if err := ibmdocs.ValidateTransportConfig(cfg.ProxyURL, cfg.TLSCABundle); err != nil {
+			return err
+		}
+		if cfg.DataDir == "" && needsDataDir(cmd) {
+			resolveDataDir(buildLogger(cfg.Verbose))
+		}
+		return nil
 	}
+}
+
+// needsDataDir reports whether the command uses the data folder. Commands that
+// do not (version, help, shell completion) must not touch the filesystem.
+func needsDataDir(cmd *cobra.Command) bool {
+	for c := cmd; c != nil; c = c.Parent() {
+		switch c.Name() {
+		case "version", "help", "completion", cobra.ShellCompRequestCmd, cobra.ShellCompNoDescRequestCmd:
+			return false
+		}
+	}
+	return true
+}
+
+// resolveDataDir fills cfg.DataDir from the environment/home fallbacks and
+// logs every decision at debug level to avoid operational confusion.
+func resolveDataDir(logger *slog.Logger) {
+	r := config.ResolveDataDir()
+	for _, n := range r.Notes {
+		logger.Debug("data folder resolution", "note", n)
+	}
+	logger.Debug("data folder resolved", "dir", r.Dir, "source", r.Source)
+	if r.Source == config.SourceCWD {
+		logger.Debug("falling back to ./ibmdocs-data; set " + config.EnvDataFolder + " or --data to choose explicitly")
+	}
+	cfg.DataDir = r.Dir
 }
 
 // envOr returns the environment variable value or fallback.

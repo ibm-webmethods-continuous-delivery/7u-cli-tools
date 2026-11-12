@@ -27,7 +27,22 @@ binary is missing before continuing.
 
 Run CLI calls with the terminal or shell capability available to the agent. For long-running fetches, use that capability's supported timeout mechanism. If command execution is unavailable, explain that the documentation could not be fetched; do not imply that the fetch succeeded.
 
-Pass `-d <path>` or `--data <path>` explicitly whenever writing to or reading from a custom Knowledge Base directory (e.g. `--data /path/to/project/ibmdocs`).
+### Resolve the data folder
+
+Run once, and reuse the result as `<data-dir>` in every later step:
+
+```sh
+ibmdocs data-dir
+```
+
+It prints the folder all commands use when `--data` is not passed: `$IWCD_IBMDOCS_DATA_FOLDER` if set, else
+`$XDG_CACHE_HOME/ibmdocs-data`, else `~/.cache/ibmdocs-data`, else `./ibmdocs-data`.
+
+- If the user (or project) names a specific Knowledge Base directory, pass `-d <path>` / `--data <path>`
+  on every command instead (e.g. `--data /path/to/project/ibmdocs`); it overrides the above.
+- When `--data` is not passed, do not pass a guessed path: use the output of `ibmdocs data-dir`.
+- In the container image `IWCD_IBMDOCS_DATA_FOLDER` defaults to `/data`, which must be a mounted volume to
+  persist; run `ibmdocs data-dir` with the same environment/mount as the other commands.
 
 ---
 
@@ -78,12 +93,13 @@ ibmdocs fetch "<ibm-docs-url>"
 ### Topic with child pages (recommended for implementation tasks)
 
 ```sh
-ibmdocs fetch "<ibm-docs-url>" --recursive --depth 2 --data "<data-dir>"
+ibmdocs fetch "<ibm-docs-url>" --recursive --depth 2
 ```
 
 - `--depth 2` walks 2 levels of child topics in the TOC (up to 10 children per node).
 - Increase depth only if the first fetch clearly misses required sub-topics.
-- The fetch prints Markdown to stdout and writes cache + KB files under the data folder.
+- The fetch prints Markdown to stdout and writes cache + KB files under the data folder (`<data-dir>`;
+  add `--data "<data-dir>"` only if you chose a folder explicitly).
 - **CLI Execution Timeout**: Deep recursive walks on large document subtrees with default polite crawling delays (`200ms`) can take over 30 seconds. When running a recursive fetch, allow for a long-running command using the timeout mechanism supported by the agent.
 - **Rate limiting (HTTP 429)**: IBM Docs throttles bursts of requests, and every newly fetched page also
   costs one search call (for `source_url`). The CLI retries a 429 up to 3 times with backoff (honouring
@@ -193,12 +209,13 @@ ibmdocs build-kb
 | `ibmdocs list` | Show what is cached |
 | `ibmdocs refresh --older-than 7` | Re-fetch entries older than N days |
 | `ibmdocs trim --stubs-only` | Remove thin navigation stubs from the KB |
+| `ibmdocs data-dir` | Print the resolved data folder (`<data-dir>`) |
 
 Global flags available on every command:
 
 | Flag | Default | Description |
 |---|---|---|
-| `--data`, `-d` | `./ibmdocs-data` | Path to the data folder |
+| `--data`, `-d` | `$IWCD_IBMDOCS_DATA_FOLDER`, else `$XDG_CACHE_HOME/ibmdocs-data`, else `~/.cache/ibmdocs-data`, else `./ibmdocs-data` (see `ibmdocs data-dir`) | Path to the data folder |
 | `--lang` | `en` | Language code (`fr`, `de`, `ja`, `zh-cn`, …) |
 | `--verbose`, `-v` | false | Debug-level logging to stderr |
 | `--delay` | `200ms` | Inter-request delay (polite crawling) |

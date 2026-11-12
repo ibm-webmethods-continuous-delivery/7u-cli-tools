@@ -99,7 +99,7 @@ docker compose run --rm archictl version
 Inject release metadata:
 
 ```sh
-VERSION=ibmdocs/v0.0.7 GIT_COMMIT=$(git rev-parse --short HEAD) docker compose build ibmdocs
+VERSION=ibmdocs/v0.0.8 GIT_COMMIT=$(git rev-parse --short HEAD) docker compose build ibmdocs
 ```
 
 ### 3. Tests & Quality Checks

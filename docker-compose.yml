@@ -32,6 +32,11 @@ services:
         VERSION_PKG: github.com/ibm-webmethods-continuous-delivery/7u-cli-tools/code/ibmdocs/cmd
     image: iwcd-ibmdocs-s:scratch
     entrypoint: ["/ibmdocs"]
+    # scratch has no $HOME; mirrors ENV in 7u-container-images' ibmdocs image.
+    environment:
+      IWCD_IBMDOCS_DATA_FOLDER: /data
+    volumes:
+      - ./ibmdocs-data:/data
 
   archictl:
     build:

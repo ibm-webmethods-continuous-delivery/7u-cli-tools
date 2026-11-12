@@ -10,7 +10,7 @@ https://ibm.biz/~X2AERyA53
 
 1. Download the [binary](https://github.com/ibm-webmethods-continuous-delivery/7u-ibm-doc-fetcher-cli/releases/latest)
 2. Download the [skill](https://github.com/ibm-webmethods-continuous-delivery/7u-ibm-doc-fetcher-cli/tree/main/util/skills/ibmdocs) and set up your agent to use it.
-3. Make a data folder to keep the local knowledge base (e.g. ~/ibmdocs-data)
+3. Optionally choose a data folder for the local knowledge base by setting `IWCD_IBMDOCS_DATA_FOLDER` (e.g. ~/ibmdocs-data); otherwise `~/.cache/ibmdocs-data` is used (`ibmdocs data-dir` prints it)
 4. Ask the agent you question without being shy. E.g.
 
 > "Using the skill ibmdocs, the data folder ... and the binary ..., please ...
@@ -200,7 +200,7 @@ Global flags available on every command:
 
 | Flag | Default | Description |
 |---|---|---|
-| `--data`, `-d` | `./ibmdocs-data` | Path to the data folder |
+| `--data`, `-d` | `$IWCD_IBMDOCS_DATA_FOLDER`, else `$XDG_CACHE_HOME/ibmdocs-data`, else `~/.cache/ibmdocs-data`, else `./ibmdocs-data` (print with `ibmdocs data-dir`) | Path to the data folder |
 | `--lang` | `en` | Language code (`fr`, `de`, `ja`, `zh-cn`, `es`, `pt-br`, …) |
 | `--verbose`, `-v` | false | Debug-level logging to stderr |
 | `--delay` | `200ms` | Inter-request delay (polite crawling; `0` to disable) |
