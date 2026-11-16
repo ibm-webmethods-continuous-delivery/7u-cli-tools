@@ -8,8 +8,8 @@ Try out the `ibmdocs` CLI tool and the associated AI Agent skill today. Have sop
 https://ibm.biz/~XmaRTKC29
 
 
-1. Download the [binary](https://github.com/ibm-webmethods-continuous-delivery/7u-ibm-doc-fetcher-cli/releases/latest)
-2. Download the [skill](https://github.com/ibm-webmethods-continuous-delivery/7u-ibm-doc-fetcher-cli/tree/main/util/skills/ibmdocs) and set up your agent to use it.
+1. Download the [binary](https://github.com/ibm-webmethods-continuous-delivery/7u-cli-tools/releases)
+2. Download the [skill](https://github.com/ibm-webmethods-continuous-delivery/7u-cli-tools/blob/main/code/ibmdocs/util/skills/ibmdocs/SKILL.md) and set up your agent to use it.
 3. Optionally choose a data folder for the local knowledge base by setting `IWCD_IBMDOCS_DATA_FOLDER` (e.g. ~/ibmdocs-data); otherwise `~/.cache/ibmdocs-data` is used (`ibmdocs data-dir` prints it)
 4. Ask the agent you question without being shy. E.g.
 
@@ -133,7 +133,7 @@ Two components work together and both are required:
 
 **1. The `ibmdocs` binary** — this is the CLI that actually talks to IBM Docs, manages
 the cache, and writes the Markdown knowledge base. Without it, the skill has nothing to
-run. Download the binary for your platform from [GitHub Releases](../../releases) and
+run. Download the binary for your platform from [GitHub Releases](../../../../../releases) and
 place it on your `PATH`:
 
 ```sh
@@ -147,7 +147,7 @@ chmod +x ibmdocs && mv ibmdocs /usr/local/bin/
 ```
 
 Verify with `ibmdocs version`. Full platform table and container alias in the
-[README installation section](../README.md#installation).
+[README installation section](../../../README.md#installation--binaries).
 
 **2. The `ibmdocs` skill** — a Markdown file that tells your AI agent how to use the
 binary. It encodes the seven-step retrieval protocol so the agent runs the workflow
